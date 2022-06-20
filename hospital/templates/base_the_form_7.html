@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arknet</title>
+    <link href="{% static 'css/hospital/bootstrap.css' %}?v={{ hash }}" rel="stylesheet">
+    <link rel="icon" href="https://www.okb2-tmn.ru//upload/2020/08/cropped-favicontest-32x32.png" sizes="32x32">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+  
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    
+    <link href="{% static 'css/floating-labels.css' %}?v={{ hash }}" rel="stylesheet">
+    <link href="{% static 'css/hospital/hospital.css' %}?v={{ hash }}" rel="stylesheet">  
+    <link href="{% static 'css/hospital/form_7.css' %}?v={{ hash }}" rel="stylesheet">  
+
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    <script src="{% static 'js/hospital/jquery.js' %}?v={{ hash }}"></script>
+    <script src="{% static 'js/hospital/bootstrap_min.js' %}?v={{ hash }}"></script>
+</body>
+</html>

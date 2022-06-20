@@ -1,0 +1,2299 @@
+{% extends 'base_hospital_index.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="form-signin">
+  <div class="index-menu">
+    <h1 class="h3 mb-3 font-weight-normal">Стационар</h1>
+    <ul class="menu-li">
+
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModalCenter">Загрузка из 1С</button>
+      <a href="search/" style="text-decoration:none"><button type="button"
+          class="btn btn-outline-primary">Просмотр/Редактирование записей</button></a>
+      
+      <a href="form_7/" style="text-decoration:none"><button type="button"
+        class="btn btn-outline-primary">Форма №7</button></a>
+
+
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModalcreate_reestr">Создание реестра</button>
+
+
+
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModalcreate_reports" onclick="init()">Создание отчетов</button>
+
+
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModalUpdate">Обновление персональных данных</button>
+
+
+      <a href="/" style="text-decoration:none"><button type="button" class="btn btn-outline-primary"
+          v-on:click="exit_end">Выход</button></a>
+
+    </ul>
+  </div>
+</div>
+
+
+<div id="app">
+  {% verbatim %}
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h5 class="modal-title">Загрузка из 1с</h5>
+            </div>
+          </div>
+        </div>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{message}}</h5>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div v-if="exportfrom1_loading" class="alert alert-info text-center" role="alert">
+                  Записи обрабатываются
+                </div>
+                <div v-if="exportfrom1_completed" class="alert alert-success text-center" role="alert">
+                  Экспорт из 1с завершён
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" id="sp_close" v-on:click="close()">&times;</span>
+          </button>
+        </div>
+
+        <form id="uploadForm-load-1c" method="POST" enctype="multipart/form-data">
+          <!-- {% csrf_token %} -->
+
+          <div v-if="mes_div" class="alert alert-success" role="alert">
+            Файлы загружены
+          </div>
+
+          <div v-if=" mes_div!=null && !mes_div" class="alert alert-danger" role="alert">
+            Файлы не загружены
+          </div>
+
+          <div v-show="loader_sp_st" class="alert alert-success" role="alert">
+            Файлы загружаются
+          </div>
+
+          <div v-show="loader_sp" class="alert alert-success" role="alert">
+            Файлы обрабатываются
+          </div>
+
+          <div v-if="loader_sp_end" class="alert alert-success" role="alert">
+            Записи записаны успешно
+          </div>
+
+          <div v-if="err_oper" class="alert alert-danger" role="alert">
+            Вы загрузили не файл oper
+          </div>
+
+          <div v-if="err_sluch" class="alert alert-danger" role="alert">
+            Вы загрузили не файл sluch
+          </div>
+
+
+          <div class="modal-body">
+
+            <div class="form-group" id="group_oper">
+              <label for="file_oper">Выберите файл oper</label>
+              <input v-model="oper" type="file" class="form-control-file" id="file_oper">
+            </div>
+
+            <div class="form-group" id="group_sluch">
+              <label for="file_sluch">Выберите файл sluch</label>
+              <input v-model="sluch" type="file" class="form-control-file" id="file_sluch">
+            </div>
+
+            <div class="form-group" id="group_sluch_10">
+              <label for="file_sluch_10">Выберите файл мониторинг реестра</label>
+              <input v-model="sluch_10" type="file" class="form-control-file" id="file_sluch_10">
+            </div>
+            <div class="progress" id="div_progress" v-if="div_progress">
+              <div id="progress" class="progress-bar progress-bar-striped bg-success  progress-bar-animated"
+                role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+            <p id="progress_bar"></p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-e"
+              v-on:click="close">Закрыть</button>
+            <button type="button" class="btn btn-primary" v-on:click="load_files" id="btn-s">Сохранить</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endverbatim %}
+</div>
+
+
+<div id="update_pers">
+  {% verbatim %}
+  <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Обновление персональных данных</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div v-if="v_update" class="alert alert-info text-center" role="alert">
+                  Записи обрабатываются
+                </div>
+                <div v-if="v_ok" class="alert alert-success text-center" role="alert">
+                  Персональные данные обновлены!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form action="" enctype="multipart/form-data" method="post">
+            обновление персональных данных
+            <input type="file" name="files" id="update_pers_file" required multiple>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+              <button type="button" class="btn btn-primary" v-on:click="update_pers()">Сохранить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endverbatim %}
+</div>
+
+
+
+
+
+<div class="modal fade" id="exampleModalcreate_reestr" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div id="create_reestr_div" style="margin-left: 98px;">
+      {% verbatim %}
+      <div class="modal-content">
+        <div class="modal-header ">
+          <h5 class="modal-title" id="exampleModalLongTitle">Создание реестра</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" v-on:click="close()">&times;</span>
+          </button>
+
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div v-if="create_res" class="alert alert-info text-center" role="alert">
+                  Формирования реестра
+                </div>
+                <div v-if="end" class="alert alert-success text-center" role="alert">
+                  Реестр создан
+                </div>
+                <div id="download_reestr" class="text-center"></div>
+                <div id="download_reestr_prot" class="text-center"></div>
+              </div>
+            </div>
+          </div>
+          <!-- <date></date> -->
+          <div class="text-center">
+            <div><label>за период (дд.мм.гггг)</label></div>
+            <label>с</label>
+            <input type="date" id="date_r_1_create">
+            <label>по</label>
+            <input type="date" id="date_r_2_create">
+          </div>
+          <br>
+          <div class="text-center">
+            <select name="sl_res" id="sl_res" class="text-center">
+              <option value="ОСН.dbf">Основной</option>
+              <option value="БПО.dbf">баз.программа ОМС</option>
+              <option value="ВСП.dbf">ВТМП сверхбаз.программа</option>
+            </select>
+          </div>
+          <br>
+          <div class="text-center"><input type="text" value="" id="filename" class="mb-3 text-center"
+              placeholder="Имя файла"></div>
+          <br>
+          <div class="text-center"><button type="button" class="btn btn-primary" v-on:click="create_reestr()">Создать
+              реестр</button></div>
+
+
+          <br>
+          <div class="progress" id="progress_create_reestr" v-if="progress">
+            <div id="progress" class="progress-bar progress-bar-striped bg-success  progress-bar-animated"
+              role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" v-on:click="close()">Закрыть</button>
+        </div>
+
+        </form>
+
+      </div>
+    </div>
+    {% endverbatim %}
+  </div>
+
+</div>
+
+<div id="report_oth">
+  {% verbatim %}
+  <div class="modal fade" id="exampleModalcreate_reports" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+      <div class="modal-content" style="width:1300px">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Создание отчетов</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" id="sp_close" v-on:click="close()">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="menu-reports">
+            <button type="button" class="btn btn-outline-primary"
+              v-on:click="references()">Контроль,списки,справки</button>
+            <button type="button" class="btn btn-outline-primary" v-on:click="reports()">Годовой отчет</button>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-2">
+                <div v-if="lists_references" id="lists-references">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" v-on:click="group()">Список больных</a>
+                    <!-- <a class="list-group-item list-group-item-action" v-on:click="annual_bol()">Список больных</a> -->
+                    <a class="list-group-item list-group-item-action" v-on:click="annual()">Справки,отчеты</a>
+                  </div>
+                </div>
+                <!-- <div v-if="annual_reports" id="annual-reports">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" v-on:click="generation()">Формирование отчета</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="reports_menu()">Печать отчета</a>
+                  </div>
+                </div> -->
+
+                <div v-if="annual_reports" id="annual-reports">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" v-on:click="statistics_rep()">1.Статистика</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="departments_rep()">2.Отделения</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="vra_rep()">3.Врачи</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="vault_otd_rep()">4.Свод отд-ний</a>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="col-md-10">
+                <div v-if="menu_group">
+                  <div class="text-center">
+
+
+
+                    <div><label for="">Выберите тип списка больных:</label></div>
+                    <select class="text-center" id="group_p_list" onchange="onchange_group_p_list()">
+                      <option value="null"></option>
+                      <option value="group_p1">1.выбывших</option>
+                      <option value="group_p2">2.выбывших(расширенный форма)</option>
+                      <option value="group_p3">3.умерших</option>
+                      <option value="group_p4">4.выбывших(краткий формат)</option>
+                      <option value="group_p5">5.госпитализ. > ___ дней</option>
+                      <option value="group_p6">6.выборка по операции</option>
+                      <option value="group_p7">7.с осложнениями</option>
+                      <option value="group_p8">8.выборка по диагнозу</option>
+                      <option value="group_p9">9.для осмотра зам.гл.врача</option>
+                      <option value="group_p10">10.по районам города</option>
+                      <option value="group_p11">11.по страховым компаниям</option>
+                      <option value="group_p12">12.плановых/экстренных</option>
+                      <option value="group_p13">13.детей до года с патал.</option>
+                      <option value="group_p14">14.превысивших станд.срок леч</option>
+                      <option value="group_p15">15.выборка по коду манипуляции</option>
+                      <option value="group_p16">16.срок лечения минее ___ дн.</option>
+                      <option value="group_p17">17.выбывшие граждане иностр.г</option>
+                      <option value="group_p18">18.пациентов с Ds язва.ослож.</option>
+                      <option value="group_p19">19.умерших в 1-е сутки до 65</option>
+                      <option value="group_p20">20.поступивших на стационар.л</option>
+                      <option value="group_p21">21.с закрытыми листами нетруд.</option>
+                      <option value="group_p22">22.по программе ВМП</option>
+                      <option value="group_p23">23.с ампутированными конечнос.</option>
+                      <option value="group_p24">24.по поликлиникам прикреплен.</option>
+                      <option value="group_p25">25.для АРО новорожденных</option>
+                    </select>
+
+
+                  </div>
+                  <div class="text-center">
+                    <br>
+                    <select v-if="group_podly_ternerprof" class="text-center" id="group_podly_ternerprof"
+                      onchange="onchange_group_podly_ternerprof(event)">
+                      <option value="podly">по подразделениям ЛУ</option>
+                      <option value="ternerprof">терап.,неврол.профилей</option>
+                    </select>
+
+                    <div v-if="group_st_ot">
+                      <br>
+                      <select class="text-center" id="group_st_ot" onchange="onchange_group_st_ot(event)">
+                        <option value="st">по стационару</option>
+                        <option value="ot">по отделению</option>
+                      </select>
+                    </div>
+
+                    <div v-if="group_goc_filt">
+                      <br>
+                      <select class="text-center" id="group_goc_filt">
+                        <option value="pl">плановых</option>
+                        <option value="ek">экстренных</option>
+                      </select>
+                    </div>
+
+                  </div>
+                  <hr>
+                  <br>
+                </div>
+                <div id="menu-list-group">
+                  <div id="menu-annual-reports">
+
+                    <div v-if="menu_group">
+                      <div class="constainer">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <all_filter></all_filter>
+                          </div>
+                          <div class="col-md-4">
+                            <div id="an_rep_data">
+                              <div id="report_text_shaping" v-if="group_shaping">
+                                <div class="alert alert-info text-center" role="alert">
+                                  Формирование отчета
+                                </div>
+                              </div>
+                              <div id="report_text_create" v-if="group_create">
+                                <div class="alert alert-success text-center" role="alert">
+                                  Отчет сформирован
+                                </div>
+                              </div>
+                              <div v-if="group_error">
+                                <br>
+                                <div class="alert alert-warning" role="alert">
+                                  Данный отчет еще не создан
+                                </div>
+                              </div>
+                              <div id="group_download" class="text-center">
+                              </div>
+
+                              <date></date>
+                              <div id="filters">
+                                <otdel_filter></otdel_filter>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <all_input_models></all_input_models>
+                          </div>
+                        </div>
+                        <div class="text-center" style="margin-bottom: 10px;">
+                          <button btn="g_oth" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                            class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div v-if="report_generation" id="menu-annual">
+                      Формирование отчета
+                    </div>
+                  </div>
+
+                </div>
+                <div v-if="statistics_reports" id="statistics_rep">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-3"></div>
+                      <div class="col-md-6">
+                        <div id="report_text_shaping" v-if="group_shaping">
+                          <div class="alert alert-info text-center" role="alert">
+                            Формирование отчета
+                          </div>
+                        </div>
+                        <div id="report_text_create" v-if="group_create">
+                          <div class="alert alert-success text-center" role="alert">
+                            Отчет сформирован
+                          </div>
+                        </div>
+                        <div v-if="group_error">
+                          <br>
+                          <div class="alert alert-warning" role="alert">
+                            Данный отчет еще не создан
+                          </div>
+                        </div>
+                        <br>
+                        <div id="statistics_rep_download" class="text-center"></div>
+
+                        <date></date>
+                        <div class="list-group text-center">
+                          <h5><b>Форма N 13</b></h5>
+                          <select class="text-center" id="panel-13-menu" onchange="onchange_panel_13_menu(event)">
+                            <option value=""></option>
+                            <option value="annual_13_1_1">Ф.№13 (год.)</option>
+                            <option value="annual_13_1_2">ф.№13 (г.Тюмень)</option>
+                            <option value="annual_13_1_3">Список женщин г.Тюмень</option>
+                            <option value="annual_13_1_4">Профил-ка прерывания бер-ти</option>
+                            <option value="annual_13_1_5">ф.2000 (А,Б,В,ф.2001-2900)</option>
+                          </select>
+                        </div>
+                        <div class="list-group text-center">
+                          <h5><b>Форма N 14</b></h5>
+                          <select class="text-center" id="panel-14-menu" onchange="onchange_panel_14_menu(event)">
+                            <option value=""></option>
+                            <option value="" disabled>1.Составбольных в стационаре</option>
+                            <option value="14_1_1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp А.Взрослые 18 лет и старше</option>
+                            <option value="14_1_2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Б.Взрослые нетрудоспособного возраста
+                            </option>
+                            <option value="14_1_3">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp В.Дети до 18 лет</option>
+                            <option value="14_1_4">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ф.2001 - 2900</option>
+                            <option value="14_1_5">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ф.2000 (А,Б,В,ф.2001-2900)</option>
+                            <option value="" disabled>2.Состав детей в возрасте 0-6 сут.</option>
+                            <option value="14_2_1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Состав детей в возрасте 0-6</option>
+                            <option value="" disabled>3.Хирургическая работа в учр-ях</option>
+                            <option value="4_3_1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3.Сводный отчет (ф.4000)</option>
+                            <option value="14_3_2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3.Расшифровка (ф.4000)</option>
+                            <option value="14_3_3">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3.1 Лица старше труд.возраста (4001)
+                            </option>
+                            <option value="14_3_4">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Операции у детей в возр-те до 1 года
+                              (4002)
+                            </option>
+                            <option value="14_3_5">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1.2 Вкладыш в ф.14 (1001)</option>
+                            <option value="14_3_6">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1.2 Вкладыш в ф.14 (1001) расшифровка
+                            </option>
+                            <option value="14_3_7">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1.3 Хирур.актив-ть при заболе-х легких
+                              (1002)</option>
+                            <option value="14_3_8">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Операции с применением ВМП</option>
+                          </select>
+
+                        </div>
+                        <div class="list-group text-center">
+                          <h5><b>Форма N 30</b></h5>
+                          <select class="text-center" id="panel-30-menu" onchange="onchange_panel_30_menu(event)">
+                            <option value=""></option>
+                            <option value="" disabled>1.Коечный фонд и его использование</option>
+                            <option value="annual_30_1_1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Коечный фонд и его
+                              использование
+                            </option>
+                            <option value="" disabled>2.Экстренная хирургическая помощь</option>
+                            <option value="annual_30_2_1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2.1 Случай</option>
+                            <option value="annual_30_2_2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2.2 Койко-дни</option>
+                            <option value="annual_30_2_3">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2.3 Список умерших</option>
+                            <option value="" disabled>3.Работа отд.функцион.диагностики</option>
+                            <option value="annual_30_3_1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Работа отд.функцион.диагностики
+                            </option>
+                          </select>
+                        </div>
+                        <div class="list-group text-center">
+                          <h5><b>Форма N 16</b></h5>
+                          <select class="text-center" id="panel-16-menu" onchange="onchange_panel_16_menu(event)">
+                            <option value=""></option>
+                            <option value="" disabled>1.Причины временной нетрудоспособ-ти</option>
+                            <option value="annual_16_1_1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Причины временной
+                              нетрудоспособ-ти
+                            </option>
+                          </select>
+                        </div>
+                        <div class="list-group text-center">
+                          <h5><b>Форма N 57</b></h5>
+                          <select class="text-center" id="panel-57-menu" onchange="onchange_panel_57_menu(event)">
+                            <option value=""></option>
+                            <option value="" disabled>Сведения о травмах и отравлениях</option>
+                            <option value="annual_57_1_1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp г.Тюмень</option>
+                            <option value="annual_57_1_2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Тюменский р-н</option>
+                            <option value="annual_57_1_3">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp г.Тюмень + Тюменский р-н
+                            </option>
+                            <option value="annual_57_1_4">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Свод по всем территориям
+                            </option>
+                          </select>
+                        </div>
+                        <div class="list-group text-center">
+                          <h5><b>Прочие отчеты</b></h5>
+                          <select class="text-center" id="panel-pr-menu" onchange="onchange_panel_pr_menu(event)">
+                            <option value=""></option>
+                            <option value="annual_pr_1">1.Отчет о работе отделений (по ИБ)</option>
+                            <option value="annual_pr_2">2.Отчет о хирур.работе отделений</option>
+                            <option value="annual_pr_3">3.По полу, возрасту, типам травм</option>
+                            <option value="annual_pr_4">4.По направляющим учр-ям</option>
+                            <option value="annual_pr_5">5.По нозологич. группам</option>
+                            <option value="annual_pr_6">6.По нозологич. группам и операциям</option>
+                            <option value="annual_pr_7">7.По операциям</option>
+                            <option value="annual_pr_8">8.По умершим</option>
+                            <option value="annual_pr_9">9.По месту жительства</option>
+                            <option value="annual_pr_a">а.экстрен.хирург.помощь(к/дни)</option>
+                            <option value="annual_pr_b">б.По DS и опер-м (произвол.запрос)</option>
+                            <option value="annual_pr_v">в.выполнение ПГГ</option>
+                            <option value="annual_pr_g">г.распределение по источ.финансир-я</option>
+                            <option value="annual_pr_d">д.инф-я о заболев-х органов пищев.</option>
+                          </select>
+                        </div>
+
+                        <br>
+                        <div class="text-center" style="margin-bottom: 10px;">
+                          <button type="button" onclick="create_reports(event)" id="statistics_rep_btn"
+                            class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                        </div>
+
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+                  </div>
+
+
+
+
+                </div>
+
+
+                <div v-if="departments_reports" id="departments_rep">
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-3"></div>
+                      <div class="col-md-6">
+
+                        <date></date>
+                        <p style="display: block;" class="text-center">Выберите отделение</p>
+                        <input_select v-bind:spravlist="sprav_list.Otde" k="naim" ll="otdel_l" id="otdel"
+                          class="text-center" n=""></input_select>
+                        <br>
+                        <div class="list-group text-center" >
+                          <select @change="departments_rep_onchange(event)">
+                            <option value=""></option>
+                            <option value="1">1.основные показатели работы отд.</option>
+                            <option value="2">2.выполн-е програ-ы гос.гарантий</option>
+                            <option value="3">3.по видам оператив.вмнешательств</option>
+                            <option value="4">4.по нозологии</option>
+                            <option value="5">5.по нозолог-им формам и возрасту</option>
+                            <option value="6">6.по экстренной хирургии</option>
+                            <option value="7">7.по манипуляциям</option>
+                            <option value="8">8.ф14 хирургическая работа</option>
+                            <option value="9">9.ф14 состав больных в отд-ний</option>
+                            <option value="a">а.амбул.работа в прием.отд-ний</option>
+                            <option value="b">б.список умерших</option>
+                            <option value="v">в.список с п/осложнениями</option>
+                            <option value="g">г.по нозологии и операциям</option>
+                            <option value="d">д.работа врачей отделения</option>
+                          </select>
+                        </div>
+                        <br>
+                        <div class="text-center" style="margin-bottom: 10px;">
+                          <button type="button" onclick="create_reports(event)" id="statistics_rep_btn"
+                            class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                        </div>
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div v-if="vra_reports" id="vra_rep">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-3"></div>
+                      <div class="col-md-6">
+
+                        <div id="report_text_shaping" v-if="group_shaping">
+
+                          <div class="alert alert-info text-center" role="alert">
+                            Формирование отчета
+                          </div>
+                        </div>
+                        <div id="report_text_create" v-if="group_create">
+                          <div class="alert alert-success text-center" role="alert">
+                            Отчет сформирован
+                          </div>
+                        </div>
+                        <div v-if="group_error">
+                          <br>
+                          <div class="alert alert-warning" role="alert">
+                            Данный отчет еще не создан
+                          </div>
+                        </div>
+                        <div id="statistics_rep_download" class="text-center"></div>
+                        <date></date>
+                        <br>
+                        <div class="text-center">
+                          <input type="text" list="vra_kod_naim" id="vra_n_k">
+                          <datalist id="vra_kod_naim">
+                          </datalist>
+                        </div>
+
+                        <br>
+                        <div class="text-center" style="margin-bottom: 10px;">
+                          <button type="button" onclick="create_reports(event)" btn="annual_vra"
+                            class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                        </div>
+
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div v-if="vault_otd_reports" id="vault_otd_rep">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-3"></div>
+                      <div class="col-md-6">
+
+                        <div id="report_text_shaping" v-if="group_shaping">
+                          <div class="alert alert-info text-center" role="alert">
+                            Формирование отчета
+                          </div>
+                        </div>
+                        <div id="report_text_create" v-if="group_create">
+                          <div class="alert alert-success text-center" role="alert">
+                            Отчет сформирован
+                          </div>
+                        </div>
+                        <div id="download_vault_otd" class="text-center">
+                        </div>
+                        <date></date>
+                        <div class="list-group">
+                          <select id="otd_reports_onchange" onchange="otd_reports(event)">
+                            <option value=" "></option>
+                            <option value="ттт">Травма1 + Травма2 + Травма3</option>
+                            <option value="ннн">Неврол.1 + Неврол.2 + Неврол.3</option>
+                            <option value="">Хирургия1 + Хирургия2</option>
+                          </select>
+                        </div>
+
+                        <br>
+                        <div class="text-center" style="margin-bottom: 10px;">
+                          <button type="button" onclick="vault_otd_reports(event)" id="vault_otd_btn"
+                            class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                        </div>
+
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3">
+                <!-- <div v-if="menu_annual" id="menu-group">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_1()">1.Выборка по коду
+                      манипуляции</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_2()">2.Иногородних</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_3()">3.По страховым
+                      компаниям</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_4()">4.Выборка по
+                      диагнозу</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_5()">5.Выборка (по
+                      заказу)</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_6()">6.Кол-во выбывших и
+                      к/день</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_7()">7.Распред-е по
+                      источ.финансир-я</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_8()">8.Инф-я о к-ве
+                      экстр.выбывших</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_9()">9.Распред-е по
+                      степени тяжести</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_10()">10.Информация в
+                      депортамент</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_11()">11.Возрастной
+                      состав выбывших</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_12()">12.Сведения об
+                      умерших</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_13()">13.Сведения о
+                      реанимац.к/днях</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_14()">14.Сведения о
+                      проопериров.б-х</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_15()">15.Инфор.о
+                      гражданах Белоруссии</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_16()">16.Дет.травм-м в
+                      оздоров.учр-ях</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_17()">17.Возрастной
+                      состав поступ-х</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_18()">18.Травмы
+                      насильствен.хар-ра</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_19()">19.Смер-ть и трав-м
+                      от вн.причин</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_20()">20.Отчет по
+                      эндос.хирур.работе</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_21()">21.Догоспитальное
+                      прерывания в ПО</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_22()">22.Объемы МП за
+                      счет субсидиий ФБ</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_23()">23.Мониторинг
+                      ДТП</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_24()">24.Оценка
+                      послеоперац.осложнений</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_25()">25.Прерывание в
+                      реан.отд.по проф.</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_26()">26.С ОНМК по
+                      пол-кам прикрепления</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_27()">27.Операции в ПО
+                      стационара</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_28()">28.Мед.услуги
+                      др.регион,др.страны</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_29()">29.По Ds и по
+                      терр.проживания</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_30()">30.Травматизм по
+                      терр. проживания</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_31()">31.Отчет
+                      офтальмогической службы</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_32()">32.Информация
+                      токсикол. отделения</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_33()">33.Инф-я об услугах
+                      ОМС др.регион</a>
+                  </div>
+                </div> -->
+              </div>
+              <div class="col-md-9">
+
+
+                <div v-if="menu_annual_bol" id="menu_annual_bol">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m_b-1"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>1.выбывших</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m_b-1">
+                      1.выбывших1.выбывших1.выбывших1.выбывших1.выбывших1.выбывших1.выбывших
+                    </div>
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m_b-2"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>2.выбывших(расширенный форма)</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m_b-2">
+                      2.выбывших(расширенный форма2.выбывших(расширенный форма2.выбывших(расширенный
+                      форма2.выбывших(расширенный форма
+                    </div>
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m_b-3"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>3.умерших</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m_b-3">
+                      3.умерших3.умерших3.умерших3.умерших3.умерших3.умерших3.умерших
+                    </div>
+                  </div>
+                </div>
+                <div v-if="menu_annual" id="menu-group">
+                  <div class="list-group">
+                    <div class="container">
+                      <div class="text-center"><label for="">Выберите тип отчета:</label></div>
+                      <div class="text-center">
+                        <select class="" id="group_p_list_a_oth" onchange="onchange_group_p_list_a_oth()">
+                          <option value=""></option>
+                          <option value="a_oth_1">1.Выборка по коду манипуляции</option>
+                          <option value="a_oth_2">2.Иногородних</option>
+                          <option value="a_oth_3">3.По страховым компаниям</option>
+                          <option value="a_oth_4">4.Выборка по диагнозу</option>
+                          <option value="a_oth_5">5.Выборка (позаказу)</option>
+                          <option value="a_oth_6">6.Кол-во выбывших и к/день</option>
+                          <option value="a_oth_7">7.Распред-е по источ.финансир-я</option>
+                          <option value="a_oth_8">8.Инф-я о к-веэкстр.выбывших</option>
+                          <option value="a_oth_9">9.Распред-е постепени тяжести</option>
+                          <option value="a_oth_10">10.Информация вдепортамент</option>
+                          <option value="a_oth_11">11.Возрастной состав выбывших</option>
+                          <option value="a_oth_12">12.Сведения об умерших</option>
+                          <option value="a_oth_13">13.Сведения о реанимац.к/днях</option>
+                          <option value="a_oth_14">14.Сведения о проопериров.б-х</option>
+                          <option value="a_oth_15">15.Инфор.о гражданах Белоруссии</option>
+                          <option value="a_oth_16">16.Дет.травм-м в оздоров.учр-я</option>
+                          <option value="a_oth_17">17.Возрастной состав поступ-х</option>
+                          <option value="a_oth_18">18.Травмы насильствен.хар-ра</option>
+                          <option value="a_oth_19">19.Смер-ть и трав-м от вн.причин</option>
+                          <option value="a_oth_20">20.Отчет по эндос.хирур.работе</option>
+                          <option value="a_oth_21">21.Догоспитальное прерывания в ПО</option>
+                          <option value="a_oth_22">22.Объемы МП за счет субсидиий ФБ</option>
+                          <option value="a_oth_23">23.Мониторинг ДТП</option>
+                          <option value="a_oth_24">24.Оценка послеоперац.осложнений</option>
+                          <option value="a_oth_25">25.Прерывание в реан.отд.по проф.</option>
+                          <option value="a_oth_26">26.С ОНМК по пол-кам прикрепления</option>
+                          <option value="a_oth_27">27.Операции в ПО стационара</option>
+                          <option value="a_oth_28">28.Мед.услуги др.регион,др.страны</option>
+                          <option value="a_oth_29">29.По Ds и по терр.проживания</option>
+                          <option value="a_oth_30">30.Травматизм по терр. проживания</option>
+                          <option value="a_oth_31">31.Отчет офтальмогической службы</option>
+                          <option value="a_oth_32">32.Информация токсикол. отделения</option>
+                          <option value="a_oth_33">33.Инф-я об услугах ОМС др.регион</option>
+
+                        </select>
+                      </div>
+
+                      <div id="group_p_list_data">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+
+                              <div id="report_text_shaping" v-if="group_shaping">
+                                <br>
+                                <div class="alert alert-info text-center" role="alert">
+                                  Формирование отчета
+                                </div>
+                              </div>
+                              <div id="report_text_create" v-if="group_create">
+                                <br>
+
+                                <div class="alert alert-success text-center" role="alert">
+                                  Отчет сформирован
+                                </div>
+                              </div>
+                              <div v-if="group_error">
+                                <br>
+                                <div class="alert alert-warning" role="alert">
+                                  Данный отчет еще не создан
+                                </div>
+                              </div>
+                              <br>
+                              <div id="download_a_oth" class="text-center"></div>
+
+                            </div>
+                            <div class="col-md-4"></div>
+                          </div>
+                        </div>
+
+
+
+                        <div id="panel_m-1" v-if="panel_m_1">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-3"></div>
+                              <div class="col-md-6">
+
+                                <date></date>
+                                <div class="text-center">
+                                  <label>2.список манипуляции</label>
+                                  <input_select v-bind:spravlist="sprav_list.AbObsh" k="kod" ll="abobsh_l" id="abobsh"
+                                    n="">
+                                  </input_select>
+                                </div>
+                                <div class="text-center">
+                                  <label>3.таб.N исполнителя манипуляции</label>
+                                  <input_select v-bind:spravlist="sprav_list.Vra" k="kod" ll="vra_l" id="vra" n="">
+                                  </input_select>
+                                </div>
+                                <div class="text-center">
+                                  <label>4.отделение исполнителя</label>
+                                  <input_select v-bind:spravlist="sprav_list.Otde" k="naim" ll="otdel_l" id="otdel"
+                                    n="">
+                                  </input_select>
+                                </div>
+                                <div class="text-center">
+                                  <label>5.Фамилия пациента</label>
+                                  <div>
+                                    <input type="text" id="fam_pat">
+                                  </div>
+                                </div>
+                                <div class="text-center">
+                                  <label>6.Возрастная группа</label>
+                                  <input_select v-bind:spravlist="sprav_list.AgeGroup" k="name" ll="agegroup_l"
+                                    id="agegroup" n="">
+                                  </input_select>
+                                </div>
+                                <div class="text-center">
+                                  <label>7.Госпитализация(план./экс.)</label>
+                                  <input_select v-bind:spravlist="sprav_list.V014" k="tipName" ll="v014_l" id="v014"
+                                    n="">
+                                  </input_select>
+                                </div>
+                                <div class="text-center">
+                                  <label>8.(первично/повторно)</label>
+                                  <input_select v-bind:spravlist="sprav_list.Prpg" k="naim" ll="prpg_l" id="prpg" n="">
+                                  </input_select>
+                                </div>
+                                <div class="text-center">
+                                  <label>9.пол</label>
+                                  <input_select v-bind:spravlist="sprav_list.V005" k="polname" ll="v005_l" id="v005"
+                                    n="">
+                                  </input_select>
+                                </div>
+                                <div class="text-center">
+                                  <label>с диагнозами с</label>
+                                  <input_s_po></input_s_po>
+                                </div>
+                                <div class="text-center">
+                                  <label>10.с исходом лечения</label>
+                                  <input_select v-bind:spravlist="sprav_list.V012" k="izName" ll="v012_l" id="v012"
+                                    n="">
+                                  </input_select>
+                                </div>
+                                <div class="text-center">
+                                  <p>Список манипуляции задается, как перечень кодов манипуляции через ","</p>
+                                </div>
+                                <div class="text-center" style="margin-bottom: 10px;">
+                                  <button btn="a_oth_1" type="button" id="create_btn_reports"
+                                    onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                                    style="padding: 0px;">Создать отчет</button>
+                                </div>
+
+                              </div>
+                              <div class="col-md-3"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="panel_m-2" v-if="panel_m_2">
+                          <date></date>
+                          <div class="text-center">
+                            <br>
+                            <select id="a_oth_2_select_1" onchange="onchange_a_oth_2_select_1(event)">
+                              <option value="">-----</option>
+                              <option value="Общая справка">Общая справка</option>
+                              <option value="По территор.признаку">По территор.признаку</option>
+                            </select>
+                          </div>
+                          <div class="text-center">
+                            <br>
+                            <select id="a_oth_2_select_2" v-if="a_oth_2_select_2_f">
+                              <option value="">-----</option>
+                              <option value="г.Тюмень">г.Тюмень</option>
+                              <option value="Юг тюм.обл.кроме Тюм.р-на">Юг тюм.обл.кроме Тюм.р-на</option>
+                              <option value="Тюменский р-н">Тюменский р-н</option>
+                              <option value="Ханты-Мансийский АО">Ханты-Мансийский АО</option>
+                              <option value="Ямало-Ненецкий АО">Ямало-Ненецкий АО</option>
+                            </select>
+                          </div>
+                          <br>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_2" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-3" v-if="panel_m_3">
+                          <date></date>
+                          <div class="text-center">
+                            <br>
+                            <select>
+                              <option value="">-----</option>
+                              <option value="По реестрам">По реестрам</option>
+                              <option value="По отделениям">По отделениям</option>
+                              <option value="По видам оплат">По видам оплат</option>
+                            </select>
+                          </div>
+                          <br>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_3" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-4" v-if="panel_m_4">
+                          <date></date>
+                          <div class="text-center">
+                            <label>Введите ДС</label>
+                            <input type="text" id="a_oth_4_ds">
+                          </div>
+                          <br>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_4" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-5" v-if="panel_m_5">
+                          <div class="constainer">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <all_filter></all_filter>
+                              </div>
+                              <div class="col-md-8">
+                                <date></date>
+                                <div id="filters"></div>
+                                <!--                            <btn btn="a_oth_5"></btn>-->
+                                <div class="text-center" style="margin-bottom: 10px;">
+                                  <div>
+
+                                  </div> <button btn="a_oth_5" type="button" id="create_btn_reports"
+                                    onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                                    style="padding: 0px;">Создать отчет</button>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="panel_m-6" v-if="panel_m_6">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_6" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-7" v-if="panel_m_7">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_7" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-8" v-if="panel_m_8">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_8" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-9" v-if="panel_m_9">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_9" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-10" v-if="panel_m_10">
+                          <date></date>
+                          <div class="text-center">
+                            <br>
+                            <select id="a_oth_10_select">
+                              <option value="">----</option>
+                              <option value="Ежемесячная форма">Ежемесячная форма</option>
+                              <option value="Инф.2002-2003">Инф.2002-2003</option>
+                              <option value="По территориям">По территориям</option>
+                            </select>
+                          </div>
+                          <br>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_10" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-11" v-if="panel_m_11">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_11" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-12" v-if="panel_m_12">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_12" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-13" v-if="panel_m_13">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_13" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-14" v-if="panel_m_14">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_14" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-15" v-if="panel_m_15">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_15" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-16" v-if="panel_m_16">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_16" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-17" v-if="panel_m_17">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_17" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-18" v-if="panel_m_18">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_18" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-19" v-if="panel_m_19">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-3"></div>
+                              <div class="col-md-6">
+
+                                <date></date>
+                                <br>
+                                <div style="display: block;height: 180px;overflow-y: auto;" 
+                                  id="otdel">
+                                  <label>Тип травмы</label>
+                                  <ul>
+                                    <li class="list-group-item" v-for="t in sprav_list.Trv">
+                                      <input type="checkbox" :value="t['naim']">
+                                      {{t['naim']}}
+                                    </li>
+                                  </ul>
+                                </div>
+                                <br>
+                                <div class="text-center">
+                                  <tit title="Травма получена в рез-те противоправных действий третьих лиц"></tit>
+                                  <input_select v-bind:spravlist="sprav_list.Trvnas" k="naim" ll="Trvnas_l" id="trvnas"
+                                    n="">
+                                  </input_select>
+                                </div>
+                                <br>
+                                <div class="text-center" style="margin-bottom: 10px;">
+                                  <button btn="a_oth_19" type="button" id="create_btn_reports"
+                                    onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                                    style="padding: 0px;">Создать отчет</button>
+                                </div>
+                                <br>
+                              </div>
+                              <div class="col-md-3"></div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div id="panel_m-20" v-if="panel_m_20">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-3"></div>
+                              <div class="col-md-6">
+
+                                <date_ name1="dat1_p_m_20" name2="dat2_p_m_20"></date_>
+                                <div class="text-center">
+                                  <tit title="Источник финансирования"></tit>
+                                  <input_select v-bind:spravlist="sprav_list.Isfin" k="naim" ll="Isfin_l" id="isfin"
+                                    n="in_Isfin_p_m_20">
+                                  </input_select>
+                                </div>
+                                <dskz name1="dskz1_p_m_20" name2="dskz2_p_m_20"></dskz>
+                                <div class="text-center">
+                                  <tit title="Госпитализация"></tit>
+                                  <input_select v-bind:spravlist="sprav_list.V014" k="tipName" ll="V014_l" id="v014"
+                                    n="v014_p_m_20">
+                                  </input_select>
+                                </div>
+                                <div class="text-center">
+                                  <tit title="По направлению Мо"></tit>
+                                  <input_select v-bind:spravlist="sprav_list.F003" k="naim" ll="F003_l" id="f003"
+                                    n="f003_p_m_20">
+                                  </input_select>
+                                </div>
+                                <div class="text-center" style="margin-bottom: 10px;">
+                                  <br>
+                                  <button btn="a_oth_20" type="button" id="create_btn_reports"
+                                    onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                                    style="padding: 0px;">Создать отчет</button>
+                                </div>
+                              </div>
+                              <div class="col-md-3"></div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div id="panel_m-21" v-if="panel_m_21">
+
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-3"></div>
+                              <div class="col-md-6">
+
+                                <date></date>
+                                <br>
+                                <div class="text-center">
+                                  <select id="a_oth_21_select">
+                                    <option value="">----</option>
+                                    <option value="Отсутствуют сведения о госпитализации">Отсутствуют сведения о
+                                      госпитализации
+                                    </option>
+                                    <option value="Сред.длит-ть пребывания в ПО по врачам">Сред.длит-ть пребывания в ПО
+                                      по
+                                      врачам
+                                    </option>
+                                    <option value="Список госпитализ-х в ПО">Список госпитализ-х в ПО</option>
+                                    <option value="Справка о пребывании в ПО по профилям">Справка о пребывании в ПО по
+                                      профилям
+                                    </option>
+                                  </select>
+                                </div>
+                                <div class="text-center">
+                                  <tit title="Отбор по сред.времени пребывания - более (в мин)."></tit>
+                                  <input type="text" id="a_oth_21_input_1">
+                                </div>
+                                <div class="text-center mb-3">
+                                  <div>
+                                    <tit title="Время пребывания - более (в мин.)"></tit>
+                                    <input type="text" id="a_oth_21_input_2">
+                                  </div>
+                                  <div>
+                                    <tit title="Таб.N врача,госпитализурующего пациента"></tit>
+                                    <input_select v-bind:spravlist="sprav_list.Vra" k="kod" ll="vra_l" id="vra" n="">
+                                    </input_select>
+                                  </div>
+                                </div>
+                                <div class="text-center" style="margin-bottom: 10px;">
+                                  <button btn="a_oth_21" type="button" id="create_btn_reports"
+                                    onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                                    style="padding: 0px;">Создать отчет</button>
+                                </div>
+
+                              </div>
+                              <div class="col-md-3"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="panel_m-22" v-if="panel_m_22">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_22" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+
+                        </div>
+                        <div id="panel_m-23" v-if="panel_m_23">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_23" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-24" v-if="panel_m_24">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_24" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-25" v-if="panel_m_25">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_25" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-26" v-if="panel_m_26">
+                          <date></date>
+                          <br>
+                          <div class="text-center mb-3">
+                            <select id="a_oth_26_select">
+                              <option value="">-----</option>
+                              <option value="Жители г.Тюмени,Тюмен.р-на">Жители г.Тюмени,Тюмен.р-на</option>
+                              <option value="Жители юга Тюменской обл.">Жители юга Тюменской обл.</option>
+                            </select>
+                          </div>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_26" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-27" v-if="panel_m_27">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-3"></div>
+                              <div class="col-md-6">
+
+                                <date></date>
+                                <br>
+                                <div class="text-center mb-3">
+                                  <select id="a_oth_27_select">
+                                    <option value="">----</option>
+                                    <option value="Списочный состав операций">Списочный состав операций</option>
+                                    <option value="Справка по профилям заболеваний">Справка по профилям заболеваний
+                                    </option>
+                                  </select>
+                                </div>
+                                <div class="text-center">
+                                  <tit title="Профиль"></tit>
+                                  <input_select v-bind:spravlist="sprav_list.V020" k="kPrname" ll="V020_l" id="v020"
+                                    n="">
+                                  </input_select>
+                                </div>
+                                <div class="text-center" style="margin-bottom: 10px;">
+                                  <br>
+                                  <button btn="a_oth_27" type="button" id="create_btn_reports"
+                                    onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                                    style="padding: 0px;">Создать отчет</button>
+                                </div>
+
+                              </div>
+                              <div class="col-md-3"></div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div id="panel_m-28" v-if="panel_m_28">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_28" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-29" v-if="panel_m_29">
+                          <date></date>
+                          <tit title="Ds"></tit>
+                          <input_s_po></input_s_po>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_29" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-30" v-if="panel_m_30">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_30" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-31" v-if="panel_m_31">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_31" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-32" v-if="panel_m_32">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_32" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+                        <div id="panel_m-33" v-if="panel_m_33">
+                          <date></date>
+                          <div class="text-center" style="margin-bottom: 10px;">
+                            <button btn="a_oth_33" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                              class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div v-if="a_oth_1" style="border: solid 1px #000;margin-top: 15px;" id="a_oth_1">
+                  <tit title="1.Выборка по коду манипуляции"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <label>2.список манипуляции</label>
+                    <input_select v-bind:spravlist="sprav_list.AbObsh" k="kod" ll="abobsh_l" id="abobsh"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>3.таб.N исполнителя манипуляции</label>
+                    <input_select v-bind:spravlist="sprav_list.Vra" k="kod" ll="vra_l" id="vra"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>4.отделение исполнителя</label>
+                    <input_select v-bind:spravlist="sprav_list.Otde" k="naim" ll="otdel_l" id="otdel"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>5.Фамилия пациента</label>
+                    <div>
+                      <input type="text" id="fam_pat">
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <label>6.Возрастная группа</label>
+                    <input_select v-bind:spravlist="sprav_list.AgeGroup" k="name" ll="agegroup_l" id="agegroup">
+                    </input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>7.Госпитализация(план./экс.)</label>
+                    <input_select v-bind:spravlist="sprav_list.V014" k="tipName" ll="v014_l" id="v014"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>8.(первично/повторно)</label>
+                    <input_select v-bind:spravlist="sprav_list.Prpg" k="naim" ll="prpg_l" id="prpg"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>9.пол</label>
+                    <input_select v-bind:spravlist="sprav_list.V005" k="polname" ll="v005_l" id="v005"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>с диагнозами с</label>
+                    <input_s_po></input_s_po>
+                  </div>
+                  <div class="text-center">
+                    <label>10.с исходом лечения</label>
+                    <input_select v-bind:spravlist="sprav_list.V012" k="izName" ll="v012_l" id="v012"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <p>Список манипуляции задается, как перечень кодов манипуляции через ","</p>
+                  </div>
+                  <btn btn="a_oth_1"></btn>
+                </div> -->
+                <!-- <div v-if="a_oth_2" style="border: solid 1px #000;margin-top: 15px;" class="text-center">
+
+                  <tit title="2.Иногородних"></tit>
+                  <date></date>
+                  <div>
+                    <select id="a_oth_2_select_1" onchange="onchange_a_oth_2_select_1(event)">
+                      <option value="">-----</option>
+                      <option value="Общая справка">Общая справка</option>
+                      <option value="По территор.признаку">По территор.признаку</option>
+                    </select>
+                  </div>
+                  <div class="text-center">
+                    <select id="a_oth_2_select_2" v-if="a_oth_2_select_2_f">
+                      <option value="">-----</option>
+                      <option value="г.Тюмень">г.Тюмень</option>
+                      <option value="Юг тюм.обл.кроме Тюм.р-на">Юг тюм.обл.кроме Тюм.р-на</option>
+                      <option value="Тюменский р-н">Тюменский р-н</option>
+                      <option value="Ханты-Мансийский АО">Ханты-Мансийский АО</option>
+                      <option value="Ямало-Ненецкий АО">Ямало-Ненецкий АО</option>
+                    </select>
+                  </div>
+                  <btn btn="a_oth_2"></btn>
+                </div> -->
+                <!-- <div v-if="a_oth_3" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="3.По страховым компаниям"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <select>
+                      <option value="">-----</option>
+                      <option value="По реестрам">По реестрам</option>
+                      <option value="По отделениям">По отделениям</option>
+                      <option value="По видам оплат">По видам оплат</option>
+                    </select>
+                  </div>
+                  <btn btn="a_oth_3"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_4" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="4.Выборка по диагнозу"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <label>Введите ДС</label>
+                    <input type="text" id="a_oth_4_ds">
+                  </div>
+                  <btn btn="a_oth_4"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_5" style="border: solid 1px #000;margin-top: 15px;">
+                  <tit title="5.Выборка (по заказу)"></tit>
+                  <div class="constainer">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <all_filter></all_filter>
+                      </div>
+                      <div class="col-md-8">
+                        <date></date>
+                        <div id="filters"></div>
+                      </div>
+                    </div>
+                    <btn btn="a_oth_5"></btn>
+                  </div>
+                </div> -->
+
+                <!-- <div v-if="a_oth_6" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="6.Кол-во выбывших и к/день"></tit>
+                  <date></date>
+                  <btn btn="a_oth_6"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_7" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="7.Распред-е по источ.финансир-я"></tit>
+                  <date></date>
+                  <btn btn="a_oth_7"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_8" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="8.Инф-я о к-ве экстр.выбывших"></tit>
+                  <date></date>
+                  <btn btn="a_oth_8"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_9" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="9.Распред-е по степени тяжести"></tit>
+                  <date></date>
+                  <btn btn="a_oth_9"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_10" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="10.Информация в депортамент"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <select id="a_oth_10_select">
+                      <option value="">----</option>
+                      <option value="Ежемесячная форма">Ежемесячная форма</option>
+                      <option value="Инф.2002-2003">Инф.2002-2003</option>
+                      <option value="По территориям">По территориям</option>
+                    </select>
+                  </div>
+                  <btn btn="a_oth_10"></btn> 
+              </div> -->
+
+                <!-- <div v-if="a_oth_11" style="border: solid 1px #000;margin-top: 15px;">
+
+                <tit title="11.Возрастной состав выбывших"></tit>
+                <date></date>
+                <btn btn="a_oth_11"></btn>
+              </div> -->
+
+                <!-- <div v-if="a_oth_12" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="12.Сведения об умерших"></tit>
+                  <date></date>
+                  <btn btn="a_oth_12"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_13" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="13.Сведения о реанимац.к/днях"></tit>
+                  <date></date>
+                  <btn btn="a_oth_13"></btn>
+                </div> -->
+                <!-- 
+                <div v-if="a_oth_14" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="14.Сведения о проопериров.б-х"></tit>
+                  <date></date>
+                  <btn btn="a_oth_14"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_15" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="15.Инфор.о гражданах Белоруссии"></tit>
+                  <date></date>
+                  <btn btn="a_oth_15"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_16" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="16.Дет.травм-м в оздоров.учр-ях"></tit>
+                  <date></date>
+                  <btn btn="a_oth_16"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_17" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="17.Возрастной состав поступ-х"></tit>
+                  <date></date>
+                  <btn btn="a_oth_17"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_18" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="18.Травмы насильствен.хар-ра"></tit>
+                  <date></date>
+                  <btn btn="a_oth_18"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_19" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="19.Смер-ть и трав-м от вн.причин"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <tit title="Тип травмы"></tit>
+                    <input_select v-bind:spravlist="sprav_list.Trv" k="naim" ll="Trv_l" id="trv"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Травма получена в рез-те противоправных действий третьих лиц"></tit>
+                    <input_select v-bind:spravlist="sprav_list.Trvnas" k="naim" ll="Trvnas_l" id="trvnas">
+                    </input_select>
+                  </div>
+
+                  <btn btn="a_oth_19"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_20" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="20.Отчет по эндос.хирур.работе"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <tit title="Источник финансирования"></tit>
+                    <input_select v-bind:spravlist="sprav_list.Isfin" k="naim" ll="Isfin_l" id="isfin"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Диагноз (МКБ10)"></tit>
+                    <input_s_po></input_s_po>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Госпитализация"></tit>
+                    <input_select v-bind:spravlist="sprav_list.V014" k="tipName" ll="V014_l" id="v014"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="По направлению Мо"></tit>
+                    <input_select v-bind:spravlist="sprav_list.F003" k="naim" ll="F003_l" id="f003"></input_select>
+                  </div>
+                  <btn btn="a_oth_20"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_21" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="21.Догоспитальное прерывания в ПО"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <select id="a_oth_21_select">
+                      <option value="">----</option>
+                      <option value="Отсутствуют сведения о госпитализации">Отсутствуют сведения о госпитализации
+                      </option>
+                      <option value="Сред.длит-ть пребывания в ПО по врачам">Сред.длит-ть пребывания в ПО по врачам
+                      </option>
+                      <option value="Список госпитализ-х в ПО">Список госпитализ-х в ПО</option>
+                      <option value="Справка о пребывании в ПО по профилям">Справка о пребывании в ПО по профилям
+                      </option>
+                    </select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Отбор по сред.времени пребывания - более (в мин)."></tit>
+                    <input type="text" id="a_oth_21_input_1">
+                  </div>
+                  <div class="text-center mb-3">
+                    <div>
+                      <tit title="Время пребывания - более (в мин.)"></tit>
+                      <input type="text" id="a_oth_21_input_2">
+                    </div>
+                    <div>
+                      <tit title="Таб.N врача,госпитализурующего пациента"></tit>
+                      <input_select v-bind:spravlist="sprav_list.Vra" k="kod" ll="vra_l" id="vra"></input_select>
+                    </div>
+                  </div>
+                  <btn btn="a_oth_21"></btn>
+                </div> -->
+                <!-- 
+                <div v-if="a_oth_22" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="22.Объемы МП за счет субсидиий ФБ"></tit>
+                  <date></date>
+                  <btn btn="a_oth_22"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_23" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="23.Мониторинг ДТП"></tit>
+                  <date></date>
+                  <btn btn="a_oth_23"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_24" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="24.Оценка послеоперац.осложнений"></tit>
+                  <date></date>
+                  <btn btn="a_oth_24"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_25" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="25.Прерывание в реан.отд.по проф."></tit>
+                  <date></date>
+                  <btn btn="a_oth_25"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_26" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="26.С ОНМК по пол-кам прикрепления"></tit>
+                  <date></date>
+                  <div class="text-center mb-3">
+                    <select id="a_oth_26_select">
+                      <option value="">-----</option>
+                      <option value="Жители г.Тюмени,Тюмен.р-на">Жители г.Тюмени,Тюмен.р-на</option>
+                      <option value="Жители юга Тюменской обл.">Жители юга Тюменской обл.</option>
+                    </select>
+                  </div>
+                  <btn btn="a_oth_26"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_27" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="27.Операции в ПО стационара"></tit>
+                  <date></date>
+                  <div class="text-center mb-3">
+                    <select id="a_oth_27_select">
+                      <option value="">----</option>
+                      <option value="Списочный состав операций">Списочный состав операций</option>
+                      <option value="Справка по профилям заболеваний">Справка по профилям заболеваний</option>
+                    </select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Профиль"></tit>
+                    <input_select v-bind:spravlist="sprav_list.V020" k="kPrname" ll="V020_l" id="v020"></input_select>
+                  </div>
+                  <btn btn="a_oth_27"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_28" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="28.Мед.услуги др.регион,др.страны"></tit>
+                  <date></date>
+                  <btn btn="a_oth_28"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_29" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="29.По Ds и по терр.проживания"></tit>
+                  <date></date>
+                  <tit title="Ds"></tit>
+                  <input_s_po></input_s_po>
+                  <btn btn="a_oth_29"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_30" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="30.Травматизм по терр. проживания"></tit>
+                  <date></date>
+                  <btn btn="a_oth_30"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_31" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="31.Отчет офтальмогической службы"></tit>
+                  <date></date>
+                  <btn btn="a_oth_31"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_32" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="32.Информация токсикол. отделения"></tit>
+                  <date></date>
+                  <btn btn="a_oth_32"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_33" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="33.Инф-я об услугах ОМС др.регион"></tit>
+                  <date></date>
+                  <btn btn="a_oth_33"></btn>
+                </div> -->
+
+
+
+
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-e"
+              v-on:click="close">Закрыть</button>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    {% endverbatim %}
+  </div>
+  <script>
+
+    if (window.location.host != "127.0.0.1:8000") {
+
+      let reportsmixSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'reports_mix/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      reportsmixSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        $("#download").empty()
+
+        if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "report_data") {
+          console.log('report_data')
+        }
+      }
+    }
+    else {
+      let reportsmixSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'reports_mix/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      reportsmixSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        $("#download").empty()
+
+        if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "report_data") {
+          console.log('report_data')
+        }
+      }
+    }
+
+
+
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+
+      let reportsSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'reports/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      reportsSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+        report_oth.$data.group_shaping = false
+        report_oth.$data.group_create = true
+
+        if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("group_download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+
+        else if (data.type == "download_vault_otd") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download_vault_otd")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+
+        else if (data.type == "download_a_oth") {
+
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download_a_oth")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+
+
+        }
+
+        else if (data.type == 'error_messages') {
+          report_oth.$data.group_shaping = false
+          report_oth.$data.group_create = false
+          report_oth.$data.group_error = true
+
+        }
+      }
+    }
+
+    else {
+
+      let reportsSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'reports/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      reportsSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+        report_oth.$data.group_shaping = false
+        report_oth.$data.group_create = true
+
+        if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("group_download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "download_vault_otd") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download_vault_otd")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+
+        else if (data.type == "download_a_oth") {
+
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download_a_oth")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+
+
+        }
+        else if (data.type == 'error_messages') {
+          report_oth.$data.group_shaping = false
+          report_oth.$data.group_create = false
+          report_oth.$data.group_error = true
+
+        }
+
+
+
+      }
+
+    }
+
+
+
+
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+
+      let annualReportsSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'annual_reports/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      annualReportsSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+        report_oth.$data.group_shaping = false
+        report_oth.$data.group_create = true
+        report_oth.$data.group_error = false
+
+        if (data.type == "download") {
+          var name = data.name
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("statistics_rep_download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+      }
+    }
+    else {
+      let annualReportsSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'annual_reports/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      annualReportsSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+
+        report_oth.$data.group_shaping = false
+        report_oth.$data.group_create = true
+        report_oth.$data.group_error = false
+
+
+
+        if (data.type == "download") {
+          var name = data.name
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("statistics_rep_download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+      }
+    }
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+
+      let referenceSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'reference/'
+        + '{{user.id}}'
+        + '/'
+      )
+      referenceSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+      }
+    }
+    else {
+      let referenceSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'reference/'
+        + '{{user.id}}'
+        + '/'
+      )
+      referenceSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+      }
+    }
+
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+      let exportfrom1cSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'exportfrom1c/'
+        + '{{user.id}}'
+        + '/'
+      )
+      exportfrom1cSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        if (data.type == "progress") {
+          let progress = document.getElementById("progress")
+          app.$data.progress_bar = data.text.toFixed(2)
+          progress.setAttribute("style", "width:" + app.$data.progress_bar + "%")
+          progress.innerText = app.$data.progress_bar + '%'
+
+        }
+        else if (data.type == "report_data") {
+          app.$data.exportfrom1_loading = false
+          app.$data.exportfrom1_completed = true
+        }
+        else if (data.type == "update_pers") {
+          console.log(data)
+          app_update.$data.v_ok = true
+          app_update.$data.v_update = false
+        }
+      }
+    }
+    else {
+      let exportfrom1cSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'exportfrom1c/'
+        + '{{user.id}}'
+        + '/'
+      )
+      exportfrom1cSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        if (data.type == "progress") {
+          let progress = document.getElementById("progress")
+          app.$data.progress_bar = data.text.toFixed(2)
+          progress.setAttribute("style", "width:" + app.$data.progress_bar + "%")
+          progress.innerText = app.$data.progress_bar + '%'
+
+        }
+        else if (data.type == "report_data") {
+          app.$data.exportfrom1_loading = false
+          app.$data.exportfrom1_completed = true
+        }
+        else if (data.type == "update_pers") {
+          console.log(data)
+          app_update.$data.v_ok = true
+          app_update.$data.v_update = false
+        }
+      }
+    }
+
+
+
+
+
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+      let create_reestr_file = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'create_reestr/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      create_reestr_file.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        if (data.type == "progress") {
+          let progress = document.getElementById("progress")
+          create_reestr_d.$data.progress_bar = data.text.toFixed(2)
+          progress.setAttribute("style", "width:" + create_reestr_d.$data.progress_bar + "%")
+          progress.innerText = create_reestr_d.$data.progress_bar + '%'
+        }
+        else if (data.type == "report_data") {
+          create_reestr_d.$data.create_res = false
+          create_reestr_d.$data.end = true
+        }
+
+        else if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let sl = document.getElementById("sl_res")
+              let download = document.getElementById("download_reestr")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = sl.value
+              a.text = "Скачать файл реестр"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "download_reestr_prot") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let sl = document.getElementById("sl_res")
+              let download = document.getElementById("download_reestr_prot")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл протокол"
+              download.appendChild(a)
+            })
+        }
+      }
+    }
+    else {
+      let create_reestr_file = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'create_reestr/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      create_reestr_file.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        if (data.type == "progress") {
+          let progress = document.getElementById("progress")
+          create_reestr_d.$data.progress_bar = data.text.toFixed(2)
+          progress.setAttribute("style", "width:" + create_reestr_d.$data.progress_bar + "%")
+          progress.innerText = create_reestr_d.$data.progress_bar + '%'
+        }
+        else if (data.type == "report_data") {
+          create_reestr_d.$data.create_res = false
+          create_reestr_d.$data.end = true
+        }
+
+        else if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let sl = document.getElementById("sl_res")
+              let download = document.getElementById("download_reestr")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = sl.value
+              a.text = "Скачать файл реестр"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "download_reestr_prot") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let sl = document.getElementById("sl_res")
+              let download = document.getElementById("download_reestr_prot")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл протокол"
+              download.appendChild(a)
+            })
+        }
+      }
+
+    }
+
+
+
+
+  </script>
+  {% endblock %}

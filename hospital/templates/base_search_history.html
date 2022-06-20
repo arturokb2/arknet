@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр Истории</title>
+    <link rel="stylesheet" href="{% static 'css/hospital/jquery.fias.min.css' %}?v={{ hash }}">
+    <link rel="stylesheet" href="{% static 'css/hospital/styles_adr.css' %}?v={{ hash }}">
+    <link href="{% static 'css/hospital/search.css' %}?v={{ hash }}" rel="stylesheet">
+    <link rel="icon" href="https://www.okb2-tmn.ru//upload/2020/08/cropped-favicontest-32x32.png" sizes="32x32">
+    <link href="{% static 'css/hospital/bootstrap5.css' %}?v={{ hash }}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/hospital/style_hospital_med_cards_style.css' %}?v={{ hash }}">
+</head>
+
+<body>
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'js/hospital/bootstrap5.js' %}?v={{ hash }}"></script>
+    <script src="{% static 'js/hospital/jquery.js' %}?v={{ hash }}"></script>
+    <!-- <script src="{% static 'js/hospital/sendRequest.js' %}?v={{ hash }}"></script> -->
+    <script src="{% static 'js/hospital/moment.js' %}?v={{ hash }}"></script>
+
+    
+
+    <script src="{% static 'js/hospital/vue.js' %}?v={{ hash }}"></script>
+    <!-- <script src="{% static 'js/hospital/axios_min.js' %}?v={{ hash }}"></script> -->
+    <script src="{% static 'js/hospital/vue_app_hospital.js' %}?v={{ hash }}"></script>
+
+    <script src="{% static 'js/hospital/koyko_crud.js' %}?v={{ hash }}"></script>
+    <script src="{% static 'js/hospital/oper_crud.js' %}?v={{ hash }}"></script>
+    <script src="{% static 'js/hospital/med_dev_crud.js' %}?v={{ hash }}"></script>
+    
+    <script src="{% static 'js/hospital/complication_crud.js' %}?v={{ hash }}"></script>
+    <script src="{% static 'js/hospital/manipulation_crud.js' %}?v={{ hash }}"></script>
+
+    <script src="{% static 'js/hospital/jquery_fias_min.js' %}?v={{ hash }}"></script>
+    <script src="{% static 'js/hospital/script_adr.js' %}?v={{ hash }}"></script>
+    
+    <script src="{% static 'js/hospital/maskedinput.js' %}?v={{ hash }}"></script>
+    <script src="{% static 'js/hospital/masked.js' %}?v={{ hash }}"></script>
+    <script src="{% static 'js/hospital/protocols.js' %}?v={{ hash }}"></script>
+    <script>
+      document.getElementById("inp_search_history").focus()
+    </script>
+</body>
+
+</html>

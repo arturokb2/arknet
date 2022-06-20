@@ -1,0 +1,165 @@
+{% extends 'base_the_form_7.html' %}
+
+{% block content %}
+<style>
+  .list-group-item {
+    padding: 0;
+  }
+
+  #menu-list {
+    display: block;
+    height: 550px;
+    overflow-y: auto;
+  }
+
+
+
+
+  #menu-list a {
+    text-align: center;
+  }
+
+  #menu-group {
+    display: block;
+    height: 550px;
+    overflow-y: auto;
+  }
+
+
+  #menu-reports {
+    display: block;
+    height: 100px;
+    overflow-y: auto;
+  }
+
+  #menu-reports a {
+    text-align: center;
+  }
+
+  #filters {
+    text-align: center;
+    display: block;
+    height: 250px;
+    overflow-y: auto;
+  }
+
+  #filters a {
+    text-align: center;
+  }
+
+  #a_oth_1 {
+    display: block;
+    height: 550px;
+    overflow-y: auto;
+  }
+
+  #a_oth_1 a {
+    text-align: center;
+  }
+
+  #statistics_rep {
+    display: block;
+    height: 450px;
+    overflow-y: auto;
+  }
+
+  #statistics_rep a {
+    text-align: center;
+  }
+
+  #departments_rep {
+    display: block;
+    height: 450px;
+    overflow-y: auto;
+  }
+
+  #departments_rep a {
+    text-align: center;
+  }
+
+  #vault_otd_rep a {
+    text-align: center;
+  }
+</style>
+
+<div class="form-signin">
+  <div class="index-menu">
+    <h1 class="h3 mb-3 font-weight-normal">Форма №7</h1>
+    <ul class="menu-li">
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModalIU">1.Ввод,корректировка</button>
+      <a href="" style="text-decoration:none"><button type="button"
+          class="btn btn-outline-primary">2.Печать</button></a>
+      <a href="" style="text-decoration:none"><button type="button"
+          class="btn btn-outline-primary">3.Сервис</button></a>
+      <a href="{% url 'index_hospital' %}" style="text-decoration:none"><button type="button"
+          class="btn btn-outline-primary">4.Выход</button></a>
+
+
+
+
+    </ul>
+  </div>
+</div>
+<!-- Кнопка-триггер модального окна -->
+<!-- Кнопка-триггер модального окна -->
+
+
+
+<div class="modal fade" id="exampleModalIU" tabindex="-1" role="dialog" aria-labelledby="exampleModalIUTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h5 class="modal-title">Ввод,корректировка и просмотр ф.№007/у</h5>
+            <p>Тип стационара</p>
+            <input type="date" name="" id="">
+          </div>
+        </div>
+      </div>
+      <div class="modal-header">
+        <div class="container">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Отде-<br>ления</th>
+                <th scope="col">Проф<br>койки</th>
+                <th scope="col">Факт.<br>развер.<br>коек</th>
+                <th scope="col">Сост<br>на<br>нач.</th>
+                <th scope="col">Поступило<br>бол-х<br>всего</th>
+                <th scope="col">Переведено<br>б-х из др<br>отделений</th>
+                <th scope="col">Переведено<br>б-х в др<br>отделения</th>
+                <th scope="col">Выписано всего</th>
+                <th scope="col">Умерло</th>
+                <th scope="col">Состоит на тек.</th>
+                <th scope="col">Состоит всего по уходу</th>
+                <th scope="col">Свобод.мест всего</th>
+                <th scope="col">Ошибки</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">qweqweqweqe</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="modal-footer">
+        12311
+      </div>
+
+    </div>
+  </div>
+
+  {% endblock %}

@@ -1,0 +1,2896 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<packet>
+  <zglv>
+    <type>ListImplMedDev</type>
+    <version>1.0</version>
+    <date>24.12.2021</date>
+  </zglv>
+  <zap>
+    <S_CODE>A05.10.012</S_CODE>
+    <NAME>����������� ��������� ������������ ��� �������������� ����������� ������������� ���������� ���������� ������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A07.07.002</S_CODE>
+    <NAME>�������������� ������� ������� �������� ������� ���</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������� ��</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A07.07.002.001</S_CODE>
+    <NAME>�������������� �����-������� �������� ������� ���</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������� ��</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A07.07.004</S_CODE>
+    <NAME>�������������� ������� ������� �������� �����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������� ��</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A07.07.004.001</S_CODE>
+    <NAME>�������������� �����-������� ��� �������� �����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������� ��</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A07.19.003</S_CODE>
+    <NAME>�������������� ������� ������� �������� ����������� � ������ �����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������� ��</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A07.20.002</S_CODE>
+    <NAME>�������������� ������� ������� �������� �������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������� ��</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A07.20.002.001</S_CODE>
+    <NAME>�������������� �����-������� �������� ������� ������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������� ��</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A07.21.002</S_CODE>
+    <NAME>�������������� ������� ������� �������� ������� ������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������� ��</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A07.30.004</S_CODE>
+    <NAME>�������������� ������� ������� ��� ��������� ������ ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������� ��</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A11.12.001.002</S_CODE>
+    <NAME>����������� ��������� �������� ���� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A11.17.003</S_CODE>
+    <NAME>��������� �������������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A11.28.012</S_CODE>
+    <NAME>��������� ������ � ������������� ����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.02.005</S_CODE>
+    <NAME>�������� ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.02.005.001</S_CODE>
+    <NAME>�������� �������� ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.02.005.002</S_CODE>
+    <NAME>�������� ������� ��������-������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.02.005.003</S_CODE>
+    <NAME>�������� ��������� �����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.02.005.004</S_CODE>
+    <NAME>�������� ������������ ������� ����� ����������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.02.005.005</S_CODE>
+    <NAME>�������� ������� ��������-������������� ���������� � �������������� �������������������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.02.017</S_CODE>
+    <NAME>�������� ����������-���������� �������� �����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.011</S_CODE>
+    <NAME>������������� �������-��������������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.020</S_CODE>
+    <NAME>���������� �������� ����� (��� ��������� ��������)</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>���������� ��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022</S_CODE>
+    <NAME>�����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.001</S_CODE>
+    <NAME>����������� ����� ���������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.002</S_CODE>
+    <NAME>����������� ��������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.003</S_CODE>
+    <NAME>���������������� �������� �����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.004</S_CODE>
+    <NAME>���������������� ���������� �����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.005</S_CODE>
+    <NAME>����������� � �������������� ���������������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.006</S_CODE>
+    <NAME>���������������� ����������� �����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.007</S_CODE>
+    <NAME>������������������ �����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.008</S_CODE>
+    <NAME>������������������ ����������� �������� ������ � ������� ���������� ����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.009</S_CODE>
+    <NAME>����������� ������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.022.010</S_CODE>
+    <NAME>����������� ���������� �������� ������ �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.024.016</S_CODE>
+    <NAME>������������� �����. ���������� ����� � ��������������  ���������� ���������� � ��������� ������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>���������� ��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.026</S_CODE>
+    <NAME>�������� ���������� �������� � ���������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>���������� ��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.026.001</S_CODE>
+    <NAME>���������������� �������� ��������������� ��������� ��������� ������� � ������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>���������� ��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.026.002</S_CODE>
+    <NAME>����������� ��� ������������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.026.003</S_CODE>
+    <NAME>����������� ��� �������������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.026.004</S_CODE>
+    <NAME>����������� ��� �������� ����� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028</S_CODE>
+    <NAME>�������� ������� �������� � ���������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>���������� ��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.001</S_CODE>
+    <NAME>����������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.002</S_CODE>
+    <NAME>����������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.003</S_CODE>
+    <NAME>����������� ������ ������ �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.004</S_CODE>
+    <NAME>�������� ����������� ��������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.005</S_CODE>
+    <NAME>�������� ����������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.006</S_CODE>
+    <NAME>����������� ��� �������� ������ ������ ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.007</S_CODE>
+    <NAME>�������� ����������� ��� �������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.008</S_CODE>
+    <NAME>�������� ����������� ��� �������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.009</S_CODE>
+    <NAME>�������� ����������� ��� �������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.010</S_CODE>
+    <NAME>�������� ����������� ��� �������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.028.011</S_CODE>
+    <NAME>�������� ����������� ��� �������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.035.001</S_CODE>
+    <NAME>��������������� ������������ ��������� � ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>���������� ��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.043</S_CODE>
+    <NAME>�������� �������-��������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.045</S_CODE>
+    <NAME>�������� ������� ������ ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.051.001</S_CODE>
+    <NAME>������������� � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.051.003</S_CODE>
+    <NAME>�������� �������� � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.060.002</S_CODE>
+    <NAME>�������� ������� �������� ����� ������������ � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.061.002</S_CODE>
+    <NAME>�������� ����� �������� ����� ������������ � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.062.002</S_CODE>
+    <NAME>�������� ������ ������ ������������ � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.063.002</S_CODE>
+    <NAME>�������� ��������� ����� ������������ � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.064.002</S_CODE>
+    <NAME>�������� �������� ����� ������������ � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.065.002</S_CODE>
+    <NAME>�������� ������ ���������� ������������ � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.075.002</S_CODE>
+    <NAME>�������� ������ �������� ��������� ����� � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.076.002</S_CODE>
+    <NAME>����������� ������ �������� ��������� ����� � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.077.003</S_CODE>
+    <NAME>�������� ������� ������ � ������������������ ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.077.004</S_CODE>
+    <NAME>�������� ������� ������ � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.080.002</S_CODE>
+    <NAME>�������� ������� ������� � ������������������ ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.080.003</S_CODE>
+    <NAME>�������� ������� ������� ��������������� � ������������������ ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.080.004</S_CODE>
+    <NAME>�������� ������� ������� � ������������������ ��������� � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.081.002</S_CODE>
+    <NAME>�������� ������ ������� � ������������������ ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.03.081.003</S_CODE>
+    <NAME>�������� ������ ������� � ������������������ ��������� � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.001.001</S_CODE>
+    <NAME>������������������ ��� ��������� ������ ������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.004.001</S_CODE>
+    <NAME>���������������� ��������� �������������� ��������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.014</S_CODE>
+    <NAME>������������� ����� � ������� ����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.015</S_CODE>
+    <NAME>������������� ��������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.015.002</S_CODE>
+    <NAME>���������������� �������� �������� �������������� ������ ��������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.016</S_CODE>
+    <NAME>������������� ����� � ������� ����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.017</S_CODE>
+    <NAME>������������� ������ ��������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.017.001</S_CODE>
+    <NAME>������������� �������������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021</S_CODE>
+    <NAME>������������������ �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.001</S_CODE>
+    <NAME>������������������ ������� (��������������������)</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.002</S_CODE>
+    <NAME>������������������ ��������� ������� ��������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.003</S_CODE>
+    <NAME>������������������ �������������� ������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.004</S_CODE>
+    <NAME>������������������ �������������� ������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.005</S_CODE>
+    <NAME>������������������ ��������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.006</S_CODE>
+    <NAME>������������������ ��������� ������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.007</S_CODE>
+    <NAME>������������������ ������� � �������������� ������������ ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.008</S_CODE>
+    <NAME>������������������ �������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.009</S_CODE>
+    <NAME>������������������ �������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.010</S_CODE>
+    <NAME>������������������ ������-����������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.021.011</S_CODE>
+    <NAME>������������������ ��������-������������ �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.026</S_CODE>
+    <NAME>������������������ �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.027</S_CODE>
+    <NAME>������������������ ����� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.028</S_CODE>
+    <NAME>�������������� ��������������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.030</S_CODE>
+    <NAME>�������� ��������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.030.001</S_CODE>
+    <NAME>����������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.031</S_CODE>
+    <NAME>�������� ���� �������� � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.034</S_CODE>
+    <NAME>���������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.037</S_CODE>
+    <NAME>�������� ������ �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.037.001</S_CODE>
+    <NAME>�������� ������ ��������� ������� ����������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.037.002</S_CODE>
+    <NAME>�������� ����������� ������ ������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.037.003</S_CODE>
+    <NAME>�������� ������� ������ ��������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.04.044</S_CODE>
+    <NAME>��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.06.006.003</S_CODE>
+    <NAME>��������������� ������ ����������� � ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.017</S_CODE>
+    <NAME>�������� ������������� ��������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.022</S_CODE>
+    <NAME>��������� �������� ����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.027.001</S_CODE>
+    <NAME>���������� �����-���������������� ��������� (�� �� ��� III), ����������� ���������, ����������� ���������� ��������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.041</S_CODE>
+    <NAME>������� �������� ��������-������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.041.001</S_CODE>
+    <NAME>������� �������� ��������-������� ������� � ����������� ���������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.055</S_CODE>
+    <NAME>�����-������� (������� ��������, �������������)</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.061</S_CODE>
+    <NAME>�������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.061.001</S_CODE>
+    <NAME>�����������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.063</S_CODE>
+    <NAME>�������� ������������� �������� ������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.066</S_CODE>
+    <NAME>�������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.074.002</S_CODE>
+    <NAME>�������� ��� ������� ��� ��������������� � ������������������ ��������� � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.083.002</S_CODE>
+    <NAME>�������� ������� ���� � �������������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.084.002</S_CODE>
+    <NAME>�������� ������ ���� � �������������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.07.086</S_CODE>
+    <NAME>�������� ������� ����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.008</S_CODE>
+    <NAME>�������� ����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.008.002</S_CODE>
+    <NAME>�������� ���� ��� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.008.003</S_CODE>
+    <NAME>�������� ���� ��� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.008.004</S_CODE>
+    <NAME>�������� ������� ����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.008.005</S_CODE>
+    <NAME>�������� ����������� ����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.008.006</S_CODE>
+    <NAME>��������� �������� ����</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.010.003</S_CODE>
+    <NAME>�������� ������ ������� ������� � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.013</S_CODE>
+    <NAME>�������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.013.001</S_CODE>
+    <NAME>�������� ������� ����������� � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.013.002</S_CODE>
+    <NAME>�������� ���������� ������� �����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.024.002</S_CODE>
+    <NAME>�������� ������� � �������������� ����������� ���������� ��� ������������� ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.025</S_CODE>
+    <NAME>�������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.026</S_CODE>
+    <NAME>����������� ������-����������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.031.001</S_CODE>
+    <NAME>�������� ����� � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.033</S_CODE>
+    <NAME>�������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.033.002</S_CODE>
+    <NAME>���������������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.066</S_CODE>
+    <NAME>�����������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.066.001</S_CODE>
+    <NAME>����������������� � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.068</S_CODE>
+    <NAME>������������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.069</S_CODE>
+    <NAME>�������� ������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.08.076</S_CODE>
+    <NAME>�������� �������� ������ � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.018</S_CODE>
+    <NAME>�������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.018.001</S_CODE>
+    <NAME>�������� ������. ���������������� �������� �� ������ � �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.019.001</S_CODE>
+    <NAME>�������������� � ����������� ���������� ����������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>���������� ��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.019.003</S_CODE>
+    <NAME>�������������� � ����������� ���������� ����������� ��������� ��� ������ ����������������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>���������� ��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.024</S_CODE>
+    <NAME>������������������ �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.026</S_CODE>
+    <NAME>�������� ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.026.002</S_CODE>
+    <NAME>������������ ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.026.003</S_CODE>
+    <NAME>�������� ��������� ����������������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.026.004</S_CODE>
+    <NAME>�������� ��������� � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.09.030</S_CODE>
+    <NAME>��������������� ������������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.10.014.008</S_CODE>
+    <NAME>��������� ���������� ������������� �� ��������-����������� ������������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.10.014.009</S_CODE>
+    <NAME>��������� ���������� ������������� �� ��������-����������� ������������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.10.015</S_CODE>
+    <NAME>�������� ��� ������ ����������������� �����������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.10.030</S_CODE>
+    <NAME>��������� ��������� ������� �������������� �����������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.004.001</S_CODE>
+    <NAME>���������� ������������ � �������� �������������� ��������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.004.002</S_CODE>
+    <NAME>���������� ������������ �� ���������� ������ ��� ������������� �������������� ��������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.008.002</S_CODE>
+    <NAME>��������������� ���������� � ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.008.009</S_CODE>
+    <NAME>��������������� � ��������� ������������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.011.001</S_CODE>
+    <NAME>�������� ����������� ������� (���������������, ������������� � ������������ �������, ������������� � ������ �������)</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.011.003</S_CODE>
+    <NAME>�������� �������� ������� � ���������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.011.006</S_CODE>
+    <NAME>�������� ���������� ������ ������� � ���������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.011.008</S_CODE>
+    <NAME>�������� �������� ��������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.011.009</S_CODE>
+    <NAME>�������� ����������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.011.010</S_CODE>
+    <NAME>�������� ������� ���������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.013.001</S_CODE>
+    <NAME>��������������� � �������� ���������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.013.002</S_CODE>
+    <NAME>��������������� � ��������������� � ��������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.013.003</S_CODE>
+    <NAME>�������� ��������� �������� ������ ����� � ��������������� � ��������� ������������ ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.017</S_CODE>
+    <NAME>��������� �������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.024</S_CODE>
+    <NAME>��������� ������ � �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026</S_CODE>
+    <NAME>��������� �������������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.001</S_CODE>
+    <NAME>��������� ������������� ������������� ��������� �������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.001</S_CODE>
+    <NAME>��������� ������������� ������������� ��������� �������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.002</S_CODE>
+    <NAME>��������� ������������� ����������� ������� � ������������� ������� ������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.002</S_CODE>
+    <NAME>��������� ������������� ����������� ������� � ������������� ������� ������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.003</S_CODE>
+    <NAME>��������� ������������� �� �������������� ������������� ��������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.004</S_CODE>
+    <NAME>��������� ������������� �� �������������� ����������� ������� � ������������� ������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.009</S_CODE>
+    <NAME>���������������� ��������� ������������� �������� �������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.010</S_CODE>
+    <NAME>��������� ������������� �������������� �������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.012</S_CODE>
+    <NAME>���������������� ��������� ������������� ���������� �������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.026.024</S_CODE>
+    <NAME>��������� ������������� ����������� ������� ��� ������������������� �������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.027</S_CODE>
+    <NAME>��������� ��������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.028</S_CODE>
+    <NAME>��������� ������ � �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.028.001</S_CODE>
+    <NAME>������������ �������������, ��������� ������������� �� �������������� ������������� ��������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.028.002</S_CODE>
+    <NAME>������������ �������������, ��������� ������������� �� �������������� ����������� ������� � ������������� ������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.028.006</S_CODE>
+    <NAME>������������� ������� ������ �����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.028.007</S_CODE>
+    <NAME>������������� ��������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.028.008</S_CODE>
+    <NAME>������������� ������������ �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.028.014</S_CODE>
+    <NAME>������������� ��������� ���</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.028.017</S_CODE>
+    <NAME>������� ������������� ���������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.028.018</S_CODE>
+    <NAME>������������� ����������� ������� ��� ������������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.030</S_CODE>
+    <NAME>��������� ���������������� ��������������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.033.001</S_CODE>
+    <NAME>������������ �������-�������� ������� � �������������� �������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.037</S_CODE>
+    <NAME>��������� ������������� ����� � ���������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.038.005</S_CODE>
+    <NAME>������������ ��������-��������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.038.006</S_CODE>
+    <NAME>��������-����������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.038.007</S_CODE>
+    <NAME>����������-��������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.038.008</S_CODE>
+    <NAME>�����-������������ ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.038.009</S_CODE>
+    <NAME>�����-������ ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.038.010</S_CODE>
+    <NAME>�����-��������� �������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.038.011</S_CODE>
+    <NAME>�����-���������-����������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.038.012</S_CODE>
+    <NAME>�����-���������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.038.013</S_CODE>
+    <NAME>������������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.039</S_CODE>
+    <NAME>�������� ��������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.041.003</S_CODE>
+    <NAME>��������������� �������� ������ � ������� �������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.042</S_CODE>
+    <NAME>��������� ����������������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.054</S_CODE>
+    <NAME>�������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.054.001</S_CODE>
+    <NAME>��������� �������� ��������� � �����������-�������-������ �������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.054.002</S_CODE>
+    <NAME>������������������ �������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.055</S_CODE>
+    <NAME>�������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.055.001</S_CODE>
+    <NAME>�������� ����� ��������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.055.002</S_CODE>
+    <NAME>�������� �������� ������� ��������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.055.003</S_CODE>
+    <NAME>���������� ������������� ����������� ������� ��� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.056</S_CODE>
+    <NAME>������������ �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.056.001</S_CODE>
+    <NAME>������������ ����� � ��������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.056.002</S_CODE>
+    <NAME>������������������� ������������ �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.059</S_CODE>
+    <NAME>��������� ����� � �������� ����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.061.001</S_CODE>
+    <NAME>��������� ����������������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.063</S_CODE>
+    <NAME>��������� ����� � ����������� ����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.12.072</S_CODE>
+    <NAME>����������� ����������� ������������� (����������� �������) ��� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.14.024</S_CODE>
+    <NAME>�������� �������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.14.024.001</S_CODE>
+    <NAME>����������� ������������������ ������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.14.024.002</S_CODE>
+    <NAME>������������ ������������������ ������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.14.024.003</S_CODE>
+    <NAME>��������������� ������������������ ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.14.032</S_CODE>
+    <NAME>������������� ������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.14.032.002</S_CODE>
+    <NAME>������������� ������� �������� ��� �������������������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.14.032.003</S_CODE>
+    <NAME>��������������� ������������� ������� �������� ��� ���������� �������, ��� �������� ���������� ����������� ��������� ��� �������������������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.14.043</S_CODE>
+    <NAME>��������������� ����������� � ��������� ��������� ��� ���������� ������� ������ �������� ������� ��� ��������������� ���������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.15.006</S_CODE>
+    <NAME>����������������� �������������������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.15.021</S_CODE>
+    <NAME>��������������� ������������� �������� ���������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.15.022</S_CODE>
+    <NAME>������������� ��� �������� ������������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.15.022.001</S_CODE>
+    <NAME>��������������� ������������� ���������� ������� ��� ���������� �������, ��� �������������������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.006.002</S_CODE>
+    <NAME>������������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.032.002</S_CODE>
+    <NAME>��������������� ��������������� �������� ��������� �����������������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.041.004</S_CODE>
+    <NAME>��������������� �������������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.042</S_CODE>
+    <NAME>������������������ ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.047</S_CODE>
+    <NAME>��������������� ����������� ������� � �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.057</S_CODE>
+    <NAME>��������� ����������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.064</S_CODE>
+    <NAME>������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.064.001</S_CODE>
+    <NAME>������������������ �����������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.065</S_CODE>
+    <NAME>�������������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.16.065.001</S_CODE>
+    <NAME>�������������������� ������������ �����������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.032.002</S_CODE>
+    <NAME>�������� �������� ������ ����������� � ������������ ���������������� � ������������� ������������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.032.006</S_CODE>
+    <NAME>�������� �������� ������ ������������ � ������������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.032.007</S_CODE>
+    <NAME>�������� �������� ������ ������������ � �������������� � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.032.011</S_CODE>
+    <NAME>�������� �������� ������ ����������� � ������������� ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.049.001</S_CODE>
+    <NAME>����������� ����������� �� ������� � �������������� �����-�������� �������� � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.051</S_CODE>
+    <NAME>����������� ������������� �������� ������ �����-�������� �������� � �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.085</S_CODE>
+    <NAME>�������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.085.002</S_CODE>
+    <NAME>������������� ���������� �������� � ����������� �����������, �������������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.085.003</S_CODE>
+    <NAME>������������� ����������� �������� � ����������� �����������, �������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.085.004</S_CODE>
+    <NAME>������������� ����������� �������� � ����������� �����������, �������������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.085.005</S_CODE>
+    <NAME>������������� �������������� �������� � ����������� �����������, �������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.085.006</S_CODE>
+    <NAME>������������� �������������� �������� � ����������� �����������, �������������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.20.103</S_CODE>
+    <NAME>����������� ������������� �������� ������ � �������������� �����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>����������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.21.006.002</S_CODE>
+    <NAME>�������������� ����������� � �������������� � ��������� ����� �������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.21.016</S_CODE>
+    <NAME>�������������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.21.019.001</S_CODE>
+    <NAME>������������� � ��������������� ���������������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.21.019.002</S_CODE>
+    <NAME>������������� � ��������������� ���������������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.006</S_CODE>
+    <NAME>��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.009</S_CODE>
+    <NAME>��������� ����������-�������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.010</S_CODE>
+    <NAME>��������� ������������ ������������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.018</S_CODE>
+    <NAME>�������� ������� �������� ��������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.021</S_CODE>
+    <NAME>�������� �������� ������������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.032.002</S_CODE>
+    <NAME>�������� ��������������� ��������� ������ ������������������ � ��������� ������� ��������� ������ ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.032.003</S_CODE>
+    <NAME>�������� ��������������� ��������� ������ ������������������ ������������� �������� � ��������� ������� ��������� ������ ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.032.004</S_CODE>
+    <NAME>�������� ��������������� ��������� ������ ������������������ �������������� �������� � ��������� ������� ��������� ������ ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.032.005</S_CODE>
+    <NAME>�������� ��������������� ��������� ������ �������������� ������������������ � ����������� ��������������� ������� � ��������� ������� ��������� ������ ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.037</S_CODE>
+    <NAME>��������� ������������� ��� ������������� ������� ��������������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.038.002</S_CODE>
+    <NAME>�������� ��������������� �������� ��������� ����� ������������������ � ��������� ������� �������� �������� ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.038.003</S_CODE>
+    <NAME>�������� ��������������� �������� ��������� ����� ������������������ � ��������� ������� �������� �������� � ����� ������ ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.038.004</S_CODE>
+    <NAME>�������� ��������������� �������� ��������� ����� ������������������ � ��������� ������� �������� �������� � �������� ������� ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.038.005</S_CODE>
+    <NAME>�������� ��������������� �������� ��������� ����� ������������������ � ��������� ������� �������� ��������, ����� ������ � �������� ������� ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.039</S_CODE>
+    <NAME>����������� ��������� ���������� ��� ��������������� �������� ����� � �������������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.042.002</S_CODE>
+    <NAME>������� �������� ��������-������� ������� � �������������� �������������-�������������� ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.043</S_CODE>
+    <NAME>�����-�������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.046</S_CODE>
+    <NAME>�������� ������� ��������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.048.001</S_CODE>
+    <NAME>�������� �������-�������� ��������������� ������������������ � ��������� ������� ��������� ������ ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.048.002</S_CODE>
+    <NAME>�������� �������-�������� ��������������� ������������������ � ����������� ��������������� ������� � ��������� ������� ��������� ������ ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.050.001</S_CODE>
+    <NAME>������������������ �������� �������-�������� ��������� � ������������������ ��������� ����- ��� �������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.052</S_CODE>
+    <NAME>�������� ��������� �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.052.001</S_CODE>
+    <NAME>��������������� ������������� �������� ��������� ������� ��������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.052.002</S_CODE>
+    <NAME>��������������� �������� ��������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.052.003</S_CODE>
+    <NAME>�������������� �������� ��������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.052.004</S_CODE>
+    <NAME>��������� ������-�������� � ������ �������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.053</S_CODE>
+    <NAME>��������� ��������������� ������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.054</S_CODE>
+    <NAME>����������-�������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.054.001</S_CODE>
+    <NAME>������������������� ������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.056</S_CODE>
+    <NAME>����������� ������������ ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.056.001</S_CODE>
+    <NAME>����������� ������������ ���������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.056.002</S_CODE>
+    <NAME>����������� ������������ ���������� ��� ��������� ����������� ���� ��������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.058</S_CODE>
+    <NAME>����������� ����������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.058.001</S_CODE>
+    <NAME>����������� ��������� ����� ����������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.058.002</S_CODE>
+    <NAME>����������� ������� ����������������� �������������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.059</S_CODE>
+    <NAME>�������� ������� ����� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.076.001</S_CODE>
+    <NAME>�������� �������-���������-�������� ��������� � ������������������ ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.078</S_CODE>
+    <NAME>����������� �������������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.078.001</S_CODE>
+    <NAME>����������� �������������� ���������� ����������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.080</S_CODE>
+    <NAME>��������� ������ � ������������ ������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.085.001</S_CODE>
+    <NAME>������������ ������������ ������ � ������������ ��������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.086</S_CODE>
+    <NAME>������������� ����������������� ����� ��������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.23.090</S_CODE>
+    <NAME>����������� ����� ��� ������������������ �������� ������������� ����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.014</S_CODE>
+    <NAME>���������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.014.001</S_CODE>
+    <NAME>��������������� � ����������� ������������������ �������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.014.002</S_CODE>
+    <NAME>��������������� � ����������� ���������� ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.014.003</S_CODE>
+    <NAME>��������������� ��� ������� ����������: ������������, ������� ���������, �������� ������� ������ �������� ���, ������������ � ���������� ��������������, � ����������� ������������������ �������, ���������� ������, ���������� ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.019</S_CODE>
+    <NAME>������������� �� ����������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.019.002</S_CODE>
+    <NAME>����������� �� ���������������� �� ��������� ��������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.020</S_CODE>
+    <NAME>������������ � ������������ ���������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.023</S_CODE>
+    <NAME>���������� �����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.023.001</S_CODE>
+    <NAME>���������� ����������� ��� ��������� �������� ����������� ���, ������������� ��������� �������� ���, ��������� ����������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.025</S_CODE>
+    <NAME>����������������������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.25.032</S_CODE>
+    <NAME>����������� ��������������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.007.003</S_CODE>
+    <NAME>����������� ���������� ������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.010.002</S_CODE>
+    <NAME>�������������� � ������������ �����������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049</S_CODE>
+    <NAME>�������������� (�������������� ��������)</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049.001</S_CODE>
+    <NAME>�������������������� ��������� ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049.002</S_CODE>
+    <NAME>������������������ ��������� ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049.003</S_CODE>
+    <NAME>������ ��������� ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049.004</S_CODE>
+    <NAME>��������� ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049.005</S_CODE>
+    <NAME>�������������������� ������������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049.006</S_CODE>
+    <NAME>�������� �������������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049.007</S_CODE>
+    <NAME>�������������� ����������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049.008</S_CODE>
+    <NAME>�������������� ��������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.049.009</S_CODE>
+    <NAME>�������� ���������� � ��������� ��������� ���������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.062</S_CODE>
+    <NAME>�������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.064.001</S_CODE>
+    <NAME>����������� ������������������ ���������, ������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.075</S_CODE>
+    <NAME>��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.075.001</S_CODE>
+    <NAME>�������������� � �������������� ��������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.093.002</S_CODE>
+    <NAME>������������������ � ������������ �������������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.094</S_CODE>
+    <NAME>����������� �������������� �����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.099.001</S_CODE>
+    <NAME>����������� � ��������� ������� ������ � ������������ ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.100</S_CODE>
+    <NAME>�������� �������� � �������������� ����������������� ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.101</S_CODE>
+    <NAME>����������� ���������������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.126</S_CODE>
+    <NAME>�������������� �������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.130</S_CODE>
+    <NAME>����������� ������� �������������������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.140</S_CODE>
+    <NAME>����������� ���������������� ���������� ��� ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.26.142</S_CODE>
+    <NAME>��������� ������������ �������-�������� ��� �������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.007</S_CODE>
+    <NAME>�������� ������� � �����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.007.001</S_CODE>
+    <NAME>�������� ����������� � ������� � ��������� ������� � �����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.007.002</S_CODE>
+    <NAME>�������� ������� � ����������� � �������������� �������������������� ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.016</S_CODE>
+    <NAME>����������� ������������ ����������� � ������� ������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.032.002</S_CODE>
+    <NAME>�������� ����� �������� ������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.051</S_CODE>
+    <NAME>��������� �������� � ������� ������������� ����</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.073.001</S_CODE>
+    <NAME>����������������� � ������������ �������������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.075.002</S_CODE>
+    <NAME>��������� ����������� � ��������� �����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.081</S_CODE>
+    <NAME>�������������������� (�������� �����)</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.28.083</S_CODE>
+    <NAME>��������� ��������� �����������</NAME>
+    <Parameter>3</Parameter>
+    <COMMENT>������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.001.002</S_CODE>
+    <NAME>����������� ������� ������-��������� ����� � �������������� �������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.002.002</S_CODE>
+    <NAME>����������� ������� �������� ����� � �������������� �������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.004.011</S_CODE>
+    <NAME>����������� ������� ����� �������� ������� ������ � �������������� �������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.004.012</S_CODE>
+    <NAME>����������� ������� ����������������� ����� � �������������� �������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.004.015</S_CODE>
+    <NAME>�������� ��� ������� ����������������� ����� � �������������� �������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.004.016</S_CODE>
+    <NAME>�������� ��� ���������� ����������������� ����� � �������������� �������� ���������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.005.001</S_CODE>
+    <NAME>�������� ��������� � �������������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.021</S_CODE>
+    <NAME>����������� �������� ��� ��������������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.028.001</S_CODE>
+    <NAME>�������� �������� ������� ������ � �������������� ��������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT/>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.037</S_CODE>
+    <NAME>��������������� ������������� ��� ���������� �������</NAME>
+    <Parameter>1</Parameter>
+    <COMMENT>�������������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.048</S_CODE>
+    <NAME>�������������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.048.001</S_CODE>
+    <NAME>������������� ��� ������������������ ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.048.002</S_CODE>
+    <NAME>������������� ��� ��������� ������������ ����������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.048.003</S_CODE>
+    <NAME>������������� ��� �������������� ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+  <zap>
+    <S_CODE>A16.30.050</S_CODE>
+    <NAME>���������������� ��� ������� ���������</NAME>
+    <Parameter>2</Parameter>
+    <COMMENT>��������</COMMENT>
+    <DATEBEG>01.01.2022</DATEBEG>
+    <DATEEND/>
+  </zap>
+</packet>

@@ -1,0 +1,2518 @@
+{% extends 'base_hospital_index.html' %}
+{% load static %}
+{% block content %}
+<style>
+  .list-group-item {
+    padding: 0;
+  }
+
+  #menu-list {
+    display: block;
+    height: 550px;
+    overflow-y: auto;
+  }
+
+
+  #menu-list a {
+    text-align: center;
+  }
+
+  #menu-group {
+    display: block;
+    height: 550px;
+    overflow-y: auto;
+  }
+
+
+  #menu-reports {
+    display: block;
+    height: 100px;
+    overflow-y: auto;
+  }
+
+  #menu-reports a {
+    text-align: center;
+  }
+
+  #filters {
+    display: block;
+    height: 550px;
+    overflow-y: auto;
+  }
+
+  #filters a {
+    text-align: center;
+  }
+
+  #a_oth_1 {
+    display: block;
+    height: 550px;
+    overflow-y: auto;
+  }
+
+  #a_oth_1 a {
+    text-align: center;
+  }
+
+  #statistics_rep {
+    display: block;
+    height: 450px;
+    overflow-y: auto;
+  }
+
+  #statistics_rep a {
+    text-align: center;
+  }
+
+  #departments_rep {
+    display: block;
+    height: 450px;
+    overflow-y: auto;
+  }
+
+  #departments_rep a {
+    text-align: center;
+  }
+
+  #vault_otd_rep a {
+    text-align: center;
+  }
+</style>
+
+<div class="form-signin">
+  <div class="index-menu">
+    <h1 class="h3 mb-3 font-weight-normal">Стационар</h1>
+    <ul class="menu-li">
+
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModalCenter">Загрузка из 1С</button>
+      <a href="search/" style="text-decoration:none"><button type="button"
+          class="btn btn-outline-primary">Просмотр/Редактирование записей</button></a>
+
+
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModalcreate_reestr">Создание реестра</button>
+
+
+
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModalcreate_reports" onclick="init()">Создание отчетов</button>
+
+
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModalUpdate">Обновление персональных данных</button>
+
+
+      <a href="/" style="text-decoration:none"><button type="button" class="btn btn-outline-primary"
+          v-on:click="exit_end">Выход</button></a>
+
+    </ul>
+  </div>
+</div>
+
+
+<div id="app">
+  {% verbatim %}
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h5 class="modal-title">Загрузка из 1с</h5>
+            </div>
+          </div>
+        </div>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{message}}</h5>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div v-if="exportfrom1_loading" class="alert alert-info text-center" role="alert">
+                  Записи обрабатываются
+                </div>
+                <div v-if="exportfrom1_completed" class="alert alert-success text-center" role="alert">
+                  Экспорт из 1с завершён
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" id="sp_close" v-on:click="close()">&times;</span>
+          </button>
+        </div>
+
+        <form id="uploadForm-load-1c" method="POST" enctype="multipart/form-data">
+          <!-- {% csrf_token %} -->
+
+          <div v-if="mes_div" class="alert alert-success" role="alert">
+            Файлы загружены
+          </div>
+
+          <div v-if=" mes_div!=null && !mes_div" class="alert alert-danger" role="alert">
+            Файлы не загружены
+          </div>
+
+          <div v-show="loader_sp_st" class="alert alert-success" role="alert">
+            Файлы загружаются
+          </div>
+
+          <div v-show="loader_sp" class="alert alert-success" role="alert">
+            Файлы обрабатываются
+          </div>
+
+          <div v-if="loader_sp_end" class="alert alert-success" role="alert">
+            Записи записаны успешно
+          </div>
+
+          <div v-if="err_oper" class="alert alert-danger" role="alert">
+            Вы загрузили не файл oper
+          </div>
+
+          <div v-if="err_sluch" class="alert alert-danger" role="alert">
+            Вы загрузили не файл sluch
+          </div>
+
+
+          <div class="modal-body">
+
+            <div class="form-group" id="group_oper">
+              <label for="file_oper">Выберите файл oper</label>
+              <input v-model="oper" type="file" class="form-control-file" id="file_oper">
+            </div>
+
+            <div class="form-group" id="group_sluch">
+              <label for="file_sluch">Выберите файл sluch</label>
+              <input v-model="sluch" type="file" class="form-control-file" id="file_sluch">
+            </div>
+
+            <div class="form-group" id="group_sluch_10">
+              <label for="file_sluch_10">Выберите файл мониторинг реестра</label>
+              <input v-model="sluch_10" type="file" class="form-control-file" id="file_sluch_10">
+            </div>
+            <div class="progress" id="div_progress" v-if="div_progress">
+              <div id="progress" class="progress-bar progress-bar-striped bg-success  progress-bar-animated"
+                role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+            <p id="progress_bar"></p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-e"
+              v-on:click="close">Закрыть</button>
+            <button type="button" class="btn btn-primary" v-on:click="load_files" id="btn-s">Сохранить</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endverbatim %}
+</div>
+
+
+<div id="update_pers">
+  {% verbatim %}
+  <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Обновление персональных данных</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div v-if="v_update" class="alert alert-info text-center" role="alert">
+                  Записи обрабатываются
+                </div>
+                <div v-if="v_ok" class="alert alert-success text-center" role="alert">
+                  Персональные данные обновлены!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form action="" enctype="multipart/form-data" method="post">
+            обновление персональных данных
+            <input type="file" name="files" id="update_pers_file" required multiple>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+              <button type="button" class="btn btn-primary" v-on:click="update_pers()">Сохранить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endverbatim %}
+</div>
+
+
+
+
+
+<div class="modal fade" id="exampleModalcreate_reestr" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div id="create_reestr_div" style="margin-left: 98px;">
+      {% verbatim %}
+      <div class="modal-content">
+        <div class="modal-header ">
+          <h5 class="modal-title" id="exampleModalLongTitle">Создание реестра</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" v-on:click="close()">&times;</span>
+          </button>
+
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div v-if="create_res" class="alert alert-info text-center" role="alert">
+                  Формирования реестра
+                </div>
+                <div v-if="end" class="alert alert-success text-center" role="alert">
+                  Реестр создан
+                </div>
+                <div id="download_reestr" class="text-center"></div>
+                <div id="download_reestr_prot" class="text-center"></div>
+              </div>
+            </div>
+          </div>
+          <!-- <date></date> -->
+          <div class="text-center">
+            <div><label>за период (дд.мм.гггг)</label></div>
+            <label>с</label>
+            <input type="date" id="date_r_1_create">
+            <label>по</label>
+            <input type="date" id="date_r_2_create">
+          </div>
+          <br>
+          <div class="text-center">
+            <select name="sl_res" id="sl_res" class="text-center">
+              <option value="ОСН.dbf">Основной</option>
+              <option value="БПО.dbf">баз.программа ОМС</option>
+              <option value="ВСП.dbf">ВТМП сверхбаз.программа</option>
+            </select>
+          </div>
+          <br>
+          <div class="text-center"><input type="text" value="" id="filename" class="mb-3 text-center"
+              placeholder="Имя файла"></div>
+          <br>
+          <div class="text-center"><button type="button" class="btn btn-primary" v-on:click="create_reestr()">Создать
+              реестр</button></div>
+
+
+          <br>
+          <div class="progress" id="progress_create_reestr" v-if="progress">
+            <div id="progress" class="progress-bar progress-bar-striped bg-success  progress-bar-animated"
+              role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" v-on:click="close()">Закрыть</button>
+        </div>
+
+        </form>
+
+      </div>
+    </div>
+    {% endverbatim %}
+  </div>
+
+</div>
+
+<div id="report_oth">
+  {% verbatim %}
+  <div class="modal fade" id="exampleModalcreate_reports" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+      <div class="modal-content" style="width:1300px">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Создание отчетов</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" id="sp_close" v-on:click="close()">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="menu-reports">
+            <button type="button" class="btn btn-outline-primary"
+              v-on:click="references()">Контроль,списки,справки</button>
+            <button type="button" class="btn btn-outline-primary" v-on:click="reports()">Годовой отчет</button>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-2">
+                <div v-if="lists_references" id="lists-references">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" v-on:click="group()">Список больных</a>
+                    <!-- <a class="list-group-item list-group-item-action" v-on:click="annual_bol()">Список больных</a> -->
+                    <a class="list-group-item list-group-item-action" v-on:click="annual()">Справки,отчеты</a>
+                  </div>
+                </div>
+                <!-- <div v-if="annual_reports" id="annual-reports">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" v-on:click="generation()">Формирование отчета</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="reports_menu()">Печать отчета</a>
+                  </div>
+                </div> -->
+
+                <div v-if="annual_reports" id="annual-reports">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" v-on:click="statistics_rep()">1.Статистика</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="departments_rep()">2.Отделения</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="vra_rep()">3.Врачи</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="vault_otd_rep()">4.Свод отд-ний</a>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="col-md-10">
+                <div v-if="menu_group">
+                  <div class="text-center">
+
+
+
+                    <div><label for="">Выберите тип списка больных:</label></div>
+                    <select class="text-center" id="group_p_list" onchange="onchange_group_p_list()">
+                      <option value="null"></option>
+                      <option value="group_p1">1.выбывших</option>
+                      <option value="group_p2">2.выбывших(расширенный форма)</option>
+                      <option value="group_p3">3.умерших</option>
+                      <option value="group_p4">4.выбывших(краткий формат)</option>
+                      <option value="group_p5">5.госпитализ. > ___ дней</option>
+                      <option value="group_p6">6.выборка по операции</option>
+                      <option value="group_p7">7.с осложнениями</option>
+                      <option value="group_p8">8.выборка по диагнозу</option>
+                      <option value="group_p9">9.для осмотра зам.гл.врача</option>
+                      <option value="group_p10">10.по районам города</option>
+                      <option value="group_p11">11.по страховым компаниям</option>
+                      <option value="group_p12">12.плановых/экстренных</option>
+                      <option value="group_p13">13.детей до года с патал.</option>
+                      <option value="group_p14">14.превысивших станд.срок леч</option>
+                      <option value="group_p15">15.выборка по коду манипуляции</option>
+                      <option value="group_p16">16.срок лечения минее ___ дн.</option>
+                      <option value="group_p17">17.выбывшие граждане иностр.г</option>
+                      <option value="group_p18">18.пациентов с Ds язва.ослож.</option>
+                      <option value="group_p19">19.умерших в 1-е сутки до 65</option>
+                      <option value="group_p20">20.поступивших на стационар.л</option>
+                      <option value="group_p21">21.с закрытыми листами нетруд.</option>
+                      <option value="group_p22">22.по программе ВМП</option>
+                      <option value="group_p23">23.с ампутированными конечнос.</option>
+                      <option value="group_p24">24.по поликлиникам прикреплен.</option>
+                      <option value="group_p25">25.для АРО новорожденных</option>
+                    </select>
+
+
+                  </div>
+                  <div class="text-center">
+                    <br>
+                    <select v-if="group_podly_ternerprof" class="text-center" id="group_podly_ternerprof"
+                      onchange="onchange_group_podly_ternerprof(event)">
+                      <option value="podly">по подразделениям ЛУ</option>
+                      <option value="ternerprof">терап.,неврол.профилей</option>
+                    </select>
+
+                    <div v-if="group_st_ot">
+                      <br>
+                      <select class="text-center" id="group_st_ot" onchange="onchange_group_st_ot(event)">
+                        <option value="st">по стационару</option>
+                        <option value="ot">по отделению</option>
+                      </select>
+                    </div>
+
+                    <div v-if="group_goc_filt">
+                      <br>
+                      <select class="text-center" id="group_goc_filt">
+                        <option value="pl">плановых</option>
+                        <option value="ek">экстренных</option>
+                      </select>
+                    </div>
+
+                  </div>
+                  <hr>
+                  <br>
+                </div>
+                <div id="menu-list-group">
+                  <div id="menu-annual-reports">
+
+                    <div v-if="menu_group">
+                      <div class="constainer">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <all_filter></all_filter>
+                          </div>
+                          <div class="col-md-4">
+                            <div id="an_rep_data">
+                              <div id="report_text_shaping" v-if="group_shaping">
+                                <div class="alert alert-info text-center" role="alert">
+                                  Формирование отчета
+                                </div>
+                              </div>
+                              <div id="report_text_create" v-if="group_create">
+                                <div class="alert alert-success text-center" role="alert">
+                                  Отчет сформирован
+                                </div>
+                              </div>
+                              <div id="group_download" class="text-center">
+                              </div>
+
+                              <!-- <h4>Отчет создан</h4> -->
+                              <date></date>
+                              <div id="filters">
+                                <otdel_filter></otdel_filter>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <all_input_models></all_input_models>
+                          </div>
+                        </div>
+                        <!--                        <btn btn="g_oth"></btn>-->
+                        <div class="text-center" style="margin-bottom: 10px;">
+                          <!-- <div><input type="text" value="" id="filename_mix" class="mb-3"></div> -->
+                          <button btn="g_oth" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                            class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                        </div>
+                        <div id="download">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div v-if="report_generation" id="menu-annual">
+                      Формирование отчета
+                    </div>
+                  </div>
+
+                </div>
+                <div v-if="statistics_reports" id="statistics_rep">
+                  <div id="report_text_shaping" v-if="annual_shaping">
+                    <div class="alert alert-info text-center" role="alert">
+                      Формирование отчета
+                    </div>
+                  </div>
+                  <div id="report_text_create" v-if="annual_create">
+                    <div class="alert alert-success text-center" role="alert">
+                      Отчет сформирован
+                    </div>
+                  </div>
+                  <div class="download_rep"></div>
+                  <date></date>
+                  <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" id="panel_13" data-target="#panel-13"
+                      data-toggle="collapse">
+                      <h5><b>Форма N 13</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel-13">
+                      <a class="list-group-item list-group-item-action" id="13-menu" data-target="#panel-13-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>Отчет обабортах</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-13-menu">
+                        <a class="list-group-item list-group-item-action" btn="annual_13_1_1"
+                          onclick="create_reports(event)">Ф.№13 (год.)</a>
+                        <a class="list-group-item list-group-item-action" btn="annual_13_1_2"
+                          onclick="create_reports(event)">ф.№13 (г.Тюмень)</a>
+                        <a class="list-group-item list-group-item-action" btn="annual_13_1_3"
+                          onclick="create_reports(event)">Список женщин г.Тюмень</a>
+                        <a class="list-group-item list-group-item-action" btn="annual_13_1_4"
+                          onclick="create_reports(event)">Профил-ка прерывания бер-ти</a>
+                        <a class="list-group-item list-group-item-action" btn="annual_13_1_5"
+                          onclick="create_reports(event)">ф.2000 (А,Б,В,ф.2001-2900)</a>
+                      </div>
+                      <!-- <a class="list-group-item list-group-item-action" id="14_2-menu" data-target="#panel-14_2-menu" data-toggle="collapse"><h5>2.Состав детей в возрасте 0-6 сут.</h5></a> -->
+
+                    </div>
+
+                    <a class="list-group-item list-group-item-action" id="panel_14" data-target="#panel-14"
+                      data-toggle="collapse">
+                      <h5><b>Форма N 14</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel-14">
+                      <a class="list-group-item list-group-item-action" id="14_1-menu" data-target="#panel-14_1-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>1.Составбольных в стационаре</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-14_1-menu">
+                        <a class="list-group-item list-group-item-action" value="14_1_1" onclick="create_reports(event)"
+                          btn="annual_14_1_1">А.Взрослые 18 лет и старше</a>
+                        <a class="list-group-item list-group-item-action" value="14_1_2" onclick="create_reports(event)"
+                          btn="annual_14_1_2">Б.Взрослые нетрудоспособного
+                          возраста</a>
+                        <a class="list-group-item list-group-item-action" value="14_1_3" onclick="create_reports(event)"
+                          btn="annual_14_1_3">В.Дети до 18 лет</a>
+                        <a class="list-group-item list-group-item-action" value="14_1_4" onclick="create_reports(event)"
+                          btn="annual_14_1_4">ф.2001 - 2900</a>
+                        <a class="list-group-item list-group-item-action" value="14_1_5" onclick="create_reports(event)"
+                          btn="annual_14_1_5">ф.2000 (А,Б,В,ф.2001-2900)</a>
+                      </div>
+
+                      <a class="list-group-item list-group-item-action" id="14_2-menu" data-target="#panel-14_2-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>2.Состав детей в возрасте 0-6 сут.</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-14_2-menu">
+                        <a class="list-group-item list-group-item-action" value="14_2_1" onclick="create_reports(event)"
+                          btn="annual_14_2_1">Состав детей в возрасте 0-6
+                          сут</a>
+                      </div>
+
+                      <a class="list-group-item list-group-item-action" id="14_3-menu" data-target="#panel-14_3-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>3.Хирургическая работа в учр-ях</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-14_3-menu">
+                        <a class="list-group-item list-group-item-action" value="14_3_1" onclick="create_reports(event)"
+                          btn="annual_14_3_1">3.Сводный отчет (ф.4000)</a>
+                        <a class="list-group-item list-group-item-action" value="14_3_2" onclick="create_reports(event)"
+                          btn="annual_14_3_2">3.Расшифровка (ф.4000)</a>
+                        <a class="list-group-item list-group-item-action" value="14_3_3" onclick="create_reports(event)"
+                          btn="annual_14_3_3">3.1 Лица старше труд.возраста
+                          (4001)</a>
+                        <a class="list-group-item list-group-item-action" value="14_3_4" onclick="create_reports(event)"
+                          btn="annual_14_3_4">Операции у детей в возр-те до 1
+                          года (4002)</a>
+                        <a class="list-group-item list-group-item-action" value="14_3_5" onclick="create_reports(event)"
+                          btn="annual_14_3_5">1.2 Вкладыш в ф.14 (1001)</a>
+                        <a class="list-group-item list-group-item-action" value="14_3_6" onclick="create_reports(event)"
+                          btn="annual_14_3_6">1.2 Вкладыш в ф.14 (1001)
+                          расшифровка</a>
+                        <a class="list-group-item list-group-item-action" value="14_3_7" onclick="create_reports(event)"
+                          btn="annual_14_3_7">1.3 Хирур.актив-ть при заболе-х
+                          легких (1002)</a>
+                        <a class="list-group-item list-group-item-action" value="14_3_8" onclick="create_reports(event)"
+                          btn="annual_14_3_8">Операции с применением ВМП</a>
+                      </div>
+                    </div>
+                    <a class="list-group-item list-group-item-action" id="panel_30" data-target="#panel-30"
+                      data-toggle="collapse">
+                      <h5><b>Форма N 30</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel-30">
+                      <a class="list-group-item list-group-item-action" id="30_1-menu" data-target="#panel-30_1-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>1.Коечный фонд и его использование</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-30_1-menu">
+                        <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                          btn="annual_30_1_1">Коечный фонд и его использование</a>
+                      </div>
+
+                      <a class="list-group-item list-group-item-action" id="30_2-menu" data-target="#panel-30_2-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>2.Экстренная хирургическая помощь</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-30_2-menu">
+                        <div class="list-group">
+                          <a class="list-group-item list-group-item-action" value="30_2_1"
+                            onclick="create_reports(event)" btn="annual_30_2_1">2.1 Случай</a>
+                          <a class="list-group-item list-group-item-action" value="30_2_2"
+                            onclick="create_reports(event)" btn="annual_30_2_2">2.2 Койко-дни</a>
+                          <a class="list-group-item list-group-item-action" value="30_2_3"
+                            onclick="create_reports(event)" btn="annual_30_2_3">2.3 Список умерших</a>
+                        </div>
+                      </div>
+
+                      <a class="list-group-item list-group-item-action" id="30_3-menu" data-target="#panel-30_3-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>3.Работа отд.функцион.диагностики</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-30_3-menu">
+                        <a class="list-group-item list-group-item-action" value="30_3_1" onclick="create_reports(event)"
+                          btn="annual_30_3_1">Работа отд.функцион.диагностики</a>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action" id="panel_16" data-target="#panel-16"
+                      data-toggle="collapse">
+                      <h5><b>Форма N 16</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel-16">
+                      <a class="list-group-item list-group-item-action" id="16-menu" data-target="#panel-16-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>1.Причины временной нетрудоспособ-ти</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-16-menu">
+                        <a class="list-group-item list-group-item-action" value="16_1_1" onclick="create_reports(event)"
+                          btn="annual_16_1_1">Причины временной нетрудоспособ-ти</a>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action" id="panel_57" data-target="#panel-57"
+                      data-toggle="collapse">
+                      <h5><b>Форма N 57</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel-57">
+                      <a class="list-group-item list-group-item-action" id="57-menu" data-target="#panel-57-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>Сведения о травмах и отравлениях</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-57-menu">
+                        <div class="list-group">
+                          <a class="list-group-item list-group-item-action" value="57_1_1"
+                            onclick="create_reports(event)" btn="annual_57_1_1">г.Тюмень</a>
+                          <a class="list-group-item list-group-item-action" value="57_1_2"
+                            onclick="create_reports(event)" btn="annual_57_1_2">Тюменский р-н</a>
+                          <a class="list-group-item list-group-item-action" value="57_1_3"
+                            onclick="create_reports(event)" btn="annual_57_1_3">г.Тюмень + Тюменский р-н</a>
+                          <a class="list-group-item list-group-item-action" value="57_1_4"
+                            onclick="create_reports(event)" btn="annual_57_1_4">Свод по всем территориям</a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action" id="panel_pr" data-target="#panel-pr"
+                      data-toggle="collapse">
+                      <h5><b>Прочие отчеты</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel-pr">
+                      <a class="list-group-item list-group-item-action" id="pr-menu" data-target="#panel-pr-menu"
+                        data-toggle="collapse">
+                        <h6><ins><i>Прочие отчеты</i></ins></h6>
+                      </a>
+                      <div class="list-group panel-collapse collapse" id="panel-pr-menu">
+                        <div class="list-group">
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_1">1.Отчет
+                            о
+                            работе отделений (по ИБ)</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_2">2.Отчет
+                            о
+                            хирур.работе отделений</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_3">3.По
+                            полу,
+                            возрасту, типам травм</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_4">4.По
+                            направляющим учр-ям</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_5">5.По
+                            нозологич. группам</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_6">6.По
+                            нозологич. группам и операциям</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_7">7.По
+                            операциям</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_8">8.По
+                            умершим</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_9">9.По
+                            месту
+                            жительства</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_a">а.экстрен.хирург.помощь(к/дни)</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_b">б.По DS
+                            и
+                            опер-м (произвол.запрос)</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_v">в.выполнение
+                            ПГГ</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_g">г.распределение по источ.финансир-я</a>
+                          <a class="list-group-item list-group-item-action" onclick="create_reports(event)"
+                            btn="annual_pr_d">д.инф-я
+                            о
+                            заболев-х органов пищев.</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div v-if="departments_reports" id="departments_rep">
+                  <date></date>
+                  <p style="display: block;" class="text-center">Выберите отделение</p>
+                  <input_select v-bind:spravlist="sprav_list.Otde" k="naim" ll="otdel_l" id="otdel" class="text-center"
+                    n="">
+                  </input_select>
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" value="1">1.основные показатели работы отд.</a>
+                    <a class="list-group-item list-group-item-action" value="2">2.выполн-е програ-ы гос.гарантий</a>
+                    <a class="list-group-item list-group-item-action" value="3">3.по видам оператив.вмнешательств</a>
+                    <a class="list-group-item list-group-item-action" value="4">4.по нозологии</a>
+                    <a class="list-group-item list-group-item-action" value="5">5.по нозолог-им формам и возрасту</a>
+                    <a class="list-group-item list-group-item-action" value="6">6.по экстренной хирургии</a>
+                    <a class="list-group-item list-group-item-action" value="7">7.по манипуляциям</a>
+                    <a class="list-group-item list-group-item-action" value="8">8.ф14 хирургическая работа</a>
+                    <a class="list-group-item list-group-item-action" value="9">9.ф14 состав больных в отд-ний</a>
+                    <a class="list-group-item list-group-item-action" value="а">а.амбул.работа в прием.отд-ний</a>
+                    <a class="list-group-item list-group-item-action" value="б">б.список умерших</a>
+                    <a class="list-group-item list-group-item-action" value="в">в.список с п/осложнениями</a>
+                    <a class="list-group-item list-group-item-action" value="г">г.по нозологии и операциям</a>
+                    <a class="list-group-item list-group-item-action" value="д">д.работа врачей отделения</a>
+                  </div>
+                </div>
+
+                <div v-if="vra_reports" id="vra_rep">
+                  <date></date>
+                  <input_select v-bind:spravlist="sprav_list.Vra" k="kod" ll="vra_l" id="vra" class="text-center" n="">
+                  </input_select>
+                </div>
+
+                <div v-if="vault_otd_reports" id="vault_otd_rep">
+                  <div id="report_text_shaping" v-if="group_shaping">
+                    <div class="alert alert-info text-center" role="alert">
+                      Формирование отчета
+                    </div>
+                  </div>
+                  <div id="report_text_create" v-if="group_create">
+                    <div class="alert alert-success text-center" role="alert">
+                      Отчет сформирован
+                    </div>
+                  </div>
+                  <div id="download_vault_otd" class="text-center">
+                  </div>
+                  <date></date>
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" id="ттт" value="ттт"
+                      onclick="vault_otd_reports(event)">Травма1
+                      + Травма2 + Травма3</a>
+                    <a class="list-group-item list-group-item-action" id="ннн" value="ннн"
+                      onclick="vault_otd_reports(event)">Неврол.1
+                      + Неврол.2 + Неврол.3</a>
+                    <a class="list-group-item list-group-item-action" id="хх" value="хх"
+                      onclick="vault_otd_reports(event)">Хирургия1
+                      + Хирургия2</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3">
+                <!-- <div v-if="menu_annual" id="menu-group">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_1()">1.Выборка по коду
+                      манипуляции</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_2()">2.Иногородних</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_3()">3.По страховым
+                      компаниям</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_4()">4.Выборка по
+                      диагнозу</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_5()">5.Выборка (по
+                      заказу)</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_6()">6.Кол-во выбывших и
+                      к/день</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_7()">7.Распред-е по
+                      источ.финансир-я</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_8()">8.Инф-я о к-ве
+                      экстр.выбывших</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_9()">9.Распред-е по
+                      степени тяжести</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_10()">10.Информация в
+                      депортамент</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_11()">11.Возрастной
+                      состав выбывших</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_12()">12.Сведения об
+                      умерших</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_13()">13.Сведения о
+                      реанимац.к/днях</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_14()">14.Сведения о
+                      проопериров.б-х</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_15()">15.Инфор.о
+                      гражданах Белоруссии</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_16()">16.Дет.травм-м в
+                      оздоров.учр-ях</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_17()">17.Возрастной
+                      состав поступ-х</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_18()">18.Травмы
+                      насильствен.хар-ра</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_19()">19.Смер-ть и трав-м
+                      от вн.причин</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_20()">20.Отчет по
+                      эндос.хирур.работе</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_21()">21.Догоспитальное
+                      прерывания в ПО</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_22()">22.Объемы МП за
+                      счет субсидиий ФБ</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_23()">23.Мониторинг
+                      ДТП</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_24()">24.Оценка
+                      послеоперац.осложнений</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_25()">25.Прерывание в
+                      реан.отд.по проф.</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_26()">26.С ОНМК по
+                      пол-кам прикрепления</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_27()">27.Операции в ПО
+                      стационара</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_28()">28.Мед.услуги
+                      др.регион,др.страны</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_29()">29.По Ds и по
+                      терр.проживания</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_30()">30.Травматизм по
+                      терр. проживания</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_31()">31.Отчет
+                      офтальмогической службы</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_32()">32.Информация
+                      токсикол. отделения</a>
+                    <a class="list-group-item list-group-item-action" v-on:click="annual_oth_33()">33.Инф-я об услугах
+                      ОМС др.регион</a>
+                  </div>
+                </div> -->
+              </div>
+              <div class="col-md-9">
+                <div id="report_text_shaping" v-if="shaping">
+                  <div class="alert alert-info text-center" role="alert">
+                    Формирование отчета
+                  </div>
+                </div>
+                <div id="report_text_create" v-if="create">
+                  <div class="alert alert-success text-center" role="alert">
+                    Отчет сформирован
+                  </div>
+                </div>
+
+                <div v-if="menu_annual_bol" id="menu_annual_bol">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m_b-1"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>1.выбывших</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m_b-1">
+                      1.выбывших1.выбывших1.выбывших1.выбывших1.выбывших1.выбывших1.выбывших
+                    </div>
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m_b-2"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>2.выбывших(расширенный форма)</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m_b-2">
+                      2.выбывших(расширенный форма2.выбывших(расширенный форма2.выбывших(расширенный
+                      форма2.выбывших(расширенный форма
+                    </div>
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m_b-3"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>3.умерших</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m_b-3">
+                      3.умерших3.умерших3.умерших3.умерших3.умерших3.умерших3.умерших
+                    </div>
+                  </div>
+                </div>
+                <div v-if="menu_annual" id="menu-group">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-1"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>1.Выборка по коду манипуляции</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-1">
+                      <date></date>
+                      <div class="text-center">
+                        <label>2.список манипуляции</label>
+                        <input_select v-bind:spravlist="sprav_list.AbObsh" k="kod" ll="abobsh_l" id="abobsh" n="">
+                        </input_select>
+                      </div>
+                      <div class="text-center">
+                        <label>3.таб.N исполнителя манипуляции</label>
+                        <input_select v-bind:spravlist="sprav_list.Vra" k="kod" ll="vra_l" id="vra" n=""></input_select>
+                      </div>
+                      <div class="text-center">
+                        <label>4.отделение исполнителя</label>
+                        <input_select v-bind:spravlist="sprav_list.Otde" k="naim" ll="otdel_l" id="otdel" n="">
+                        </input_select>
+                      </div>
+                      <div class="text-center">
+                        <label>5.Фамилия пациента</label>
+                        <div>
+                          <input type="text" id="fam_pat">
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <label>6.Возрастная группа</label>
+                        <input_select v-bind:spravlist="sprav_list.AgeGroup" k="name" ll="agegroup_l" id="agegroup"
+                          n="">
+                        </input_select>
+                      </div>
+                      <div class="text-center">
+                        <label>7.Госпитализация(план./экс.)</label>
+                        <input_select v-bind:spravlist="sprav_list.V014" k="tipName" ll="v014_l" id="v014" n="">
+                        </input_select>
+                      </div>
+                      <div class="text-center">
+                        <label>8.(первично/повторно)</label>
+                        <input_select v-bind:spravlist="sprav_list.Prpg" k="naim" ll="prpg_l" id="prpg" n="">
+                        </input_select>
+                      </div>
+                      <div class="text-center">
+                        <label>9.пол</label>
+                        <input_select v-bind:spravlist="sprav_list.V005" k="polname" ll="v005_l" id="v005" n="">
+                        </input_select>
+                      </div>
+                      <div class="text-center">
+                        <label>с диагнозами с</label>
+                        <input_s_po></input_s_po>
+                      </div>
+                      <div class="text-center">
+                        <label>10.с исходом лечения</label>
+                        <input_select v-bind:spravlist="sprav_list.V012" k="izName" ll="v012_l" id="v012" n="">
+                        </input_select>
+                      </div>
+                      <div class="text-center">
+                        <p>Список манипуляции задается, как перечень кодов манипуляции через ","</p>
+                      </div>
+                      <!--                      <btn btn="a_oth_1"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_1" class="mb-3"
+                            placeholder="Названия файла"></div>
+                        <button btn="a_oth_1" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                          class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-2"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>2.Иногородних</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-2">
+                      <date></date>
+                      <div class="text-center">
+                        <select id="a_oth_2_select_1" onchange="onchange_a_oth_2_select_1(event)">
+                          <option value="">-----</option>
+                          <option value="Общая справка">Общая справка</option>
+                          <option value="По территор.признаку">По территор.признаку</option>
+                        </select>
+                      </div>
+                      <div class="text-center">
+                        <select id="a_oth_2_select_2" v-if="a_oth_2_select_2_f">
+                          <option value="">-----</option>
+                          <option value="г.Тюмень">г.Тюмень</option>
+                          <option value="Юг тюм.обл.кроме Тюм.р-на">Юг тюм.обл.кроме Тюм.р-на</option>
+                          <option value="Тюменский р-н">Тюменский р-н</option>
+                          <option value="Ханты-Мансийский АО">Ханты-Мансийский АО</option>
+                          <option value="Ямало-Ненецкий АО">Ямало-Ненецкий АО</option>
+                        </select>
+                      </div>
+                      <!--                      <btn btn="a_oth_2"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_2" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_2" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-3"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>3.По страховым компаниям</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-3">
+                      <date></date>
+                      <div class="text-center">
+                        <select>
+                          <option value="">-----</option>
+                          <option value="По реестрам">По реестрам</option>
+                          <option value="По отделениям">По отделениям</option>
+                          <option value="По видам оплат">По видам оплат</option>
+                        </select>
+                      </div>
+                      <!--                      <btn btn="a_oth_3"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_3" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_3" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-4"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>4.Выборка по диагнозу</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-4">
+                      <date></date>
+                      <div class="text-center">
+                        <label>Введите ДС</label>
+                        <input type="text" id="a_oth_4_ds">
+                      </div>
+                      <!--                      <btn btn="a_oth_4"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_4" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_4" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-5"
+                      data-toggle="collapse" v-on:click="create=false;panel_m_filter()">
+                      <h5><b>5.Выборка (позаказу)</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-5">
+                      <div class="constainer">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <all_filter></all_filter>
+                          </div>
+                          <div class="col-md-8">
+                            <date></date>
+                            <div id="filters"></div>
+                            <!--                            <btn btn="a_oth_5"></btn>-->
+                            <div class="text-center" style="margin-bottom: 10px;">
+                              <div>
+                                <!-- <input type="text" value="" id="filename_a_oth_5" class="mb-3"
+                                  placeholder="Названия файла"> -->
+                                <div id="download_a_oth_5" class="text-center" style="padding-bottom: 10px;"></div>
+
+
+                              </div> <button btn="a_oth_5" type="button" id="create_btn_reports"
+                                onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                                style="padding: 0px;">Создать отчет</button>
+
+
+                              <div v-if="group_shaping_a_oth">
+                                <div class="alert alert-info text-center" role="alert">
+                                  Формирование отчета
+                                </div>
+                              </div>
+                              <div v-if="group_create_a_oth">
+                                <div class="alert alert-success text-center" role="alert">
+                                  Отчет сформирован
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-6"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>6.Кол-во выбывших и к/день</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-6">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_6"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_6" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_6" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-7"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>7.Распред-е по источ.финансир-я</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-7">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_7"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_7" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_7" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-8"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>8.Инф-я о к-веэкстр.выбывших</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-8">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_8"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_8" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_8" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-9"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>9.Распред-е по
+                          степени тяжести</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-9">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_9"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_9" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_9" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-10"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>10.Информация в
+                          депортамент</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-10">
+                      <date></date>
+                      <div class="text-center">
+                        <select id="a_oth_10_select">
+                          <option value="">----</option>
+                          <option value="Ежемесячная форма">Ежемесячная форма</option>
+                          <option value="Инф.2002-2003">Инф.2002-2003</option>
+                          <option value="По территориям">По территориям</option>
+                        </select>
+                      </div>
+                      <!--                      <btn btn="a_oth_10"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_10" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_10" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-11"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>11.Возрастной состав выбывших</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-11">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_11"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_11" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_11" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-12"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>12.Сведения об умерших</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-12">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_12"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_12" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_12" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-13"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>13.Сведения о реанимац.к/днях</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-13">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_13"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_13" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_13" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-14"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>14.Сведения о проопериров.б-х</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-14">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_14"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_14" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_14" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-15"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>15.Инфор.о гражданах Белоруссии</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-15">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_15"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_15" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_15" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-16"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>16.Дет.травм-м в оздоров.учр-я</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-16">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_16"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_16" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_16" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-17"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>17.Возрастной состав поступ-х</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-17">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_17"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_17" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_17" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-18"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>18.Травмы насильствен.хар-ра</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-18">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_18"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_18" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_18" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-19"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>19.Смер-ть и трав-м от вн.причин</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-19">
+                      <date></date>
+                      <div class="text-center">
+                        <tit title="Тип травмы"></tit>
+                        <input_select v-bind:spravlist="sprav_list.Trv" k="naim" ll="Trv_l" id="trv" n="">
+                        </input_select>
+                      </div>
+                      <div class="text-center">
+                        <tit title="Травма получена в рез-те противоправных действий третьих лиц"></tit>
+                        <input_select v-bind:spravlist="sprav_list.Trvnas" k="naim" ll="Trvnas_l" id="trvnas" n="">
+                        </input_select>
+                      </div>
+
+                      <!--                      <btn btn="a_oth_19"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_19" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_19" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-20"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>20.Отчет по эндос.хирур.работе</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-20">
+                      <!-- <date></date> -->
+                      <date_ name1="dat1_p_m_20" name2="dat2_p_m_20"></date_>
+                      <div class="text-center">
+                        <tit title="Источник финансирования"></tit>
+                        <input_select v-bind:spravlist="sprav_list.Isfin" k="naim" ll="Isfin_l" id="isfin"
+                          n="in_Isfin_p_m_20">
+                        </input_select>
+                      </div>
+                      <dskz name1="dskz1_p_m_20" name2="dskz2_p_m_20"></dskz>
+                      <div class="text-center">
+                        <tit title="Госпитализация"></tit>
+                        <input_select v-bind:spravlist="sprav_list.V014" k="tipName" ll="V014_l" id="v014"
+                          n="v014_p_m_20">
+                        </input_select>
+                      </div>
+                      <div class="text-center">
+                        <tit title="По направлению Мо"></tit>
+                        <input_select v-bind:spravlist="sprav_list.F003" k="naim" ll="F003_l" id="f003" n="f003_p_m_20">
+                        </input_select>
+                      </div>
+                      <!--                      <btn btn="a_oth_20"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <!-- <div><input type="text" value="" id="filename_a_oth_20" class="mb-3"
+                            placeholder="Названия файла"></div> -->
+                        <button btn="a_oth_20" type="button" id="create_btn_reports" onclick="create_reports(event)"
+                          class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-21"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>21.Догоспитальное прерывания в ПО</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-21">
+                      <date></date>
+                      <div class="text-center">
+                        <select id="a_oth_21_select">
+                          <option value="">----</option>
+                          <option value="Отсутствуют сведения о госпитализации">Отсутствуют сведения о госпитализации
+                          </option>
+                          <option value="Сред.длит-ть пребывания в ПО по врачам">Сред.длит-ть пребывания в ПО по врачам
+                          </option>
+                          <option value="Список госпитализ-х в ПО">Список госпитализ-х в ПО</option>
+                          <option value="Справка о пребывании в ПО по профилям">Справка о пребывании в ПО по профилям
+                          </option>
+                        </select>
+                      </div>
+                      <div class="text-center">
+                        <tit title="Отбор по сред.времени пребывания - более (в мин)."></tit>
+                        <input type="text" id="a_oth_21_input_1">
+                      </div>
+                      <div class="text-center mb-3">
+                        <div>
+                          <tit title="Время пребывания - более (в мин.)"></tit>
+                          <input type="text" id="a_oth_21_input_2">
+                        </div>
+                        <div>
+                          <tit title="Таб.N врача,госпитализурующего пациента"></tit>
+                          <input_select v-bind:spravlist="sprav_list.Vra" k="kod" ll="vra_l" id="vra" n="">
+                          </input_select>
+                        </div>
+                      </div>
+                      <!--                      <btn btn="a_oth_21"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_21" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_21" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-22"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>22.Объемы МП за счет субсидиий ФБ</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-22">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_22"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_22" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_22" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-23"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>23.Мониторинг ДТП</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-23">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_23"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_23" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_23" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-24"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>24.Оценка послеоперац.осложнений</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-24">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_24"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_24" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_24" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-25"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>25.Прерывание в реан.отд.по проф.</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-25">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_25"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_25" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_25" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-26"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>26.С ОНМК по пол-кам прикрепления</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-26">
+                      <date></date>
+                      <div class="text-center mb-3">
+                        <select id="a_oth_26_select">
+                          <option value="">-----</option>
+                          <option value="Жители г.Тюмени,Тюмен.р-на">Жители г.Тюмени,Тюмен.р-на</option>
+                          <option value="Жители юга Тюменской обл.">Жители юга Тюменской обл.</option>
+                        </select>
+                      </div>
+                      <!--                      <btn btn="a_oth_26"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_26" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_26" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-27"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>27.Операции в ПО стационара</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-27">
+                      <date></date>
+                      <div class="text-center mb-3">
+                        <select id="a_oth_27_select">
+                          <option value="">----</option>
+                          <option value="Списочный состав операций">Списочный состав операций</option>
+                          <option value="Справка по профилям заболеваний">Справка по профилям заболеваний</option>
+                        </select>
+                      </div>
+                      <div class="text-center">
+                        <tit title="Профиль"></tit>
+                        <input_select v-bind:spravlist="sprav_list.V020" k="kPrname" ll="V020_l" id="v020" n="">
+                        </input_select>
+                      </div>
+                      <!--                      <btn btn="a_oth_27"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_27" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_27" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-28"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>28.Мед.услуги др.регион,др.страны</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-28">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_28"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_28" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_28" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-29"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>29.По Ds и по терр.проживания</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-29">
+                      <date></date>
+                      <tit title="Ds"></tit>
+                      <input_s_po></input_s_po>
+                      <!--                      <btn btn="a_oth_29"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_29" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_29" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-30"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>30.Травматизм по терр. проживания</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-30">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_30"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_30" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_30" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-31"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>31.Отчет офтальмогической службы</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-31">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_31"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_31" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_31" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-32"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>32.Информация токсикол. отделения</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-32">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_32"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_32" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_32" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                    <a class="list-group-item list-group-item-action text-center" data-target="#panel_m-33"
+                      data-toggle="collapse" v-on:click="create=false">
+                      <h5><b>33.Инф-я об услугах ОМС др.регион</b></h5>
+                    </a>
+                    <div class="list-group panel-collapse collapse" id="panel_m-33">
+                      <date></date>
+                      <!--                      <btn btn="a_oth_33"></btn>-->
+                      <div class="text-center" style="margin-bottom: 10px;">
+                        <div><input type="text" value="" id="filename_a_oth_33" class="mb-3"
+                            placeholder="Названия файла"></div> <button btn="a_oth_33" type="button"
+                          id="create_btn_reports" onclick="create_reports(event)" class="btn btn-primary btn-lg"
+                          style="padding: 0px;">Создать отчет</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- <div v-if="a_oth_1" style="border: solid 1px #000;margin-top: 15px;" id="a_oth_1">
+                  <tit title="1.Выборка по коду манипуляции"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <label>2.список манипуляции</label>
+                    <input_select v-bind:spravlist="sprav_list.AbObsh" k="kod" ll="abobsh_l" id="abobsh"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>3.таб.N исполнителя манипуляции</label>
+                    <input_select v-bind:spravlist="sprav_list.Vra" k="kod" ll="vra_l" id="vra"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>4.отделение исполнителя</label>
+                    <input_select v-bind:spravlist="sprav_list.Otde" k="naim" ll="otdel_l" id="otdel"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>5.Фамилия пациента</label>
+                    <div>
+                      <input type="text" id="fam_pat">
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <label>6.Возрастная группа</label>
+                    <input_select v-bind:spravlist="sprav_list.AgeGroup" k="name" ll="agegroup_l" id="agegroup">
+                    </input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>7.Госпитализация(план./экс.)</label>
+                    <input_select v-bind:spravlist="sprav_list.V014" k="tipName" ll="v014_l" id="v014"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>8.(первично/повторно)</label>
+                    <input_select v-bind:spravlist="sprav_list.Prpg" k="naim" ll="prpg_l" id="prpg"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>9.пол</label>
+                    <input_select v-bind:spravlist="sprav_list.V005" k="polname" ll="v005_l" id="v005"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <label>с диагнозами с</label>
+                    <input_s_po></input_s_po>
+                  </div>
+                  <div class="text-center">
+                    <label>10.с исходом лечения</label>
+                    <input_select v-bind:spravlist="sprav_list.V012" k="izName" ll="v012_l" id="v012"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <p>Список манипуляции задается, как перечень кодов манипуляции через ","</p>
+                  </div>
+                  <btn btn="a_oth_1"></btn>
+                </div> -->
+                <!-- <div v-if="a_oth_2" style="border: solid 1px #000;margin-top: 15px;" class="text-center">
+
+                  <tit title="2.Иногородних"></tit>
+                  <date></date>
+                  <div>
+                    <select id="a_oth_2_select_1" onchange="onchange_a_oth_2_select_1(event)">
+                      <option value="">-----</option>
+                      <option value="Общая справка">Общая справка</option>
+                      <option value="По территор.признаку">По территор.признаку</option>
+                    </select>
+                  </div>
+                  <div class="text-center">
+                    <select id="a_oth_2_select_2" v-if="a_oth_2_select_2_f">
+                      <option value="">-----</option>
+                      <option value="г.Тюмень">г.Тюмень</option>
+                      <option value="Юг тюм.обл.кроме Тюм.р-на">Юг тюм.обл.кроме Тюм.р-на</option>
+                      <option value="Тюменский р-н">Тюменский р-н</option>
+                      <option value="Ханты-Мансийский АО">Ханты-Мансийский АО</option>
+                      <option value="Ямало-Ненецкий АО">Ямало-Ненецкий АО</option>
+                    </select>
+                  </div>
+                  <btn btn="a_oth_2"></btn>
+                </div> -->
+                <!-- <div v-if="a_oth_3" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="3.По страховым компаниям"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <select>
+                      <option value="">-----</option>
+                      <option value="По реестрам">По реестрам</option>
+                      <option value="По отделениям">По отделениям</option>
+                      <option value="По видам оплат">По видам оплат</option>
+                    </select>
+                  </div>
+                  <btn btn="a_oth_3"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_4" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="4.Выборка по диагнозу"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <label>Введите ДС</label>
+                    <input type="text" id="a_oth_4_ds">
+                  </div>
+                  <btn btn="a_oth_4"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_5" style="border: solid 1px #000;margin-top: 15px;">
+                  <tit title="5.Выборка (по заказу)"></tit>
+                  <div class="constainer">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <all_filter></all_filter>
+                      </div>
+                      <div class="col-md-8">
+                        <date></date>
+                        <div id="filters"></div>
+                      </div>
+                    </div>
+                    <btn btn="a_oth_5"></btn>
+                  </div>
+                </div> -->
+
+                <!-- <div v-if="a_oth_6" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="6.Кол-во выбывших и к/день"></tit>
+                  <date></date>
+                  <btn btn="a_oth_6"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_7" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="7.Распред-е по источ.финансир-я"></tit>
+                  <date></date>
+                  <btn btn="a_oth_7"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_8" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="8.Инф-я о к-ве экстр.выбывших"></tit>
+                  <date></date>
+                  <btn btn="a_oth_8"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_9" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="9.Распред-е по степени тяжести"></tit>
+                  <date></date>
+                  <btn btn="a_oth_9"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_10" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="10.Информация в депортамент"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <select id="a_oth_10_select">
+                      <option value="">----</option>
+                      <option value="Ежемесячная форма">Ежемесячная форма</option>
+                      <option value="Инф.2002-2003">Инф.2002-2003</option>
+                      <option value="По территориям">По территориям</option>
+                    </select>
+                  </div>
+                  <btn btn="a_oth_10"></btn> 
+              </div> -->
+
+                <!-- <div v-if="a_oth_11" style="border: solid 1px #000;margin-top: 15px;">
+
+                <tit title="11.Возрастной состав выбывших"></tit>
+                <date></date>
+                <btn btn="a_oth_11"></btn>
+              </div> -->
+
+                <!-- <div v-if="a_oth_12" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="12.Сведения об умерших"></tit>
+                  <date></date>
+                  <btn btn="a_oth_12"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_13" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="13.Сведения о реанимац.к/днях"></tit>
+                  <date></date>
+                  <btn btn="a_oth_13"></btn>
+                </div> -->
+                <!-- 
+                <div v-if="a_oth_14" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="14.Сведения о проопериров.б-х"></tit>
+                  <date></date>
+                  <btn btn="a_oth_14"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_15" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="15.Инфор.о гражданах Белоруссии"></tit>
+                  <date></date>
+                  <btn btn="a_oth_15"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_16" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="16.Дет.травм-м в оздоров.учр-ях"></tit>
+                  <date></date>
+                  <btn btn="a_oth_16"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_17" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="17.Возрастной состав поступ-х"></tit>
+                  <date></date>
+                  <btn btn="a_oth_17"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_18" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="18.Травмы насильствен.хар-ра"></tit>
+                  <date></date>
+                  <btn btn="a_oth_18"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_19" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="19.Смер-ть и трав-м от вн.причин"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <tit title="Тип травмы"></tit>
+                    <input_select v-bind:spravlist="sprav_list.Trv" k="naim" ll="Trv_l" id="trv"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Травма получена в рез-те противоправных действий третьих лиц"></tit>
+                    <input_select v-bind:spravlist="sprav_list.Trvnas" k="naim" ll="Trvnas_l" id="trvnas">
+                    </input_select>
+                  </div>
+
+                  <btn btn="a_oth_19"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_20" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="20.Отчет по эндос.хирур.работе"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <tit title="Источник финансирования"></tit>
+                    <input_select v-bind:spravlist="sprav_list.Isfin" k="naim" ll="Isfin_l" id="isfin"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Диагноз (МКБ10)"></tit>
+                    <input_s_po></input_s_po>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Госпитализация"></tit>
+                    <input_select v-bind:spravlist="sprav_list.V014" k="tipName" ll="V014_l" id="v014"></input_select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="По направлению Мо"></tit>
+                    <input_select v-bind:spravlist="sprav_list.F003" k="naim" ll="F003_l" id="f003"></input_select>
+                  </div>
+                  <btn btn="a_oth_20"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_21" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="21.Догоспитальное прерывания в ПО"></tit>
+                  <date></date>
+                  <div class="text-center">
+                    <select id="a_oth_21_select">
+                      <option value="">----</option>
+                      <option value="Отсутствуют сведения о госпитализации">Отсутствуют сведения о госпитализации
+                      </option>
+                      <option value="Сред.длит-ть пребывания в ПО по врачам">Сред.длит-ть пребывания в ПО по врачам
+                      </option>
+                      <option value="Список госпитализ-х в ПО">Список госпитализ-х в ПО</option>
+                      <option value="Справка о пребывании в ПО по профилям">Справка о пребывании в ПО по профилям
+                      </option>
+                    </select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Отбор по сред.времени пребывания - более (в мин)."></tit>
+                    <input type="text" id="a_oth_21_input_1">
+                  </div>
+                  <div class="text-center mb-3">
+                    <div>
+                      <tit title="Время пребывания - более (в мин.)"></tit>
+                      <input type="text" id="a_oth_21_input_2">
+                    </div>
+                    <div>
+                      <tit title="Таб.N врача,госпитализурующего пациента"></tit>
+                      <input_select v-bind:spravlist="sprav_list.Vra" k="kod" ll="vra_l" id="vra"></input_select>
+                    </div>
+                  </div>
+                  <btn btn="a_oth_21"></btn>
+                </div> -->
+                <!-- 
+                <div v-if="a_oth_22" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="22.Объемы МП за счет субсидиий ФБ"></tit>
+                  <date></date>
+                  <btn btn="a_oth_22"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_23" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="23.Мониторинг ДТП"></tit>
+                  <date></date>
+                  <btn btn="a_oth_23"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_24" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="24.Оценка послеоперац.осложнений"></tit>
+                  <date></date>
+                  <btn btn="a_oth_24"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_25" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="25.Прерывание в реан.отд.по проф."></tit>
+                  <date></date>
+                  <btn btn="a_oth_25"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_26" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="26.С ОНМК по пол-кам прикрепления"></tit>
+                  <date></date>
+                  <div class="text-center mb-3">
+                    <select id="a_oth_26_select">
+                      <option value="">-----</option>
+                      <option value="Жители г.Тюмени,Тюмен.р-на">Жители г.Тюмени,Тюмен.р-на</option>
+                      <option value="Жители юга Тюменской обл.">Жители юга Тюменской обл.</option>
+                    </select>
+                  </div>
+                  <btn btn="a_oth_26"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_27" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="27.Операции в ПО стационара"></tit>
+                  <date></date>
+                  <div class="text-center mb-3">
+                    <select id="a_oth_27_select">
+                      <option value="">----</option>
+                      <option value="Списочный состав операций">Списочный состав операций</option>
+                      <option value="Справка по профилям заболеваний">Справка по профилям заболеваний</option>
+                    </select>
+                  </div>
+                  <div class="text-center">
+                    <tit title="Профиль"></tit>
+                    <input_select v-bind:spravlist="sprav_list.V020" k="kPrname" ll="V020_l" id="v020"></input_select>
+                  </div>
+                  <btn btn="a_oth_27"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_28" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="28.Мед.услуги др.регион,др.страны"></tit>
+                  <date></date>
+                  <btn btn="a_oth_28"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_29" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="29.По Ds и по терр.проживания"></tit>
+                  <date></date>
+                  <tit title="Ds"></tit>
+                  <input_s_po></input_s_po>
+                  <btn btn="a_oth_29"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_30" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="30.Травматизм по терр. проживания"></tit>
+                  <date></date>
+                  <btn btn="a_oth_30"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_31" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="31.Отчет офтальмогической службы"></tit>
+                  <date></date>
+                  <btn btn="a_oth_31"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_32" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="32.Информация токсикол. отделения"></tit>
+                  <date></date>
+                  <btn btn="a_oth_32"></btn>
+                </div> -->
+
+                <!-- <div v-if="a_oth_33" style="border: solid 1px #000;margin-top: 15px;">
+
+                  <tit title="33.Инф-я об услугах ОМС др.регион"></tit>
+                  <date></date>
+                  <btn btn="a_oth_33"></btn>
+                </div> -->
+
+
+
+
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-e"
+              v-on:click="close">Закрыть</button>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    {% endverbatim %}
+  </div>
+  <script>
+
+    if (window.location.host != "127.0.0.1:8000") {
+
+      let reportsmixSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'reports_mix/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      reportsmixSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        $("#download").empty()
+
+        if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "report_data") {
+          console.log('report_data')
+        }
+      }
+    }
+    else {
+      let reportsmixSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'reports_mix/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      reportsmixSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        $("#download").empty()
+
+        if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "report_data") {
+          console.log('report_data')
+        }
+      }
+    }
+
+
+
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+
+      let reportsSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'reports/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      reportsSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+        if (data.type == 'report_group_data' || data.type == 'report_vault_otd') {
+          report_oth.$data.group_shaping = false
+          report_oth.$data.group_create = true
+        }
+        if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("group_download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "download_vault_otd") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download_vault_otd")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "report_group_data_a_oth") {
+          report_oth.$data.group_shaping_a_oth = false
+          report_oth.$data.group_create_a_oth = true
+        }
+        else if (data.type == "download_a_oth") {
+
+          if (data.btn == 'download_a_oth_5') {
+            fetch(`download/?file=${data.text}`)
+              .then(data => {
+                let download = document.getElementById("download_a_oth_5")
+                let a = document.createElement("a")
+                a.href = data.url
+                a.download = data.filename
+                a.text = "Скачать файл"
+                download.appendChild(a)
+              })
+          }
+
+
+        }
+      }
+    }
+
+    else {
+
+      let reportsSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'reports/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      reportsSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+        if (data.type == 'report_group_data' || data.type == 'report_vault_otd') {
+          report_oth.$data.group_shaping = false
+          report_oth.$data.group_create = true
+        }
+        if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("group_download")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "download_vault_otd") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let download = document.getElementById("download_vault_otd")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "report_group_data_a_oth") {
+          report_oth.$data.group_shaping_a_oth = false
+          report_oth.$data.group_create_a_oth = true
+        }
+        else if (data.type == "download_a_oth") {
+
+          if (data.btn == 'download_a_oth_5') {
+            fetch(`download/?file=${data.text}`)
+              .then(data => {
+                let download = document.getElementById("download_a_oth_5")
+                let a = document.createElement("a")
+                a.href = data.url
+                a.download = data.filename
+                a.text = "Скачать файл"
+                download.appendChild(a)
+              })
+          }
+
+
+        }
+
+
+
+      }
+
+    }
+
+
+
+
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+
+      let annualReportsSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'annual_reports/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      annualReportsSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+        report_oth.$data.annual_shaping = false
+        report_oth.$data.annual_create = true
+
+        if (data.type == "download") {
+          var name = data.name
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              console.log(data.name, typeof (data.name))
+              let download = document.getElementsByClassName("download_rep")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download[0].appendChild(a)
+              // download[0].childNodes[0].click()
+            })
+        }
+      }
+    }
+    else {
+      let annualReportsSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'annual_reports/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      annualReportsSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+        report_oth.$data.annual_shaping = false
+        report_oth.$data.annual_create = true
+
+
+
+        if (data.type == "download") {
+          var name = data.name
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              console.log(data.name, typeof (data.name))
+              let download = document.getElementsByClassName("download_rep")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл"
+              download[0].appendChild(a)
+              // download[0].childNodes[0].click()
+            })
+        }
+      }
+    }
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+
+      let referenceSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'reference/'
+        + '{{user.id}}'
+        + '/'
+      )
+      referenceSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+      }
+    }
+    else {
+      let referenceSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'reference/'
+        + '{{user.id}}'
+        + '/'
+      )
+      referenceSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        console.log(data)
+      }
+    }
+
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+      let exportfrom1cSocket = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'exportfrom1c/'
+        + '{{user.id}}'
+        + '/'
+      )
+      exportfrom1cSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        if (data.type == "progress") {
+          let progress = document.getElementById("progress")
+          app.$data.progress_bar = data.text.toFixed(2)
+          progress.setAttribute("style", "width:" + app.$data.progress_bar + "%")
+          progress.innerText = app.$data.progress_bar + '%'
+
+        }
+        else if (data.type == "report_data") {
+          app.$data.exportfrom1_loading = false
+          app.$data.exportfrom1_completed = true
+        }
+        else if (data.type == "update_pers") {
+          console.log(data)
+          app_update.$data.v_ok = true
+          app_update.$data.v_update = false
+        }
+      }
+    }
+    else {
+      let exportfrom1cSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'exportfrom1c/'
+        + '{{user.id}}'
+        + '/'
+      )
+      exportfrom1cSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        if (data.type == "progress") {
+          let progress = document.getElementById("progress")
+          app.$data.progress_bar = data.text.toFixed(2)
+          progress.setAttribute("style", "width:" + app.$data.progress_bar + "%")
+          progress.innerText = app.$data.progress_bar + '%'
+
+        }
+        else if (data.type == "report_data") {
+          app.$data.exportfrom1_loading = false
+          app.$data.exportfrom1_completed = true
+        }
+        else if (data.type == "update_pers") {
+          console.log(data)
+          app_update.$data.v_ok = true
+          app_update.$data.v_update = false
+        }
+      }
+    }
+
+
+
+
+
+
+
+
+
+    if (window.location.host != "127.0.0.1:8000") {
+      let create_reestr_file = new WebSocket(
+        'ws://'
+        + '172.16.0.61:8001'
+        + '/hospital/'
+        + 'ws/'
+        + 'create_reestr/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      create_reestr_file.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        if (data.type == "progress") {
+          let progress = document.getElementById("progress")
+          create_reestr_d.$data.progress_bar = data.text.toFixed(2)
+          progress.setAttribute("style", "width:" + create_reestr_d.$data.progress_bar + "%")
+          progress.innerText = create_reestr_d.$data.progress_bar + '%'
+        }
+        else if (data.type == "report_data") {
+          create_reestr_d.$data.create_res = false
+          create_reestr_d.$data.end = true
+        }
+
+        else if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let sl = document.getElementById("sl_res")
+              let download = document.getElementById("download_reestr")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = sl.value
+              a.text = "Скачать файл реестр"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "download_reestr_prot") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let sl = document.getElementById("sl_res")
+              let download = document.getElementById("download_reestr_prot")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл протокол"
+              download.appendChild(a)
+            })
+        }
+      }
+    }
+    else {
+      let create_reestr_file = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/hospital/'
+        + 'ws/'
+        + 'create_reestr/'
+        + '{{user.id}}'
+        + '/'
+      )
+
+      create_reestr_file.onmessage = function (e) {
+        let data = JSON.parse(e.data)
+        if (data.type == "progress") {
+          let progress = document.getElementById("progress")
+          create_reestr_d.$data.progress_bar = data.text.toFixed(2)
+          progress.setAttribute("style", "width:" + create_reestr_d.$data.progress_bar + "%")
+          progress.innerText = create_reestr_d.$data.progress_bar + '%'
+        }
+        else if (data.type == "report_data") {
+          create_reestr_d.$data.create_res = false
+          create_reestr_d.$data.end = true
+        }
+
+        else if (data.type == "download") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let sl = document.getElementById("sl_res")
+              let download = document.getElementById("download_reestr")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = sl.value
+              a.text = "Скачать файл реестр"
+              download.appendChild(a)
+            })
+        }
+        else if (data.type == "download_reestr_prot") {
+          fetch(`download/?file=${data.text}`)
+            .then(data => {
+              let sl = document.getElementById("sl_res")
+              let download = document.getElementById("download_reestr_prot")
+              let a = document.createElement("a")
+              a.href = data.url
+              a.download = data.filename
+              a.text = "Скачать файл протокол"
+              download.appendChild(a)
+            })
+        }
+      }
+
+    }
+
+
+
+
+  </script>
+  {% endblock %}

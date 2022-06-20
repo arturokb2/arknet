@@ -1,0 +1,2315 @@
+{% extends 'base_search_history.html' %}
+{% block content %}
+
+{% verbatim %}
+
+<div id="app_hospital">
+    <div class="div_search_histor">
+        <div id="search_histor">
+            <div class="container_histor">
+                <div class="search_histor">
+                    <div class="container">
+                        <!-- <div v-if='!check_history' class="alert alert-danger text-center" role="alert">
+                            Введите номер истории
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Введите номер истории"
+                                    id="inp_search_history" v-model='search_history' v-on:keyup.enter="get_history"
+                                    autocomplete="off" >
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                                    @click="get_history">Поиск</button>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search_history_table">
+                    <div class="container">
+                        <div class="row">
+                            <template v-if="check_response_history">
+
+                                <table class="table table-sm table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">История</th>
+                                            <th scope="col">Фамилия</th>
+                                            <th scope="col">Имя</th>
+                                            <th scope="col">Отчество</th>
+                                            <th scope="col">Дата рождения</th>
+                                            <th scope="col">Дата поступления</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="all_nhistory">
+                                        <tr v-for="(h,index) in response_history">
+                                            <td>{{index+1}}</td>
+                                            <td>{{h['nib']}}</td>
+                                            <td>{{h['patient'][0]['fam']}}</td>
+                                            <td>{{h['patient'][0]['im']}}</td>
+                                            <td>{{h['patient'][0]['ot']}}</td>
+                                            <td>{{h['patient'][0]['datr']}}</td>
+                                            <td>{{h['datp']}}</td>
+                                                <td>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop" :id="h['id']"
+                                                    onclick="Get_data_cards()">
+                                                    История
+                                                </button>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Карта пациента {{history['history']}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-column">
+                                <div class="med-card-pacienta-header">
+                                    <div class="flex-content mb-2">
+                                        <div class="header-left">
+                                            <div class="fam-div mt-2 ml-3">
+                                                <div class="d-flex justify-content-between"><label
+                                                        class="mr-2">7.Фамилия</label>
+                                                    <input id="fam" type="text" v-if="history_rest['patient']" v-model="history_rest['patient'][0].fam"
+                                                        autocomplete="off" class="control_input text-center">
+                                                </div>
+                                            </div>
+                                            <div class="im-div mt-2 ml-3">
+                                                <div class="d-flex justify-content-between"><label>Имя</label>
+                                                    <input type="text" v-if="history_rest['patient']"  id="im" v-model="history_rest['patient'][0].im"
+                                                        autocomplete="off" class="control_input text-center">
+                                                </div>
+                                            </div>
+                                            <div class="ot-div mt-2 ml-3">
+                                                <div class="d-flex justify-content-between"><label>Отчество</label>
+                                                    <input type="text" v-if="history_rest['patient']" id="ot" v-model="history_rest['patient'][0].ot"
+                                                        autocomplete="off" class="control_input text-center">
+                                                </div>
+                                            </div>
+                                            <div class="pol-div mt-2 ml-3">
+                                                <div class="d-flex justify-content-between"><label>Пол</label> <input
+                                                        type="text" v-if="history_rest['patient']"  list="mcp-pol-l" autocomplete="off" id="pol"
+                                                        v-model="history_rest['patient'][0]['pol'].polname"
+                                                        class="control_input text-center" @change="update_pol" >
+                                                    <datalist id="mcp-pol-l">
+                                                        <option v-bind:n_id=w.id v-bind:value=w.polname  v-for='w in sprav_list.V005'>{{w.polname}}</option>
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="header-right">
+                                            <!-- v-model="history['datr']" -->
+                                            <div class="datp-div mt-2 mr-3">
+                                                <div class="d-flex justify-content-between "><label class="mr-2">1.Дата
+                                                        поступления</label>
+                                                    <input type="text" autocomplete="off" v-model="history_rest.datp"
+                                                        id="datp" class="control_input text-center date_m">
+                                                </div>
+                                            </div>
+                                            <div class="tm_otd-div mt-2 mr-3">
+                                                <div class="d-flex justify-content-between"><label>Время</label>
+                                                    <input type="text" autocomplete="off" v-model="history_rest.tm_otd"
+                                                        id="tm_otd" class="control_input text-center tm">
+                                                </div>
+                                            </div>
+                                            <div class="datv-div mt-2 mr-3">
+                                                <div class="d-flex justify-content-between"><label>2.Дата
+                                                        выписки</label>
+                                                    <input type="text"  autocomplete="off" v-model="history_rest.datv"
+                                                        id="datv" class="control_input text-center date_m">
+                                                </div>
+                                            </div>
+                                            <div class="datr-div mt-2 mr-3">
+                                                <div class="d-flex justify-content-between"><label>9.Дата
+                                                        рождения</label>
+                                                    <input type="text"  v-if="history_rest['patient']" autocomplete="off" v-model="history_rest['patient'][0].datr"
+                                                        id="datr" class="control_input text-center date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-content med-card-pacienta" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="inf_pers_info" role="tabpanel"
+                                        aria-labelledby="list-home-list_inf_pers_info">
+                                        <h5>1.Персональные данные</h5>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div id="otd-div" class="d-flex"><label
+                                                    style="margin-right: 11px;">5.Выписан из отделения</label>
+                                                <input autofocus="autofocus" type="text" list="otd-l" autocomplete="off"
+                                                    id="otd" v-model="history['otd']" class="text-center control_input"
+                                                    style="width: 366px;" onchange="app.onmk_disabled()">
+                                                <datalist id="otd-l">
+                                                    <option v-bind:n_id=otde.id v-bind:value=otde.naim v-for="otde in sprav_list.Otde">{{otde.naim}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div id="vec-div" class="ml-3 d-flex">
+                                                <label class="pr-2" style="margin-right: 18px;">Вес при
+                                                    рождении(гр.)</label>
+                                                <input type="text" v-model="history['vec']" autocomplete="off" id="vec"
+                                                    class="control_input text-center vec"
+                                                    style="margin-left: 28px; width: 69px; height: 30px;">
+                                            </div>
+                                        </div>
+                                        <div id="m_roj-div" class="ml-3 mb-1">
+                                            <label style="margin-right: 22px;">12.Адрес регистрации</label>
+                                            <input style="width: 660px;" type="text" class="control_input"
+                                                v-model="history['m_roj']" id="m_roj_1" autocomplete="off">
+                                        </div>
+                                        <div id="adr-div" class="ml-3 mb-1">
+                                            <label style="padding-right: 0px;margin-right: 3px;">13.Адрес
+                                                факт.прожив-я.</label>
+                                            <input style="width: 660px;" type="text" class="control_input"
+                                                v-model="history['adr']" @change="adr_in()" id="adr_in" name="address"
+                                                autocomplete="off">
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div id="rab-div"><label style="margin-right: 65px;">15.Место
+                                                    работы</label>
+                                                <input type="text" id="rab" v-model="history['rab']" autocomplete="off"
+                                                    class="control_input" style="width: 308px;">
+                                            </div>
+                                            <div id="prof-div" class="ml-3">
+                                                <label>Профессия</label>
+                                                <input type="text" class="control_input" v-model="history['prof']"
+                                                    id="prof" style="width: 260px;" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div id="r_n-div" class="ml-3 mb-1">
+                                            <label style="margin-right: 22px;">16.Социальный статус</label>
+                                            <input type="text" class="control_input text-center" list="rab_ner-l"
+                                                v-model="history['r_n']" style="width: 308px;" autocomplete="off"
+                                                id="r_n">
+                                            <datalist id="rab_ner-l">
+                                                <option  v-bind:n_id=rab_ner.id v-bind:value=rab_ner.naim  v-for="rab_ner in sprav_list.RabNer">{{rab_ner.naim}}</option>
+                                            </datalist>
+                                        </div>
+                                        <div id="in_t-div" class="ml-3 mb-1">
+                                            <label style="padding-right: 5px;">17.Категория льготности</label>
+                                            <input type="text" class="control_input text-center" list="in_t-l"
+                                                v-model="history['in_t']" style="width: 309px;" autocomplete="off"
+                                                id="in_t">
+                                            <datalist id="in_t-l">
+                                                <option  v-bind:n_id=in_t.id v-bind:value=in_t.naim  v-for="in_t in sprav_list.T004">{{in_t.name}}</option>
+                                            </datalist>
+                                        </div>
+                                        <div id="lpu-div" class="ml-3 mb-1">
+                                            <label style="padding-right: 57px;">19.Кем направлен</label>
+                                            <input type="text" class="control_input text-center" list="lpu-l"
+                                                v-model="history['lpy']" style="width: 309px;" autocomplete="off"
+                                                id="lpy">
+                                            <datalist id="lpu-l">
+                                                <option  v-bind:n_id=lpu.id v-bind:value=lpu.naim  v-for="lpu in sprav_list.F003">{{lpu.naim}}</option>
+                                            </datalist>
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div id="napr_n-div">
+                                                <label style="padding-right: 71px;">№
+                                                    Направления</label>
+                                                <input type="text" class="control_input text-center" id="npr_num"
+                                                    v-model="history['npr_num']" autocomplete="off">
+                                            </div>
+                                            <div id="napr_date-div" class="ml-3">
+                                                <label style="margin-left: 14px;">Дата направления</label>
+                                                <input type="text" class="control_input date_m text-center"
+                                                    v-model="history['npr_date']" autocomplete="off" id="npr_date">
+                                            </div>
+                                        </div>
+                                        <div id="op-div" class="ml-3 mb-1">
+                                            <label style="padding-right: 77px;">22.Подозрение <br>на опьянение</label>
+                                            <input type="text" class="control_input text-center" list="mcp-op"
+                                                v-model="history['alg']" autocomplete="off" id="alg">
+                                            <datalist id=mcp-op>
+                                                <option v-for="(alg,index) in history['alg_c']">
+                                                    {{history['alg_c'][index][1]}}</option>
+                                            </datalist>
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div id="goc-div">
+                                                <label style="padding-right: 46px;">23.Госпитализация</label>
+                                                <input type="text" class="control_input text-center" list="goc-l"
+                                                    v-model="history['goc']" autocomplete="off" id="goc">
+                                                <datalist id="goc-l">
+                                                    <option v-for="v014 in sprav_list.V014">{{v014.tipName}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div id="prpg-div" class=" ml-3">
+                                                <label style="padding-right: 52px;margin-left: 14px;">Обращения</label>
+                                                <input type="text" class="control_input text-center" list="prpg-l"
+                                                    v-model="history['prpg']" autocomplete="off" id="prpg">
+                                                <datalist id="prpg-l">
+                                                    <option v-for="prpg in sprav_list.Prpg">{{prpg.naim}}</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                        <div id="vrez-div" class="ml-3 mb-1">
+                                            <label style="padding-right: 16px;">Давность заболевания</label>
+                                            <input type="text" class="control_input text-center" list="list_vrez"
+                                                v-model="history['vrez']" autocomplete="off" id="vrez">
+                                            <datalist id="list_vrez">
+                                                <option v-for="vrez in sprav_list.Vrzb">{{vrez.naim}}</option>
+                                            </datalist>
+                                        </div>
+                                        <div id="postupleniya-div" class="ml-3 mb-1">
+                                            <label style="padding-right: 2px;">25.Признак поступления</label>
+                                            <input type="text" class="control_input text-center" list="postupleniya"
+                                                v-model="history['p_per']" autocomplete="off" id="p_per">
+                                            <datalist id="postupleniya">
+                                                <option v-for="per in sprav_list.PER">{{per.naim}}</option>
+                                            </datalist>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_diagnoses" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_diagnoses">
+
+                                        <h5>2. Сведения о диагнозах</h5>
+                                        <div class="d-flex ml-3 mb-1"><label>26. Ds направив.учреждения.</label>
+                                            <div id="dsny-div">
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="Object(history.dsny).kod" id="dsny_kod"
+                                                    @input="rec_list_ds(Object(history.dsny).kod,$event)"
+                                                    @keyup.enter="Object(history.dsny).naim = rec_ds_naim(Object(history.dsny).kod,$event)"
+                                                    @change="Object(history.dsny).naim = rec_ds_naim(Object(history.dsny).kod,$event)"
+                                                    list="dsny_l" autocomplete="off" style="width: 105px;">
+                                                <datalist id="dsny_l">
+                                                    <option v-for="kod in list_ds">{{kod}}</option>
+                                                </datalist>
+                                            </div>
+
+                                            <div id="dsny_naim-div">
+                                                {{Object(history.dsny).naim}}
+                                            </div>
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div>
+                                                <label style="padding-right: 38px;">27. Ds при поступлении.</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="Object(history.ds_0).kod" id="ds_0_kod"
+                                                    @input="rec_list_ds(Object(history.ds_0).kod,$event)"
+                                                    @keyup.enter="Object(history.ds_0).naim = rec_ds_naim(Object(history.ds_0).kod,$event)"
+                                                    @change="Object(history.ds_0).naim = rec_ds_naim(Object(history.ds_0).kod,$event)"
+                                                    list="ds_0-l" style="width: 105px;" autocomplete="off">
+                                                <datalist id="ds_0-l">
+                                                    <option v-for="kod in list_ds">{{kod}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div style="margin-left: 6px;">
+                                                {{Object(history.ds_0).naim}}
+                                            </div>
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div id="dsk_kod-div">
+                                                <label style="padding-right: 66px">29. Ds Клинический.</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="Object(history.dsk).kod" id="dsk_kod"
+                                                    @input="rec_list_ds(Object(history.dsk).kod,$event)"
+                                                    @keyup.enter="Object(history.dsk).naim = rec_ds_naim(Object(history.dsk).kod,$event)"
+                                                    @change="Object(history.dsk).naim = rec_ds_naim(Object(history.dsk).kod,$event)"
+                                                    list="dsk_kod-l" style="width: 105px;" autocomplete="off">
+                                                <datalist id="dsk_kod-l">
+                                                    <option v-for="kod in list_ds">{{kod}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div id="dsk_naim-div">{{Object(history.dsk).naim}}</div>
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div id="dskz_kod-div">
+                                                <label style="padding-right: 69px">30. Ds Клин.заключ.</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="Object(history.dskz).kod" id="dskz_kod"
+                                                    @input="rec_list_ds(Object(history.dskz).kod,$event)"
+                                                    @keyup.enter="Object(history.dskz).naim = rec_ds_naim(Object(history.dskz).kod,$event)"
+                                                    @change="Object(history.dskz).naim = rec_ds_naim(Object(history.dskz).kod,$event)"
+                                                    onchange="app.onmk_disabled()" list="dskz-l" style="width: 105px;"
+                                                    autocomplete="off">
+                                                <datalist id="dskz-l">
+                                                    <option v-for="kod in list_ds">{{kod}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div id="dskz_naim-div">{{Object(history.dskz).naim}}</div>
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div id="ds_osl_kod-div">
+                                                <label style="padding-right: 101px">Ds осложнения.</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="Object(history.ds_osl).kod" id="ds_osl_kod"
+                                                    @input="rec_list_ds(Object(history.ds_osl).kod,$event)"
+                                                    @keyup.enter="Object(history.ds_osl).naim = rec_ds_naim(Object(history.ds_osl).kod,$event)"
+                                                    @change="Object(history.ds_osl).naim = rec_ds_naim(Object(history.ds_osl).kod,$event)"
+                                                    list="osl_kod-l" style="width: 105px;" autocomplete="off">
+                                                <datalist id="osl_kod-l">
+                                                    <option v-for="kod in list_ds">{{kod}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div id="ds_osl_naim-div">{{Object(history.ds_osl).naim}}</div>
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div id="dsc_kod-div">
+                                                <label style="padding-right: 72px">Ds сопутствующий.</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="Object(history.dsc).kod" id="dsc_kod"
+                                                    @input="rec_list_ds(Object(history.dsc).kod,$event)"
+                                                    @keyup.enter="Object(history.dsc).naim = rec_ds_naim(Object(history.dsc).kod,$event)"
+                                                    @change="Object(history.dsc).naim = rec_ds_naim(Object(history.dsc).kod,$event)"
+                                                    list="dsc_kod-l" style="width: 105px;" autocomplete="off">
+                                                <datalist id="dsc_kod-l">
+                                                    <option v-for="kod in list_ds">{{kod}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div id="dsc_naim-div">
+                                                {{Object(history.dsc).naim}}
+                                            </div>
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <div id="dson_kod-div">
+                                                <label style="padding-right: 116px">Ds онкологий.</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="Object(history.dson).kod" id="dson_kod"
+                                                    @input="rec_list_ds(Object(history.dson).kod,$event)"
+                                                    @keyup.enter="Object(history.dson).naim = rec_ds_naim(Object(history.dson).kod,$event)"
+                                                    @change="Object(history.dson).naim = rec_ds_naim(Object(history.dson).kod,$event)"
+                                                    list="dson_kod-l" style="width: 105px;" autocomplete="off">
+                                                <datalist id="dson_kod-l" style="margin-left: 102px;">
+                                                    <option v-for="kod in list_ds">{{kod}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div id="dson_naim-div">
+                                                {{Object(history.dson).naim}}
+                                            </div>
+                                        </div>
+                                        <div class="d-flex ml-3 mb-1">
+                                            <label>32. отметка о дате и времени
+                                                поступления из приемного отд.</label>
+                                            <input type="text" class="control_input date_m"
+                                                style="height: 28px;width: 134px;margin-right: 13px;margin-left: 5px;"
+                                                v-model="history.dat_otd" autocomplete="off" id="dat_otd">
+                                            <input type="text" class="control_input tm"
+                                                style="height: 28px;width: 134px;" v-model="history.tm_otd_d"
+                                                autocomplete="off" id="tm_otd_d">
+                                        </div>
+                                        <div id="icx-div" class="ml-3 mb-1">
+                                            <label style="margin-right: 29px;">44. Исход лечения.</label>
+                                            <input type="text" class="control_input text-center" list="ish_l"
+                                                v-model="history.icx" style="width: 400px;" autocomplete="off" id="icx">
+                                            <datalist id="ish_l">
+                                                <option v-for='v012 in sprav_list.V012'>{{v012.izName+' '+v012.idIz}}
+                                                </option>
+                                            </datalist>
+                                        </div>
+                                        <div id="rez-div" class="ml-3 mb-1">
+                                            <label>45. Результат лечения.</label>
+                                            <input type="text" class="control_input text-center" list="rez_l"
+                                                style="width: 400px;" v-model="history.rslt" autocomplete="off"
+                                                id="rslt" onchange="app.onmk_disabled()">
+                                            <datalist id="rez_l">
+                                                <option v-for='V009 in sprav_list.V009'>{{V009.tipName+' '+V009.idTip}}
+                                                </option>
+                                            </datalist>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_koyko" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_koyko">
+                                        <!-- {{app.$data.history.le_vr}} -->
+                                        <!-- {{app.$data.history.oper}} -->
+                                        <table id="koyko_table" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Всего</th>
+                                                    <th>В АРО</th>
+                                                    <th>В профильном отделении</th>
+                                                    <th>По профилю койки</th>
+                                                    <th>Таб.№ врача</th>
+                                                    <th scope="col">Фамилия И.О лечащ.врача</th>
+                                                    <th scope="col">Специальность</th>
+                                                    <th scope="col"><button type="button" disabled="disabled"
+                                                            onclick="Koyko_add()" id="add_tr_koyko"
+                                                            class="btn btn-outline-success">Добавить
+                                                            запись</button></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                        <div id="an_rem" style="display:none" v-if="history.le_vr">
+
+                                            <h5>43.Отдельные показатели <br>нахожденияпациента в отд-ях<br>
+                                                анестез.иреанимации</h5>
+                                            <div class="d-flex justify-content-start">
+
+                                                <p style="margin-right: 23px;">1.Длительность замещения <br>жизненно
+                                                    важных функции (час.)</p>
+
+                                                <input type="number" class="control_input text-center"
+                                                    style="height: 30px;width: 100px;" v-model="history.le_vr.aro_n"
+                                                    id="aro_n">
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+
+                                                <p style="margin-right: 99px;">2.Летальный исход при <br>замещении
+                                                    жизненно <br>важных функциий.</p>
+
+                                                <input type="text" list="rem_2" class="control_input text-center"
+                                                    style="height: 30px;width: 100px;" v-model="history.le_vr.aro_let"
+                                                    id="aro_let"> <datalist id="rem_2">
+                                                    <option>1.Да</option>
+                                                    <option>2.Нет</option>
+                                                </datalist>
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+
+                                                <p style="margin-right: 122px;">3.SOFA больше 5 и <br>непрерыв.провед-е
+                                                    <br>ИВЛ 72 час.и более.
+                                                </p>
+
+                                                <input type="text" list="rem_3" class="control_input text-center"
+                                                    style="height: 30px;width: 100px;" v-model="history.le_vr.aro_sofa"
+                                                    id="aro_sofa">
+                                                <datalist id="rem_3">
+                                                    <option>1.Да</option>
+                                                    <option>2.Нет</option>
+                                                </datalist>
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+
+                                                <p style="margin-right: 59px;">4.Непрерывлое проведение <br>
+                                                    ИВЛ втечении<br>
+                                                    480 час.и более.</p>
+
+                                                <input type="text" list="rem_4" class="control_input text-center"
+                                                    style="height: 30px;width: 100px;" v-model="history.le_vr.aro_ivl"
+                                                    id="aro_ivl">
+                                                <datalist id="rem_4">
+                                                    <option>1.Да</option>
+                                                    <option>2.Нет</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_operation" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_operation">
+                                        <!-- {{app.$data.history.oper}} -->
+                                       
+                                        <h5>36. Хирургическое лечение.</h5>
+                                        <table id="operation_table" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Дата операции</th>
+                                                    <th scope="col">Время операции</th>
+                                                    <th scope="col" style="padding-right: 34px;">1-ПО<br>2-Стац</th>
+                                                    <th scope="col">Код операции</th>
+                                                    <th scope="col">Наименование</th>
+                                                    <th scope="col" style="padding-right: 43px;">2-ПЛ.<br>1-ЭК.</th>
+                                                    <th scope="col">Код хирурга</th>
+                                                    <th scope="col">ФИО</th>
+                                                    <th scope="col" style="padding-right: 47px;">Основ.опер</th>
+                                                    <th scope="col">Особ-ти операции</th>
+                                                    <th scope="col">К-во.биом</th>
+                                                    <th scope="col">1-Ассистент</th>
+                                                    <th scope="col">2-Ассистент</th>
+                                                    <th scope="col">Метод<br>.обез-я<br>№1</th>
+                                                    <th scope="col">Метод<br>.обез-я<br>№2</th>
+                                                    <th scope="col">Анестезиолог</th>
+                                                    <th scope="col"><button type="button" id="add_tr_operation"
+                                                            onclick="Oper_add()"
+                                                            class="btn btn-outline-success">Добавить
+                                                            запись</button></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_ks_zabolev" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_ks_zabolev">
+                                        <div
+                                            v-if="history.vds != 'ВТМП баз.программа ОМС' &&  history.vds != 'ВТМП сверхбаз.программа' ">
+                                            <h5>КСГ заболевания</h5>
+                                            <div class="row">
+                                                <div class="col-md-6 ">
+
+                                                    <div id="dskz_kod_ks-div">
+                                                        <label>Ds Клин.заключ.</label>
+                                                        <input type="text" class="control_input text-center"
+                                                            v-model='Object(history.dskz).kod' disabled>
+                                                    </div>
+                                                    <div id="dskz_kod_ks-div">
+                                                        <label style="margin-right: 55px;">Ds сопут.</label>
+                                                        <input type="text" class="control_input text-center"
+                                                            v-model='Object(history.dsc).kod' disabled>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div id="dskz_kod_ks-div">
+                                                        <label>Операция осн.</label>
+                                                        <input id="oper_osn" type="text"
+                                                            class="control_input text-center" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex ml-3">
+                                                <div id="ksg_osn-div">
+                                                    <label>1.N КСГ осн.заболевания - </label>
+                                                    <input type="text" class="control_input text-center"
+                                                        v-model="history.ksg_osn" style="width: 182px;" list="t006_l"
+                                                        autocomplete="off" id="ksg_osn"
+                                                        onchange="app.ksg_osn_onchange()" oninput="app.replace_code_usl()">
+
+                                                    <datalist id="t006_l">
+                                                        <option v-for='t06 in sprav_list.T006'>{{t06.codeUslKz}}
+                                                        </option>
+                                                    </datalist>
+                                                    <!-- <label class="text-center ksg_osn-invalid" style="color: red;display:none">Неверный N КСГ осн.</label>  -->
+
+                                                </div>
+                                                <div id="dskz_kod_os-div">
+                                                    <label style="margin-left: 25px;">Ds осн.заболевания для СМО -
+                                                    </label>
+                                                    <input type="text" class="control_input text-center"
+                                                        v-model='Object(history.dskz).kod' style="width: 182px;"
+                                                        disabled>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex ml-3">
+                                                <label style="margin-right: 25px;">3.Дополнительный классификатор
+                                                    критерии
+                                                </label>
+                                                <input type="text" id="oopkk" v-model="history.oopkk"
+                                                    class="control_input text-center" style="height: 30px;width: 182px;"
+                                                    autocomplete="off">
+
+                                            </div>
+                                            <div style="margin-top: 5px;" class="d-flex ml-3">
+                                                <div id="ksg_sop-div">
+                                                    <label>4.N КСГ сопут.заболевания - </label>
+                                                    <input type="text" class="control_input text-center"
+                                                        v-model="history.ksg_sop" style="width: 182px; " list="t006"
+                                                        autocomplete="off" id="ksg_sop" oninput="app.replace_ksg_sop()">
+                                                    <datalist id="t006">
+                                                        <option v-for='t in sprav_list.T006'>{{t.codeUslKz}}</option>
+                                                    </datalist>
+                                                    <!-- <label class="text-center ksg_sop-invalid" style="color: red;display:none">Неверный N КСГ сопут.</label>  -->
+
+                                                </div>
+                                                <div id="iddoc-div">
+                                                    <label>5.Таб.N врача для ОМС - </label>
+                                                    <input type="text" class="control_input text-center"
+                                                        v-model="history.iddoc" style="width: 182px;" list="vra-l"
+                                                        autocomplete="off" id="iddoc">
+                                                    <datalist id="vra-l">
+                                                        <option v-for='v in sprav_list.Vra'>{{v.kod}}</option>
+                                                    </datalist>
+                                                    <!-- <label class="text-center iddoc-invalid" style="color: red;display:none">Неверный Таб.N врача</label>  -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-else>
+                                            <p>Источник финансирования высокотехнологичной медицинской помощи:</p>
+                                            <input class="control_input text-center"
+                                                style="width: 750px; margin-bottom: 10px;" type="text"
+                                                list="inf_finans">
+                                            <datalist id="inf_finans">
+                                                <option>за счет средств ОМС(ВМП,включенная в базовую програму ОМС)
+                                                </option>
+                                                <option>за счет средств бюджета (ВМП, не включенная в базовую программу
+                                                    ОМС)</option>
+                                            </datalist>
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Код вида ВМП
+                                                        <input class="control_input text-center" type="text"
+                                                            id="metod_hmp" v-model="history.metod_hmp" list="vid_vme_l"
+                                                            onchange="app.code_usl()">
+                                                        <datalist id="vid_vme_l"></datalist>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        Код метода
+                                                        <input class="control_input text-center" type="text"
+                                                            id="vid_hmp" v-model="history.vid_hmp" list="vid_hmp_l"
+                                                            onchange="app.code_usl()">
+                                                        <datalist id="vid_hmp_l"></datalist>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            v-if="history.vds != 'ВТМП баз.программа ОМС' &&  history.vds != 'ВТМП сверхбаз.программа' ">
+                                            <p>{{history.code_usl}} - {{history.code_usl_name}}</p>
+                                            <p>{{history.ksg_osn_all}}</p>
+                                        </div>
+                                        <div v-else>
+                                            <p>{{history.code_usl_vt}} - {{history.code_usl_vt_name}}</p>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="tab-pane fade " id="inf_complication" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_complication">
+                                        <h5>осложнения</h5>
+                                        <table class="table table-bordered" id="complication_table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" style="padding-left: 75px;padding-right: 75px;">
+                                                        Код операции</th>
+                                                    <th scope="col">Таб.N</th>
+                                                    <th scope="col">ФИО</th>
+                                                    <th scope="col">Дата осложнения</th>
+                                                    <th scope="col">Код осложнения</th>
+                                                    <th scope="col">Осложнение</th>
+                                                    <th scope="col" style="padding-left: 85px;padding-right: 85px;">
+                                                        Характер осл.</th>
+                                                    <th scope="col" style="padding-left: 55px;padding-right: 55px;">
+                                                        Причина</th>
+                                                    <th scope="col" style="padding-left: 60px;padding-right: 60px;">
+                                                        Экспертиза</th>
+                                                    <th scope="col">
+                                                        <button type="button" class="btn btn-outline-success"
+                                                            id="add_tr_complication"
+                                                            onclick="Complication_add()">Добавить
+                                                            запись</button>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_work_capacity" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_work_capacity">
+                                        <h5>Трудоспособность</h5>
+                                        <div class="center" style="margin-left: 25%;margin-right: 25%;" id="Trs">
+                                            <h5 class="text-center">Трудоспособность</h5>
+                                            <div class="form-group form-check">
+                                                <input class="form-check-input" type="radio" name="capacity"
+                                                    id="exampleCheck1">
+                                                <label class="form-check-label"
+                                                    for="exampleCheck1">Восстановлена</label>
+                                            </div>
+                                            <div class="form-group form-check">
+                                                <input class="form-check-input" type="radio" name="capacity"
+                                                    id="exampleCheck3">
+                                                <label class="form-check-label" for="exampleCheck3">Временно
+                                                    утрачена</label>
+                                            </div>
+                                            <div class="form-group form-check">
+                                                <input class="form-check-input" type="radio" name="capacity"
+                                                    id="exampleCheck4">
+                                                <label class="form-check-label" for="exampleCheck4">Стойко утрачена в
+                                                    связи с данным заболев</label>
+                                            </div>
+                                            <div class="form-group form-check">
+                                                <input class="form-check-input" type="radio" name="capacity"
+                                                    id="exampleCheck5">
+                                                <label class="form-check-label" for="exampleCheck5">Стойко утрачена по
+                                                    другим причинам</label>
+                                            </div>
+                                            <div class="form-group form-check">
+                                                <input class="form-check-input" type="radio" name="capacity"
+                                                    id="exampleCheck6">
+                                                <label class="form-check-label" for="exampleCheck6">Направлен на
+                                                    МСЭ</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_manipulation" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_manipulation">
+                                        <h5>Манипуляции</h5>
+                                        <!-- {{history.manipulation}} -->
+                                        <table class="table table-bordered" id="manipulation_table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Дата выполнения</th>
+                                                    <th scope="col">Таб.N врача</th>
+                                                    <th scope="col">Фамилия врача</th>
+                                                    <th scope="col">Код Манипуляции</th>
+                                                    <th scope="col">Наименование</th>
+                                                    <th scope="col">К-во</th>
+                                                    <th scope="col">Плат.Услуга</th>
+                                                    <th scope="col">
+                                                        <button type="button" class="btn btn-outline-success"
+                                                            id="add_tr_manipulation"
+                                                            onclick="manipulation_add()">Добавить
+                                                            запись</button>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_translations" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_translations">
+                                        <h5>Переводы</h5>
+                                        <div class="d-flex  ml-3">
+                                            <div>
+                                                <h6>Переводы из Др.Отделения</h6>
+                                                <div class="ml-3">
+                                                    <label>Перевод из Отд.</label>
+                                                    <input type="text" class="text-center control_input"
+                                                        list="otd_old-l" v-model="history.potd" style="width: 258px;"
+                                                        autocomplete="off" id="potd">
+                                                    <datalist id="otd_old-l">
+                                                        <option v-for="otde in sprav_list.Otde">{{otde.naim}}</option>
+                                                    </datalist>
+                                                    <!-- <label class="text-center v_potd-invalid" style="color: red;display:none">Неверное отделения</label>  -->
+
+                                                </div>
+                                                <div class="ml-3">
+                                                    <label style="padding-right: 11px;">Дата перевода</label>
+                                                    <input type="text" class="control_input date_m text-center"
+                                                        v-model="history.dat_pe" style="width: 129px;"
+                                                        autocomplete="off" id="dat_pe">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h6>Перевод в Др.ЛПУ</h6>
+                                                <div class="ml-3">
+                                                    <label>Перевод в Др.ЛПУ</label>
+                                                    <input type="text" class="control_input text-center" list="lpu-l_p"
+                                                        v-model="history.kod_y" style="width: 320px;" autocomplete="off"
+                                                        id="kod_y">
+                                                    <datalist id="lpu-l_p">
+                                                        <option v-for="lpu in sprav_list.F003">{{lpu.naim}}</option>
+                                                    </datalist>
+                                                    <!-- <label class="text-center v_kod_y-invalid" style="color: red;display:none">Неверное ЛПУ</label>  -->
+
+                                                </div>
+                                                <div class="ml-3">
+                                                    <label>Причина перевода</label>
+                                                    <input type="text" class="control_input text-center"
+                                                        v-model="history.pr_per" list="pr_per-l" style="width: 320px;"
+                                                        autocomplete="off" id="pr_per">
+                                                    <datalist id="pr_per-l">
+
+                                                        <option v-for="pr_per in sprav_list.PRPer">{{pr_per.naim}}
+                                                        </option>
+                                                    </datalist>
+                                                    <!-- <label class="text-center v_pr_per-invalid" style="color: red;display:none">Неверная причина перевода</label>  -->
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_post_mortem" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_post_mortem">
+
+                                        <h5>Патанатомический Ds</h5>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 159px">Дата смерти</label>
+                                            <input type="text" class="control_input text-center date_m"
+                                                v-model="history.wskr_date" autocomplete="off" id="wskr_date"
+                                                style="width: 196px;">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 69px">Время смерти (час.мин)</label>
+                                            <input type="text" class="control_input text-center tm"
+                                                v-model="history.tm_let" autocomplete="off" id="tm_let"
+                                                style="width: 196px;">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="margin-right: 4px;">Код причины летального исхода</label>
+                                            <input type="text" class="control_input text-center" list="pril-l"
+                                                v-model="history.pri" style="width: 196px" autocomplete="off" id="pri">
+                                            <datalist id="pril-l">
+                                                <option v-for="prli in sprav_list.Prli">{{prli.kod}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_pri-invalid" style="color: red;display:none">Неверный код причины летального исхода</label>  -->
+                                        </div>
+                                        <div class="ml-3">
+
+                                            <label style="padding-right: 13px;">Ds причины летального исхода</label>
+                                            <input type="text" class="control_input text-center"
+                                                v-model="Object(history.ds_let).kod" id="ds_let_kod"
+                                                @input="rec_list_ds(Object(history.ds_let).kod,$event)"
+                                                @keyup.enter="Object(history.ds_let).naim = rec_ds_naim(Object(history.ds_let).kod,$event)"
+                                                @change="Object(history.ds_let).naim = rec_ds_naim(Object(history.ds_let).kod,$event)"
+                                                list="ds_let_l" autocomplete="off" style="width: 196px;">
+                                            <datalist id="ds_let_l">
+                                                <option v-for="kod in list_ds">{{kod}}</option>
+                                            </datalist>
+
+
+
+
+                                            <label>{{Object(history.ds_let).naim}}</label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 182px;">Вскрытие</label>
+                                            <input type="text" class="control_input text-center" v-model="history.wskr"
+                                                list="wskr-l" autocomplete="off" id="wskr" style="width: 196px;">
+                                            <datalist id="wskr-l">
+                                                <option v-for="wskr_l in history.wskr_l">{{wskr_l[1]}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_wskr-invalid" style="color: red;display:none">Неверный тип скрытия</label>  -->
+                                        </div>
+                                        <div class="ml-3">
+
+                                            <label style="padding-right: 45px;">Ds паталогоанатомический</label>
+                                            <input type="text" class="control_input text-center"
+                                                v-model="Object(history.dspat).kod" id="dspat_kod"
+                                                @input="rec_list_ds(Object(history.dspat).kod,$event)"
+                                                @keyup.enter="Object(history.dspat).naim = rec_ds_naim(Object(history.dspat).kod,$event)"
+                                                @change="Object(history.dspat).naim = rec_ds_naim(Object(history.dspat).kod,$event)"
+                                                list="dspat-l" autocomplete="off" style="width: 196px;">
+                                            <datalist id="dspat-l">
+                                                <option v-for="kod in list_ds">{{kod}}</option>
+                                            </datalist>
+
+                                            <label>{{Object(history.dspat).naim}}</label>
+
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 26px;">Расхождение Ds установлено</label>
+                                            <input type="text" class="control_input text-center" list="rasxp-l"
+                                                v-model="history.rasxp" autocomplete="off" id="rasxp"
+                                                style="width: 196px;">
+                                            <datalist id="rasxp-l">
+                                                <option>Да</option>
+                                                <option>Нет</option>
+                                            </datalist>
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 206px;">Умер в</label>
+                                            <input type="text" class="control_input text-center" v-model="history.otd_y"
+                                                list="otd_y-l_" style="width: 300px;" autocomplete="off" id="otd_y">
+                                            <datalist id="otd_y-l_">
+                                                <option v-for="otde in sprav_list.Otde">{{otde.naim}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_otd_y-invalid" style="color: red;display:none">Неверное отделение</label>  -->
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_injury" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_injury">
+
+                                        <h5>33 Сведения о травме</h5>
+
+                                        <div class="ml-3">
+                                            <label style="padding-right: 57px;margin-right: 37px;">Характер
+                                                травмы</label>
+                                            <input type="text" class="control_input text-center dskz_kod"
+                                                v-model="Object(history.dskz).kod" id="dskz_kod"
+                                                @input="rec_list_ds(Object(history.dskz).kod,$event)"
+                                                @keyup.enter="Object(history.dskz).naim = rec_ds_naim(Object(history.dskz).kod,$event)"
+                                                @change="Object(history.dskz).naim = rec_ds_naim(Object(history.dskz).kod,$event)"
+                                                list="dskz-l" style="width: 100px;" autocomplete="off">
+                                            <datalist id="dskz-l">
+                                                <option v-for="kod in list_ds">{{kod}}</option>
+                                            </datalist>
+                                            <label>{{Object(history.dskz).naim}}</label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="margin-right: 24px;">Внешние причины травмы</label>
+
+                                            <input type="text" class="control_input text-center"
+                                                v-model="Object(history.details).kod" id="details_kod"
+                                                @input="rec_list_ds(Object(history.details).kod,$event)"
+                                                @keyup.enter="Object(history.details).naim = rec_ds_naim(Object(history.details).kod,$event)"
+                                                @change="Object(history.details).naim = rec_ds_naim(Object(history.details).kod,$event)"
+                                                list="details-l" style="width: 100px;" autocomplete="off">
+                                            <datalist id="details-l">
+                                                <option v-for="kod in list_ds">{{kod}}</option>
+                                            </datalist>
+                                            <label>{{Object(history.details).naim}}</label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="width: 172px;margin-right: 60px;">Тип травмы</label>
+                                            <input type="text" class="control_input text-center" v-model='history.t_trv'
+                                                list="trv-l" style="width: 370px;" autocomplete="off" id="t_trv">
+                                            <datalist id="trv-l">
+                                                <option v-for="kod in sprav_list.Trv">{{kod.naim}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_t_trv-invalid" style="color: red;display:none">Неверный тип травмы</label>  -->
+
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="margin-right: 3px;">34.Травма получена в
+                                                рез-те<br>противоправных действий<br>третьих
+                                                лиц</label>
+                                            <input type="text" style="width: 457px;" class="control_input text-center"
+                                                list="trav_ns-l" v-model="history.trav_ns" autocomplete="off"
+                                                id="trav_ns">
+                                            <datalist id="trav_ns-l">
+                                                <option v-for="trvnas in sprav_list.Trvnas">{{trvnas.naim}}</option>
+                                            </datalist>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_policy_passport_snills" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_policy_passport_snills">
+                                        <h5>Полис/Документ/Снилс</h5>
+                                        <div class="ml-3">
+                                            <label>Источник оплаты</label>
+                                            <input type="text" class="control_input text-center" v-model="history.vds"
+                                                list="vds-l" style="width: 256px;" autocomplete="off" id="vds">
+                                            <datalist id="vds-l">
+                                                <option v-for="isfin in sprav_list.Isfin">{{isfin.naim}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_vds-invalid" style="color: red;display:none">Неверный источник оплаты</label>  -->
+
+                                        </div>
+                                        <div class="d-flex ml-3">
+                                            <div>
+                                                <label class="pr-2" style="padding-right: 18px;">Сер.полиса</label>
+                                                <input type="text" class="text-center control_input"
+                                                    v-model="history.sctp" id="sctp" style="margin-left: 28px;"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="ml-3">
+                                                <label class="pr-2">N полиса</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.nctp" autocomplete="off" id="nctp">
+                                            </div>
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 98px;">СМО</label>
+                                            <input type="text" class="control_input text-center" v-model="history.ctkom"
+                                                list="ctkom-l" style="width: 561px;" autocomplete="off" id="ctkom">
+                                            <datalist id="ctkom-l">
+                                                <option v-for="skom in sprav_list.Skom">{{skom.naim}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_ctkom-invalid" style="color: red;display:none">Неверный СМО</label>  -->
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 48px;">Тип полиса</label>
+                                            <input type="text" class="control_input text-center" v-model="history.t_pol"
+                                                list="t_pol-l" style="width: 561px;" autocomplete="off" id="t_pol">
+                                            <datalist id="t_pol-l">
+                                                <option v-for="f008 in sprav_list.F008">{{f008.tipName}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_t_pol-invalid" style="color: red;display:none">Неверный тип полиса</label>  -->
+                                        </div>
+                                        <h6>Документ,Удостоверяющий Личность</h6>
+                                        <div class="ml-3">
+                                            <label style="padding-right:21px;">Тип документа</label>
+                                            <input type="text" style="width: 561px;" class="control_input text-center"
+                                                v-model="history.udl" list="udl-l" autocomplete="off" id="udl">
+                                            <datalist id="udl-l">
+                                                <option v-for="f011 in sprav_list.F011">{{f011.docname}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_udl-invalid" style="color: red;display:none">Неверный тип документа</label>  -->
+                                        </div>
+                                        <div class="d-flex ml-3">
+                                            <div>
+                                                <label class="pr-2" style="padding-right: 23px;">Сер.ДУЛ</label>
+                                                <input type="text" class="text-center control_input"
+                                                    v-model="history.s_pasp" style="margin-left: 46px;width: 140px;"
+                                                    autocomplete="off" id="s_pasp">
+
+                                            </div>
+                                            <div class="ml-3">
+                                                <label class="pr-2">N ДУЛ</label>
+                                                <input style="width: 140px;" type="text"
+                                                    class="control_input text-center" v-model="history.n_pasp"
+                                                    autocomplete="off" id="n_pasp">
+                                            </div>
+                                            <div class="ml-3">
+                                                <label class="pr-2">Дата выдачи</label>
+                                                <input style="width: 100px;" type="text"
+                                                    class="control_input text-center date" v-model="history.docdate"
+                                                    autocomplete="off" id="docdate">
+                                            </div>
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 53px;">Кем выдан</label>
+                                            <input type="text" class="control_input text-center"
+                                                v-model="history.docorg" style="width: 561px;" autocomplete="off"
+                                                id="docorg">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 4px">Место рождения</label>
+                                            <input name="address" type="text" class="control_input text-center m_roj"
+                                                v-model="history.m_roj" style="width: 561px;" autocomplete="off"
+                                                id="m_roj">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 89px;">Снилс</label>
+                                            <input type="text" class="control_input text-center ss" v-model="history.ss"
+                                                autocomplete="off" id="ss">
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_pregnancy" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_pregnancy">
+                                        <h5>Сведения о беременности</h5>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 252px;">Дата</label>
+                                            <input type="text" class="control_input text-center date_m"
+                                                v-model="history.vb_a_datv" autocomplete="off" id="vb_a_datv">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 59px;">Срок беременности (недель)</label>
+                                            <input type="number" class="control_input text-center"
+                                                v-model="history.srber" autocomplete="off" id="srber">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 11px;">Настоящая беременность по счету</label>
+                                            <input type="number" class="control_input text-center"
+                                                v-model="history.n_ber" autocomplete="off" id="n_ber">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 0px">Причины прерывания беременности</label>
+                                            <input type="text" class="control_input text-center" v-model="history.pria"
+                                                list="pria-l" autocomplete="off" id="pria">
+                                            <datalist id="pria-l">
+                                                <option v-for="tip_pb in sprav_list.TipPb">{{tip_pb.naim}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_pria-invalid" style="color: red;display:none">Неверная причина прерывания беременности</label>  -->
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 21px;">Метод прерывания беременности</label>
+                                            <input type="text" class="control_input text-center"
+                                                v-model="history.m_prer" list="m_prer-l" autocomplete="off" id="m_prer">
+                                            <datalist id="m_prer-l">
+                                                <option v-for="m_prer in sprav_list.MetPb">{{m_prer.naim}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_m_prer-invalid" style="color: red;display:none">Неверный метод прерывания беременности</label>  -->
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane fade " id="inf_disability" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_disability">
+
+                                        <h5 class="text-center">Лист нетрудоспособности</h5>
+                                        <div class="d-flex ml-3">
+                                            <div>
+                                                <label class="pr-2">Открыт с</label>
+                                                <input type="text" class="text-center control_input date_m"
+                                                    v-model="history.dat_l1" style="margin-left: 19px;"
+                                                    autocomplete="off" id="dat_l1">
+                                            </div>
+                                            <div class="ml-3">
+                                                <label class="pr-2">по</label>
+                                                <input type="text" class="control_input text-center date_m"
+                                                    v-model="history.dat_l2" autocomplete="off" id="dat_l2">
+                                            </div>
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 34px;">Закрыт</label>
+                                            <input type="text" class="control_input text-center" v-model="history.ot_ln"
+                                                autocomplete="off" list="v_ot_ln_l" id="ot_ln">
+                                            <datalist id="v_ot_ln_l">
+                                                <option>Да</option>
+                                                <option>Нет</option>
+                                            </datalist>
+                                        </div>
+                                        <h5 class="text-center">По уходу за больным</h5>
+                                        <div class="d-flex ml-3">
+                                            <div>
+                                                <label class="pr-2">Полных лет</label>
+                                                <input type="number" class="text-center control_input"
+                                                    v-model="history.vs_bol" autocomplete="off" id="vs_bol">
+                                            </div>
+                                            <div class="ml-3">
+                                                <label class="pr-2">пол</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.dis_sex_bol" autocomplete="off"
+                                                    list="v_dis_sex_bol_l" id="dis_sex_bol">
+                                                <datalist id="v_dis_sex_bol_l">
+                                                    <option v-for='w in sprav_list.V005'>{{w.polname}}</option>
+                                                </datalist>
+                                                <!-- <label class="text-center v_dis_sex_bol-invalid" style="color: red;display:none">Неверный пол</label>  -->
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_patient_p" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_patient_p">
+
+                                        <h5>Представитель пациента</h5>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 59px;">Фамилия</label>
+                                            <input type="text" class="control_input text-center" id="fam_p"
+                                                v-model="history.fam_p" autocomplete="off" style="width: 400px;">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 97px;">Имя</label>
+                                            <input type="text" class="control_input text-center" v-model="history.im_p"
+                                                autocomplete="off" style="width: 400px;" id="im_p">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 57px;">Отчество</label>
+                                            <input type="text" class="control_input text-center" v-model="history.ot_p"
+                                                autocomplete="off" style="width: 400px;" id="ot_p">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 102px;">Пол</label>
+                                            <input type="text" class="control_input text-center"
+                                                v-model="history.sex_bol" list="sex_bol-l" autocomplete="off"
+                                                id="sex_bol">
+                                            <datalist id="sex_bol-l">
+                                                <option v-for='w in sprav_list.V005'>{{w.polname}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_sex_bol-invalid" style="color: red;display:none">Неверный пол</label>  -->
+
+                                        </div>
+                                        <div class="ml-3">
+                                            <label>Место рождения</label>
+                                            <!-- <input type="text" class="control_input text-center" v-model="v_mp_roj" autocomplete="off"> -->
+                                            <!-- <input name="address" type="text" class="text-center control_input" v-model="v_mp_roj" style="width: 650px;" autocomplete="off" onchange='mp_roj(event)' > -->
+                                            <input name="address" type="text" id="mp_roj"
+                                                class="text-center control_input" v-model="history.mp_roj"
+                                                style="width: 650px;" autocomplete="off">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 17px;">Тип документа</label>
+                                            <input type="text" class="control_input text-center" v-model="history.udl_p"
+                                                list="udl_p-l" autocomplete="off" style="width: 650px;" id="udl_p">
+                                            <datalist id="udl_p-l">
+                                                <option v-for="f011 in sprav_list.F011">{{f011.docname}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_udl_p-invalid" style="color: red;display:none">Неверный тип документа</label>  -->
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 84px;">Серия</label>
+                                            <input type="text" class="control_input text-center"
+                                                v-model="history.sp_pasp" autocomplete="off" id="sp_pasp">
+                                            <label style="padding-right: 16px;">Номер</label>
+                                            <input type="text" class="control_input text-center"
+                                                v-model="history.np_pasp" autocomplete="off" id="np_pasp">
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 95px;">СМО</label>
+                                            <input type="text" class="control_input text-center"
+                                                v-model="history.skom_p" list="skom_p-l" autocomplete="off"
+                                                style="width: 650px;" id="skom_p">
+                                            <datalist id="skom_p-l">
+                                                <option v-for="skom in sprav_list.Skom">{{skom.naim}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_skom_p-invalid" style="color: red;display:none">Неверный СМО</label>  -->
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 45px;">Тип полиса</label>
+                                            <input type="text" class="control_input text-center"
+                                                v-model="history.stat_p" list="stat_p-l" autocomplete="off"
+                                                style="width: 650px;" id="stat_p">
+                                            <datalist id="stat_p-l">
+                                                <option v-for="skom in sprav_list.F008">{{skom.tipName}}</option>
+                                            </datalist>
+                                            <!-- <label class="text-center v_stat_p-invalid" style="color: red;display:none">Неверный тип полиса</label>  -->
+                                        </div>
+                                        <div class="ml-3">
+                                            <label style="padding-right: 43px;">Сер.полиса</label>
+                                            <input type="text" class="control_input text-center" v-model="history.s_pol"
+                                                autocomplete="off" id="s_pol">
+                                            <label>N.полиса</label>
+                                            <input type="text" class="control_input text-center" v-model="history.n_pol"
+                                                autocomplete="off" id="n_pol">
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_adr" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_adr">
+                                        <div id="adr_div">
+                                            <div id="c_oksm">
+                                                <label style="padding-right: 47px">Гражданство</label>
+                                                <input type="text" class="control_input text-center" name="c_oksm"
+                                                    v-model="history.c_oksm" id="c_oksm_in" list="oksm-l"
+                                                    autocomplete="off">
+                                                <datalist id="oksm-l">
+                                                    <option v-for="oksm in sprav_list.Oksm">{{oksm.naim}}</option>
+                                                </datalist>
+                                            </div>
+
+                                            <div id="adr">
+                                                <label style="padding-right: 103px">Адрес</label>
+                                                <input name="address" type="text" class="text-center control_input"
+                                                    v-model="history.m_roj" style="width: 600px;" autocomplete="off"
+                                                    id="m_roj_in">
+                                                <!-- onchange="mod_adr()" -->
+                                            </div>
+                                            <div id="adr_kv_kp_st">
+                                                <label style="padding-right: 132px">Кв</label>
+                                                <input style="width:80px" type="text" class="text-center control_input"
+                                                    v-model="history.kv" id="kv_in" autocomplete="off">
+                                                <label>Корпус</label>
+                                                <input style="width:80px" type="text" class="text-center control_input"
+                                                    v-model="history.kp" id="kp_in" autocomplete="off">
+                                                <label>Строение</label>
+                                                <input style="width:80px" type="text" class="text-center control_input"
+                                                    v-model="history.stro" id="stro_in" autocomplete="off">
+                                            </div>
+                                            <div>
+                                                <label style="padding-right: 123px">Тип</label>
+                                                <input type="text" class="text-center control_input"
+                                                    v-model="history.cj" id="cj_in" list="cj-l" autocomplete="off">
+                                                <datalist id="cj-l">
+                                                    <option>Городской</option>
+                                                    <option>Сельский</option>
+                                                </datalist>
+                                            </div>
+                                            <div>
+                                                <label>Администрат.округ</label>
+                                                <input type="text" class="text-center control_input"
+                                                    v-model="history.rai" id="rai_in" list="rai-l" autocomplete="off">
+                                                <datalist id="rai-l">
+                                                    <option>Центральный АО</option>
+                                                    <option>Ленинский АО</option>
+                                                    <option>Калининский АО</option>
+                                                    <option>Восточный АО</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_onmk" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_onmk">
+                                        <div v-show="inf_onmk" id="inf_onmk" style="height: 500px;overflow: scroll;">
+                                            <h5>Карта больного с ОНМК</h5>
+                                            <div id="onmk_sp" v-show="inf_onmk_sp">
+                                                <!-- {{history.onmk_sp}} -->
+
+                                                {{Object(history.onmk_sp).p001}}
+                                                {{Object(history.onmk_sp).p002}}
+
+
+                                                <div class="ml-3">
+                                                    <h5>ПРОЖИВАНИЕ</h5>
+
+                                                    <div v-for="(p001,index) in  Object(history.onmk_sp).p001_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index+1 == Object(history.onmk_sp).p001" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p001_sp_'+index" name="p001_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p001_sp_'+index" name="p001_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p001_sp_'+index">{{p001[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>КЕМ НАПРАВЛЕН</h5>
+                                                    <div v-for="(p002,index) in Object(history.onmk_sp).p002_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p002" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p002_sp_'+index" name="p002_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p002_sp_'+index" name="p002_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p002_sp_'+index">{{p002[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ХАРАКТЕР ОНМК</h5>
+                                                    <div v-for="(p003,index) in Object(history.onmk_sp).p003_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p003" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p003_sp_'+index" name="p003_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p003_sp_'+index" name="p003_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p003_sp_'+index">{{p003[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ИНСУЛЬТ ПЕРВИЧНЫЙ/ПОВТОРНЫЙ</h5>
+                                                    <div v-for="(p004,index) in Object(history.onmk_sp).p004_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p004" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p004_sp_'+index" name="p004_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p004_sp_'+index" name="p004_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p004_sp_'+index">{{p004[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ДАВНОСТЬ ЗАБОЛЕВАНИЯ НА МОМЕНТ ПОСТУПЛЕНИЯ</h5>
+                                                    <p>Первые 24 часа, в том числе:</p>
+                                                    <div v-for="(p005,index) in Object(history.onmk_sp).p005_1_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p005_1"
+                                                            checked class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p005_1_sp_'+index" name="p005_1_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p005_1_sp_'+index" name="p005_1_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p005_1_sp_'+index">{{p005[1]}}</label>
+                                                    </div>
+                                                    <p>Более 24 часов</p>
+                                                    <div v-for="(p005_2,index) in Object(history.onmk_sp).p005_2_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p005_2"
+                                                            checked class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p005_2_sp_'+index" name="p005_2_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p005_2_sp_'+index" name="p005_2_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p005_2_sp_'+index">{{p005_2[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ПРИ ИШЕМИЧЕСКОМ ИНСУЛЬТЕ, ДОСТАВЛЕННОМ В ПЕРВЫЕ 4.5 ЧАСА ОТ
+                                                        НАЧАЛА
+                                                        ЗАБОЛЕВАНИЯ</h5>
+                                                    <div v-for="(p006,index) in Object(history.onmk_sp).p006_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p006" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p006_sp_'+index" name="p006_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p006_sp_'+index" name="p006_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p006_sp_'+index">{{p006[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ВЫПОЛНЕНА КОМПЬЮТЕРНАЯ ТОМОГРАФИЯ (КТ) С ОПИСАНИЕМ РЕЗУЛЬТАТА
+                                                        ПРИ
+                                                        ПОСТУПЛЕНИИ</h5>
+                                                    <div v-for="(p007,index) in Object(history.onmk_sp).p007_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p007" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p007_sp_'+index" name="p007_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p007_sp_'+index" name="p007_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p007_sp_'+index">{{p007[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ПЕРВИЧНАЯ ГОСПИТАЛИЗАЦИЯ В ОТДЕЛЕНИЕ АНЕСТЕЗИОЛОГИИ и РЕАНИМАЦИИ
+                                                        №2
+                                                        для всех типов ОНМК</h5>
+                                                    <div v-for="(p008,index) in Object(history.onmk_sp).p008_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p008" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p008_sp_'+index" name="p008_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p008_sp_'+index" name="p008_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p008_sp_'+index">{{p008[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ОЦЕНКА ВЫПОЛНЕНИЯ ДУПЛЕКСНОГО СКАНИРОВАНИЯ ЭКСТРАКРАНИАЛЬНЫХ
+                                                        АРТЕРИЙ
+                                                        (ДСЭКА)</h5>
+                                                    <div v-for="(p009,index) in Object(history.onmk_sp).p009_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p009" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p009_sp_'+index" name="p009_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p009_sp_'+index" name="p009_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p009_sp_'+index">{{p009[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ДЛЯ ИШЕМИЧЕСКОГО ИНСУЛЬТА С ВЕРИФИКАЦИЕЙ ОЧАГА и для ТИА</h5>
+                                                    <div v-for="(p010,index) in Object(history.onmk_sp).p010_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p010_c"
+                                                            checked class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p010_sp_'+index" name="p010_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p010_sp_'+index" name="p010_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p010_sp_'+index">{{p010[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ПАТОГЕНИЧЕСКИЙ ВАРИАНТ ИШЕМИЧЕСКОГО ИНСУЛЬТА ПО КРИТЕРИЯМ TOAST
+                                                    </h5>
+                                                    <div v-for="(p011,index) in Object(history.onmk_sp).p011_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p011" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p011_sp_'+index" name="p011_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p011_sp_'+index" name="p011_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p011_sp_'+index">{{p011[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>НАЗНАЧЕНИЕ ВТОРИЧНОЙ ПРОФИЛАКТИКИ ПРИ ИШЕМИЧЕСКОМ ИНСУЛЬТЕ или
+                                                        ТИА
+                                                    </h5>
+                                                    <div v-for="(p012,index) in Object(history.onmk_sp).p012_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p012" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p012_sp_'+index" name="p012_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p012_sp_'+index" name="p012_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p012_sp_'+index">{{p012[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ОЦЕНКА ПО ШКАЛЕ РЭНКИН ЧЕРЕЗ 24 часа ОТ ПОСТУПЛЕНИЯ В СТАЦИОНАР
+                                                    </h5>
+                                                    <div v-for="(p013,index) in Object(history.onmk_sp).p013_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p013" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p013_sp_'+index" name="p013_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p013_sp_'+index" name="p013_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p013_sp_'+index">{{p013[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ОЦЕНКА ПО ШКАЛЕ РЭНКИН НА МОМЕНТ ВЫПИСКИ</h5>
+                                                    <div v-for="(p014,index) in Object(history.onmk_sp).p014_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p014" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p014_sp_'+index" name="p014_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p014_sp_'+index" name="p014_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p014_sp_'+index">{{p014[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>НАЛИЧИЕ ОСЛОЖНЕНИЙ В ПЕРИОД ГОСПИТАЛИЗАЦИИ</h5>
+                                                    <div v-for="(p015,index) in Object(history.onmk_sp).p015_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p015" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p015_sp_'+index" name="p015_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p015_sp_'+index" name="p015_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p015_sp_'+index">{{p015[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ИСХОД</h5>
+                                                    <div v-for="(p016,index) in Object(history.onmk_sp).p016_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_sp).p016" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p016_sp_'+index" name="p016_sp"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p016_sp_'+index" name="p016_sp"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p016_sp_'+index">{{p016[1]}}</label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div id="onmk_li" v-show="inf_onmk_li">
+                                                <p>wewe</p>
+                                                <!-- Object(history.onmk_li).p001_c -->
+                                                {{Object(history.onmk_li).p001}}
+                                                <div class="ml-3">
+                                                    <h5>ХАРАКТЕР ИНСУЛЬТА</h5>
+                                                    <div v-for="(p001,index) in Object(history.onmk_li).p001_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p001" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p001_li_'+index" name="p001_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p001_li_'+index" name="p001_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p001_li_'+index">{{p001[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ИНСУЛЬТ ПЕРВИЧНЫЙ/ПОВТОРНЫЙ</h5>
+                                                    <div v-for="(p002,index) in Object(history.onmk_li).p002_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p002" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p002_li_'+index" name="p002_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p002_li_'+index" name="p002_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p002_li_'+index">{{p002[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ВОЗРАСТ ПАЦИЕНТА</h5>
+                                                    <div v-for="(p003,index) in Object(history.onmk_li).p003_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p003" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p003_li_'+index" name="p003_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p003_li_'+index" name="p003_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p003_li_'+index">{{p003[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ДЛИТЕЛЬНОСТЬ ПРЕБЫВАНИЯ В СТАЦИОНАРЕ</h5>
+                                                    <div v-for="(p004,index) in Object(history.onmk_li).p004_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p004" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p004_li_'+index" name="p004_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p004_li_'+index" name="p004_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p004_li_'+index">{{p004[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ДАВНОСТЬ ЗАБОЛЕВАНИЯ НА МОМЕНТ ПОСТУПЛЕНИЯ</h5>
+                                                    <div v-for="(p005,index) in Object(history.onmk_li).p005_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p005" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p005_li_'+index" name="p005_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p005_li_'+index" name="p005_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p005_li_'+index">{{p005[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>УРОВЕНЬ СОЗНАНИЯ НА МОМЕНТ ПОСТУПЛЕНИЯ В БАЛЛАХ ШКАЛЫ КОМ ГЛАЗГО
+                                                    </h5>
+                                                    <div v-for="(p006,index) in Object(history.onmk_li).p006_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p006" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p006_li_'+index" name="p006_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p006_li_'+index" name="p006_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p006_li_'+index">{{p006[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ДЛЯ ИШЕМИЧЕСКОГО ИНСУЛЬТА С ВЕРИФИКАЦИЕЙ ОЧАГА ПО ДАННЫМ КТ/МРТ
+                                                    </h5>
+                                                    <div v-for="(p007,index) in Object(history.onmk_li).p007_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p007" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p007_li_'+index" name="p007_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p007_li_'+index" name="p007_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p007_li_'+index">{{p007[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ДЛЯ ГЕМОРРАГИЧЕСКОГО ИНСУЛЬТА (САК и ВМК) С ВЕРИФИКАЦИЕЙ ОЧАГА
+                                                        ПО
+                                                        ДАННЫМ КТ/МРТ</h5>
+                                                    <div v-for="(p008,index) in Object(history.onmk_li).p008_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p008" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p008_li_'+index" name="p008_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p008_li_'+index" name="p008_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p008_li_'+index">{{p008[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ОЦЕНКА ДИНАМИКИ ПО РЕЗУЛЬТАТАМ ВИЗУАЛИЗАЦИИ (КТ/МРТ)</h5>
+                                                    <div v-for="(p009,index) in Object(history.onmk_li).p009_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p009" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p009_li_'+index" name="p009_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p009_li_'+index" name="p009_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p009_li_'+index">{{p009[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ПЕРВИЧНАЯ ГОСПИТАЛИЗАЦИЯ В ОТДЕЛЕНИЕ АНЕСТЕЗИОЛОГИИ И РЕАНИМАЦИИ
+                                                    </h5>
+                                                    <div v-for="(p010,index) in Object(history.onmk_li).p010_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p010" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p010_li_'+index" name="p010_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p010_li_'+index" name="p010_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p010_li_'+index">{{p010[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ПЕРЕВОД В ОТДЕЛЕНИЕ РЕАНИМАЦИИ ПРИ УХУДШЕНИИ СОСТОЯНИЯ</h5>
+                                                    <div v-for="(p011,index) in Object(history.onmk_li).p011_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p011" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p011_li_'+index" name="p011_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p011_li_'+index" name="p011_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p011_li_'+index">{{p011[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ОЦЕНКА ДУПЛЕКСНОГО СКАНИРОВАНИЯ ЭКСТРАКРАНИАЛЬНЫХ АРТЕРИЙ
+                                                        (ДСЭКА)
+                                                    </h5>
+                                                    <div v-for="(p012,index) in Object(history.onmk_li).p012_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p012" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p012_li_'+index" name="p012_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p012_li_'+index" name="p012_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p012_li_'+index">{{p012[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ПРОВЕДЕНИЕ СИСТЕМНОГО ТРОМБОЛИЗИСА ПРИ ИШЕМИЧЕСКОМ ИНСУЛЬТЕ В
+                                                        ПЕРВЫЕ
+                                                        4.5 ОТ НАЧАЛА ЗАБОЛЕВАНИЯ</h5>
+                                                    <div v-for="(p013,index) in Object(history.onmk_li).p013_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p013" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p013_li_'+index" name="p013_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p013_li_'+index" name="p013_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p013_li_'+index">{{p013[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ОЦЕНКА ДЛИТЕЛЬНОСТИ НАХОЖДЕНИЯ БОЛЬНОГО В ОТДЕЛЕНИИ
+                                                        АНЕСТЕЗИОЛОГИИ И
+                                                        РЕАНИМАЦИИ</h5>
+                                                    <div v-for="(p014,index) in Object(history.onmk_li).p014_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p014" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p014_li_'+index" name="p014_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p014_li_'+index" name="p014_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p014_li_'+index">{{p014[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ДЛИТЕЛЬНОСТЬ ИВЛ</h5>
+                                                    <div v-for="(p015,index) in Object(history.onmk_li).p015_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p015" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p015_li_'+index" name="p015_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p015_li_'+index" name="p015_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p015_li_'+index">{{p015[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ОСЛОЖНЕНИЯ ВО ВРЕМЯ СТАЦИОНАРНОГО ЛЕЧЕНИЯ</h5>
+                                                    <div v-for="(p016,index) in Object(history.onmk_li).p016_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p016" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p016_li_'+index" name="p016_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p016_li_'+index" name="p016_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p016_li_'+index">{{p016[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>МЕСТО СМЕРТИ</h5>
+                                                    <div v-for="(p017,index) in Object(history.onmk_li).p017_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p017" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p017_li_'+index" name="p017_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p017_li_'+index" name="p017_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p017_li_'+index">{{p017[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ОЦЕНКА ДАТЫ, ВРЕМЕНИ СМЕРТИ</h5>
+                                                    <div v-for="(p018,index) in Object(history.onmk_li).p018_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p018" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p018_li_'+index" name="p018_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p018_li_'+index" name="p018_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p018_li_'+index">{{p018[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ОЦЕНКА НЕБЛАГОПРИЯТНОГО ПРОГНОЗА</h5>
+                                                    <div v-for="(p019,index) in Object(history.onmk_li).p019_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p019" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p019_li_'+index" name="p019_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p019_li_'+index" name="p019_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p019_li_'+index">{{p019[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>КОРРЕКЦИЯ МЕДИКАМЕНТОЗНОГО ЛЕЧЕНИЯ ПРИ УХУДШЕНИИ СОСТОЯНИЯ</h5>
+                                                    <div v-for="(p020,index) in Object(history.onmk_li).p020_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p020" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p020_li_'+index" name="p020_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p020_li_'+index" name="p020_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p020_li_'+index">{{p020[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ЗАКЛЮЧИТЕЛЬНЫЙ ДИАГНОЗ В СООТВЕТСТВИИ С КОДОМ МКБ10 из
+                                                        п.20.МЕДИЦИНСКОЙ КАРТЫ</h5>
+                                                    <div v-for="(p021,index) in Object(history.onmk_li).p021_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p021" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p021_li_'+index" name="p021_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p021_li_'+index" name="p021_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p021_li_'+index">{{p021[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>КОНКУРИРУЮЩИЕ И СОПУТСТВУЮЩИЕ ДИАГНОЗЫ, УСТАНОВЛЕННЫЕ В ПРОЦЕССЕ
+                                                        СТАЦИОНАРНОГО ЛЕЧЕНИЯ</h5>
+                                                    <div v-for="(p022,index) in Object(history.onmk_li).p022_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p022" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p022_li_'+index" name="p022_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p022_li_'+index" name="p022_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p022_li_'+index">{{p022[1]}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h5>ПРЕДОСТАВЛЕНИЕ ИНФОРМАЦИИ КАК О ПОТЕНЦИАЛЬНОМ ДОНОРЕ В
+                                                        СООТВЕТСТВИИ
+                                                        С ПРИКАЗОМ №</h5>
+                                                    <div v-for="(p023,index) in Object(history.onmk_li).p023_c"
+                                                        class="form-check ml-3">
+                                                        <input v-if="index + 1 == Object(history.onmk_li).p023" checked
+                                                            class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p023_li_'+index" name="p023_li"
+                                                            v-bind:n="index+1">
+                                                        <input v-else class="form-check-input" type="radio" value=""
+                                                            v-bind:id="'p023_li_'+index" name="p023_li"
+                                                            v-bind:n="index+1">
+                                                        <label class="form-check-label"
+                                                            v-bind:for="'p023_li_'+index">{{p023[1]}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade " id="inf_onk" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_onk">
+                                        <div id="inf_onk_scrol" style="height: 500px;overflow: scroll;">
+                                            <h5>Карта онкобольного</h5>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 147px;">Повод обращения</label>
+                                                <input type="text" class="control_input text-center" list="n018-l"
+                                                    v-model="history.ds1_t" autocomplete="off" style="width: 450px;"
+                                                    id="ds1_t">
+                                                <datalist id="n018-l">
+                                                    <option v-for="n018 in sprav_list.N018">{{n018.reasName}}</option>
+                                                </datalist>
+                                                <!-- <label class="text-center v_ds1_t-invalid" style="color: red;display:none">Неверный повод обращения</label>  -->
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 127px;">Стадия заболевания</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.stad" autocomplete="off" list="stad-l" id="stad">
+                                                <datalist id="stad-l">
+                                                </datalist>
+
+                                            </div>
+                                            <div class="d-flex ml-3">
+                                                <label>Стадия по TNM</label>
+                                                <div>
+                                                    <label>T</label>
+                                                    <input type="text" class="control_input text-center"
+                                                        v-model="history.onk_t" autocomplete="off" list=onk_t-l
+                                                        id="onk_t">
+                                                    <datalist id="onk_t-l">
+                                                    </datalist>
+                                                </div>
+                                                <div>
+                                                    <label>N</label>
+                                                    <input type="text" class="control_input text-center"
+                                                        v-model="history.onk_n" autocomplete="off" list="onk_n-l"
+                                                        id="onk_n">
+                                                    <datalist id="onk_n-l"></datalist>
+                                                </div>
+                                                <div>
+                                                    <label>M</label>
+                                                    <input type="text" class="control_input text-center"
+                                                        v-model="history.onk_m" autocomplete="off" list="onk_m-l"
+                                                        id="onk_m">
+                                                    <datalist id="onk_m-l"></datalist>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+
+                                                <label style="padding-right: 39px;">Наличие отдельных метастазов</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.mtstz" list="mtstz-l" autocomplete="off"
+                                                    id="mtstz">
+                                                <datalist id="mtstz-l">
+                                                    <option>впервые</option>
+                                                    <option>ранее</option>
+                                                </datalist>
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 113px;">Характер заболевания</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.c_zab" autocomplete="off" list="c_zab-l"
+                                                    style="width: 450px;" id="c_zab">
+                                                <datalist id=c_zab-l>
+
+                                                    <option v-for="v027 in sprav_list.V027">{{v027.nCz}}</option>
+                                                </datalist>
+                                                <!-- <label class="text-center v_c_zab-invalid" style="color: red;display:none">Неверный характер заболевания</label>  -->
+
+                                            </div>
+                                            <h5>Сведения о диагностике</h5>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 108x;margin-right: 108px;">Дата взятия
+                                                    материала</label>
+                                                <input type="text" class="control_input text-center date_m"
+                                                    v-model="history.diag_date" autocomplete="off" id="diag_date">
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 23px;">Тип диагностического
+                                                    показателя</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.diag_tip" autocomplete="off" list="diag_tip-l"
+                                                    style="width: 450px;" id="diag_tip" onchange="app.get_diag_code()">
+
+                                                <datalist id="diag_tip-l">
+
+                                                    <option v-for="diag_tip_l in history.diag_tip_l">{{diag_tip_l[1]}}
+                                                    </option>
+                                                </datalist>
+                                                <!-- <label class="text-center v_diag_tip-invalid" style="color: red;display:none">Неверный тип диагностического показателя</label>  -->
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 22px;">Код диагностического
+                                                    показателя</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.diag_code" autocomplete="off" list="diag_code-l"
+                                                    id="diag_code" style="width: 450px;">
+                                                <datalist id="diag_code-l"></datalist>
+                                                <!-- <label class="text-center v_diag_code-invalid" style="color: red;display:none">Неверный код диагностического показателя</label>  -->
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 68px;">Код результата диагностики</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.diag_rslt" autocomplete="off" list="diag_rslt-l"
+                                                    style="width: 450px;" id="diag_rslt">
+                                                <datalist id="diag_rslt-l"></datalist>
+                                            </div>
+                                            <div class="ml-3">
+                                                <label>Признак получения результата диагностики</label>
+                                                <input type="text" class="control_input text-center" id="rec_rslt"
+                                                    v-model="history.rec_rslt" style="width: 30px;" autocomplete="off">
+                                            </div>
+                                            <h5>Сведения о проведении консилиума</h5>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 156px;">Дата консилиума</label>
+                                                <input type="text" class="control_input text-center date_m"
+                                                    v-model="history.dt_cons" autocomplete="off" id="dt_cons">
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 154px;">Цель консилиума</label>
+                                                <input type="text" class="control_input text-center" id="pr_cons"
+                                                    v-model="history.pr_cons" autocomplete="off" list="pr_cons-l"
+                                                    style="width: 450px;">
+                                                <datalist id="pr_cons-l">
+                                                    <option v-for="n019 in sprav_list.N019">{{n019.consName}}</option>
+                                                </datalist>
+                                            </div>
+                                            <h5>Сведения об услуге лечения</h5>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 207px;">Тип услуги</label>
+                                                <input type="text" class="control_input text-center" id="usl_tip"
+                                                    v-model="history.usl_tip" autocomplete="off" list="usl_tip-l"
+                                                    style="width: 450px;">
+                                                <datalist id="usl_tip-l">
+                                                    <option v-for="n013 in sprav_list.N013">{{n013.tlechName}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 65px;">Тип хирургического лечения</label>
+                                                <input type="text" class="control_input text-center" id="hir_tip"
+                                                    v-model="history.hir_tip" autocomplete="off" list="hir_tip-l"
+                                                    style="width: 450px;">
+                                                <datalist id="hir_tip-l">
+                                                    <option v-for="n014 in sprav_list.N014">{{n014.thirName}}</option>
+                                                </datalist>
+                                            </div>
+                                            <h5>Сведения о противопоказаниях и отказах</h5>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 149px;">Дата регистрации</label>
+                                                <input type="text" class="control_input text-center date_m"
+                                                    v-model="history.d_prot" autocomplete="off" id="d_prot">
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 73px;">противопоказания и отказы</label>
+                                                <input type="text" class="control_input text-center" id="prot"
+                                                    v-model="history.prot" autocomplete="off" list="prot-l"
+                                                    style="width: 450px;">
+                                                <datalist id="prot-l">
+                                                    <option v-for="n001 in sprav_list.N001">{{n001.protName}}</option>
+                                                </datalist>
+                                            </div>
+                                            <h5>Сведения о направлений в МО (из выписного эпикриза)</h5>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 149px;">Дата направления</label>
+                                                <input type="text" class="control_input text-center date_m"
+                                                    v-model="history.naprdate" autocomplete="off" id="naprdate">
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 156px;">Вид направления</label>
+
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.napr_v" autocomplete="off" list="napr_v-l"
+                                                    style="width: 450px;" id="napr_v">
+                                                <datalist id="napr_v-l">
+                                                    <option v-for="v028 in sprav_list.V028">{{v028.nVn}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div class="ml-3">
+                                                <label>Мо,куда рекомендовано обращаться</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.napr_mo" autocomplete="off" list="napr_mo-l"
+                                                    style="width: 450px;" id="napr_mo">
+                                                <datalist id="napr_mo-l">
+                                                    <option v-for="lpu in sprav_list.F003">{{lpu.naim}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 30px;">Метод
+                                                    диагностич.исследования</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.napr_issl" autocomplete="off" list="napr_issl-l"
+                                                    style="width: 450px;" id="napr_issl">
+                                                <datalist id="napr_issl-l">
+                                                    <option v-for="v029 in sprav_list.V029">{{v029.nMet}}</option>
+                                                </datalist>
+                                            </div>
+                                            <div class="ml-3">
+                                                <label style="padding-right: 18px;">Мед.услуга(код)
+                                                    рекомендованная</label>
+                                                <input type="text" class="control_input text-center"
+                                                    v-model="history.napr_usl" autocomplete="off" list="napr_usl-l"
+                                                    id="napr_usl">
+                                                <datalist id="napr_usl-l">
+                                                    <option v-for="v001 in sprav_list.V001">{{v001.kod}}</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane fade " id="inf_mo" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_mo">
+                                        <h5>Мо прикрепления</h5>
+                                        <div class="ml-3 text-center">
+                                            <input type="text" id="pmg" class="control_input text-center"
+                                                v-model="history.pmg" style="width: 561px;" autocomplete="off"
+                                                list="v_pmg_l">
+                                            <datalist id="v_pmg_l">
+                                                <option v-for="lpu in sprav_list.F003">{{lpu.naim}}</option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="tab-pane fade " id="inf_koyko" role="tabpanel"
+                                        aria-labelledby="list-profile-list_inf_koyko">inf_koyko</div> -->
+
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div  class="col-md-6">
+                                            <h6>1-9 и A-K - переключения между вкладками</h6>
+                                            <h6>Enter или Tab - переключения на следующее поле</h6>
+                                            <h6>Shift + Tab - переключения на предыдущее поле </h6>
+                                            <h6>Pause Break или Esc - Убрать фокус с поля </h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6>Insert - Добавить запись в таблицу</h6>
+                                            <h6>Delete - Удалить запись из таблицы</h6>
+                                            <h6>End - Сохранить записать и выйти </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start ">
+                                <div class="nav flex-column nav-pills me-3  med-card-pacienta-inc" id="v-pills-tab"
+                                    role="tablist" aria-orientation="vertical">
+                                    <button class="nav-link active" id="list-home-list_inf_pers_info"
+                                        data-bs-toggle="pill" data-bs-target="#inf_pers_info" type="button" role="tab"
+                                        aria-controls="inf_pers_info" aria-selected="true"
+                                        onclick="app.next_inf_pers_info()">1.Персональные
+                                        данные</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_diagnoses" data-bs-toggle="pill"
+                                        data-bs-target="#inf_diagnoses" type="button" role="tab"
+                                        aria-controls="inf_diagnoses" aria-selected="true"
+                                        onclick="app.next_inf_diagnoses()">2.Сведения о
+                                        диагнозах</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_koyko" data-bs-toggle="pill"
+                                        data-bs-target="#inf_koyko" type="button" role="tab" aria-controls="inf_koyko"
+                                        aria-selected="true" onclick="Koyko_edit()">3.Койко-дни</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_operation" data-bs-toggle="pill"
+                                        data-bs-target="#inf_operation" type="button" role="tab"
+                                        aria-controls="inf_operation" aria-selected="true"
+                                        onclick="Oper_edit()">4.Операции</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_ks_zabolev" data-bs-toggle="pill"
+                                        data-bs-target="#inf_ks_zabolev" type="button" role="tab"
+                                        aria-controls="inf_ks_zabolev" aria-selected="true"
+                                        onclick="app.get_v_018_v_019()"
+                                        @click="next_inf_ks_zabolev()">5.Клинико-стат.гр.заболев-я</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_complication"
+                                        data-bs-toggle="pill" data-bs-target="#inf_complication" type="button"
+                                        role="tab" aria-controls="inf_complication" aria-selected="true"
+                                        onclick="Complication_edit()">6.Oсложнение</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_work_capacity"
+                                        data-bs-toggle="pill" data-bs-target="#inf_work_capacity" type="button"
+                                        role="tab" aria-controls="inf_work_capacity" aria-selected="true"
+                                        onclick="app.Select_trs()">7.Трудоспособность</button>
+
+
+                                    <button class="nav-link" id="list-profile-list_inf_manipulation"
+                                        data-bs-toggle="pill" data-bs-target="#inf_manipulation" type="button"
+                                        role="tab" aria-controls="inf_manipulation"
+                                        aria-selected="true" >8.Манипуляции</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_translations"
+                                        data-bs-toggle="pill" data-bs-target="#inf_translations" type="button"
+                                        role="tab" aria-controls="inf_translations"
+                                        onclick="app.next_inf_translations()" aria-selected="true">9.Переводы</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_post_mortem"
+                                        data-bs-toggle="pill" data-bs-target="#inf_post_mortem" type="button" role="tab"
+                                        aria-controls="inf_post_mortem" aria-selected="true"
+                                        onclick="app.next_inf_post_mortem()">А.Патанатомический
+                                        Ds</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_injury" data-bs-toggle="pill"
+                                        data-bs-target="#inf_injury" type="button" role="tab" aria-controls="inf_injury"
+                                        aria-selected="true" onclick="app.next_inf_injury()">B.Сведения о
+                                        травмах</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_policy_passport_snills"
+                                        data-bs-toggle="pill" data-bs-target="#inf_policy_passport_snills" type="button"
+                                        role="tab" aria-controls="inf_policy_passport_snills" aria-selected="true"
+                                        onclick="app.next_inf_policy_passport_snills()">C.Полис/Документ/Снилс</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_pregnancy" data-bs-toggle="pill"
+                                        data-bs-target="#inf_pregnancy" type="button" role="tab"
+                                        aria-controls="inf_pregnancy" aria-selected="true"
+                                        onclick="app.next_inf_pregnancy()">D.Прерывание
+                                        беременности</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_disability" data-bs-toggle="pill"
+                                        data-bs-target="#inf_disability" type="button" role="tab"
+                                        aria-controls="inf_disability" aria-selected="true"
+                                        onclick="app.next_inf_disability()">E.Лист
+                                        нетрудоспособности</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_patient_p" data-bs-toggle="pill"
+                                        data-bs-target="#inf_patient_p" type="button" role="tab"
+                                        aria-controls="inf_patient_p" aria-selected="true"
+                                        onclick="app.next_inf_patient_p()">F.Представитель пациента
+                                    </button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_adr" data-bs-toggle="pill"
+                                        data-bs-target="#inf_adr" type="button" role="tab" aria-controls="inf_adr"
+                                        aria-selected="true" onclick="app.next_inf_adr()">G.Адрес проживания</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_onmk" data-bs-toggle="pill"
+                                        data-bs-target="#inf_onmk" type="button" role="tab" aria-controls="inf_onmk"
+                                        aria-selected="true" onclick="app.onmk()">I.Карта больного с ОНМК</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_onk" data-bs-toggle="pill"
+                                        data-bs-target="#inf_onk" type="button" role="tab" aria-controls="inf_onk"
+                                        aria-selected="true" onclick="app.onk()" @click="app.next_inf_onk()">J.Карта
+                                        онкобольного</button>
+
+                                    <button class="nav-link" id="list-profile-list_inf_mo" data-bs-toggle="pill"
+                                        data-bs-target="#inf_mo" type="button" role="tab" aria-controls="inf_mo"
+                                        aria-selected="true" onclick="app.next_inf_mo()">K.Мо прикрепления</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" id="сancel" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button> -->
+                        <button type="button" id="save" class="btn btn-success" data-bs-dismiss="modal"
+                            @click="app.save()">Сохранить и закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endverbatim %}
+
+{% endblock %}

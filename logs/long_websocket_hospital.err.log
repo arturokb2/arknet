@@ -1,0 +1,18 @@
+2021-08-25 11:17:33,567 INFO     Starting server at tcp:port=8001:interface=10.160.60.69
+2021-08-25 11:17:33,567 INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-08-25 11:17:33,567 INFO     Configuring endpoint tcp:port=8001:interface=10.160.60.69
+2021-08-25 11:17:33,568 INFO     Listening on TCP address 10.160.60.69:8001
+2021-08-25 11:21:17,622 INFO     Killed 0 pending application instances
+2021-08-26 03:53:44,181 INFO     Starting server at tcp:port=8001:interface=10.160.60.69
+2021-08-26 03:53:44,182 INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-08-26 03:53:44,182 INFO     Configuring endpoint tcp:port=8001:interface=10.160.60.69
+2021-08-26 03:53:44,183 INFO     Listening on TCP address 10.160.60.69:8001
+2021-08-26 12:09:28,288 INFO     Starting server at tcp:port=8001:interface=10.160.60.69
+2021-08-26 12:09:28,288 INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-08-26 12:09:28,289 INFO     Configuring endpoint tcp:port=8001:interface=10.160.60.69
+2021-08-26 12:09:28,289 INFO     Listening on TCP address 10.160.60.69:8001
+2021-08-26 12:14:18,390 INFO     Killed 0 pending application instances
+2021-08-27 03:04:02,652 INFO     Starting server at tcp:port=8001:interface=10.160.60.69
+2021-08-27 03:04:02,652 INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-08-27 03:04:02,653 INFO     Configuring endpoint tcp:port=8001:interface=10.160.60.69
+2021-08-27 03:04:02,653 INFO     Listening on TCP address 10.160.60.69:8001

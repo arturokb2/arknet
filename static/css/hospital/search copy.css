@@ -1,0 +1,1216 @@
+.search_histor{
+    padding-top: 14%;
+    padding-bottom: 30px;
+}
+.dataTables_scrollBody {
+    text-align: center;
+}
+@media (min-width: 576px){
+    #modal-content{
+        width: 1138px;
+    }
+}
+@media (min-width: 980px) and (max-width: 1200px){
+    #modal-content{
+        width: 1138px;
+        margin-left: -17px;
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1250px){
+    #modal-content{
+        width: 1214px;
+        margin-left: -37px;
+
+    }
+}
+@media (min-width: 1251px) and (max-width: 1300px){
+    #modal-content{
+       width: 1266px;
+       margin-left: -64px;
+    }
+    .med-card-pacienta-header{
+        width: 1000px;
+    }
+    .med-card-pacienta{
+        width: 1000px;
+    }
+    #inf_koyko{
+        width: 995px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width: 993px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 991px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 999px;
+        overflow: scroll;
+        height: 400px;
+    }
+    
+}
+@media (min-width: 1301px) and (max-width: 1350px){
+    #modal-content{
+        width: 1313px;
+        margin-left: -88px;
+    }
+
+
+    .header-left{
+        margin-left: 100px;
+    }
+
+    .header-right{
+        margin-right: 44px;
+    }
+
+    .med-card-pacienta-header{
+        width: 1046px;
+    }
+    .med-card-pacienta{
+        width: 1046px;
+    }
+
+    #inf_koyko{
+        width: 1043px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1042px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1039px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1045px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+
+    #inf_pers_info{
+        margin-left: 114px;
+    }
+    #inf_diagnoses{
+        margin-left: 114px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 114px;
+    }
+    #inf_work_capacity{
+        margin-left: 211px;
+    }
+    #inf_translations{
+        margin-left: 114px;
+    }
+    #inf_post_mortem{
+        margin-left: 211px;
+    }
+    #inf_injury{
+        margin-left: 154px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 175px;
+    }
+    #inf_pregnancy{
+        margin-left: 309px;
+    }
+    #inf_disability{
+        margin-left: 271px;
+    }
+    #inf_patient_p{
+        margin-left: 144px;
+    }
+    #inf_onmk{
+        margin-left: 328px;
+    }
+    #inf_onk{
+        margin-left: 156px;
+    }
+
+}
+
+@media (min-width: 1351px) and (max-width: 1400px){
+    #modal-content{
+        width: 1364px;
+        margin-left: -113px;
+    }
+
+    
+
+    .med-card-pacienta-header{
+        width: 1098px;
+    }
+    .med-card-pacienta{
+        width: 1098px;
+    }
+
+
+    .header-left{
+        margin-left: 136px;
+    }
+
+    .header-right{
+        margin-right: 69px;
+    }
+
+    #inf_koyko{
+        width: 1095px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1094px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1095px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1097px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 151px;
+    }
+    #inf_diagnoses{
+        margin-left: 151px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 151px;
+    }
+    #inf_work_capacity{
+        margin-left: 211px;
+    }
+    #inf_translations{
+        margin-left: 151px;
+    }
+    #inf_post_mortem{
+        margin-left: 211px;
+    }
+    #inf_injury{
+        margin-left: 154px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 197px;
+    }
+    #inf_pregnancy{
+        margin-left: 339px;
+    }
+    #inf_disability{
+        margin-left: 288px;
+    }
+    #inf_patient_p{
+        margin-left: 164px;
+    }
+    #inf_onmk{
+        margin-left: 392px;
+    }
+    #inf_onk{
+        margin-left: 185px;
+    }
+}
+
+@media (min-width: 1401px) and (max-width: 1450px){
+    #modal-content{
+        width: 1413px;
+        margin-left: -138px;
+    }
+    .med-card-pacienta-header{
+        width: 1146px;
+    }
+    .med-card-pacienta{
+        width: 1146px;
+    }
+
+    .header-left{
+        margin-left: 143px;
+    }
+
+    .header-right{
+        margin-right: 140px;
+    }
+
+    #inf_koyko{
+        width: 1142px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1143px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1143px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1145px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 151px;
+    }
+    #inf_diagnoses{
+        margin-left: 151px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 185px;
+    }
+    #inf_work_capacity{
+        margin-left: 211px;
+    }
+    #inf_translations{
+        margin-left: 151px;
+    }
+    #inf_post_mortem{
+        margin-left: 255px;
+    }
+    #inf_injury{
+        margin-left: 154px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 229px;
+    }
+    #inf_pregnancy{
+        margin-left: 357px;
+    }
+    #inf_disability{
+        margin-left: 288px;
+    }
+    #inf_patient_p{
+        margin-left: 190px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 218px;
+    }
+}
+
+@media (min-width: 1451px) and (max-width: 1500px){
+    #modal-content{
+        width: 1462px;
+        margin-left: -161px;
+    }
+    .med-card-pacienta-header{
+        width: 1197px;
+    }
+    .med-card-pacienta{
+        width: 1197px;
+    }
+
+    .header-left{
+        margin-left: 154px;
+    }
+
+    .header-right{
+        margin-right: 181px;
+    }
+
+    #inf_koyko{
+        width: 1194px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1194px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1194px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1196px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 161px;
+    }
+    #inf_diagnoses{
+        margin-left: 161px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 209px;
+    }
+    #inf_work_capacity{
+        margin-left: 211px;
+    }
+    #inf_translations{
+        margin-left: 161px;
+    }
+    #inf_post_mortem{
+        margin-left: 275px;
+    }
+    #inf_injury{
+        margin-left: 190px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 253px;
+    }
+    #inf_pregnancy{
+        margin-left: 374px;
+    }
+    #inf_disability{
+        margin-left: 308px;
+    }
+    #inf_patient_p{
+        margin-left: 204px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 235px;
+    }
+}
+
+@media (min-width: 1501px) and (max-width: 1550px){
+    #modal-content{
+        width: 1514px;
+        margin-left: -188px;
+    }
+    .med-card-pacienta-header{
+        width: 1246px;
+    }
+    .med-card-pacienta{
+        width: 1246px;
+    }
+
+    .header-left{
+        margin-left: 154px;
+    }
+
+    .header-right{
+        margin-right: 181px;
+    }
+
+    #inf_koyko{
+        width: 1245px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1242px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1244px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1245px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 194px;
+    }
+    #inf_diagnoses{
+        margin-left: 194px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 262px;
+    }
+    #inf_work_capacity{
+        margin-left: 237px;
+    }
+    #inf_translations{
+        margin-left: 194px;
+    }
+    #inf_post_mortem{
+        margin-left: 303px;
+    }
+    #inf_injury{
+        margin-left: 218px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 282px;
+    }
+    #inf_pregnancy{
+        margin-left: 400px;
+    }
+    #inf_disability{
+        margin-left: 339px;
+    }
+    #inf_patient_p{
+        margin-left: 241px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 245px;
+    }
+}
+@media (min-width: 1551px) and (max-width: 1600px){
+    #modal-content{
+        width: 1566px;
+        margin-left: -214px;
+    }
+    .med-card-pacienta-header{
+        width: 1299px;
+    }
+    .med-card-pacienta{
+        width: 1299px;
+    }
+
+    .header-left{
+        margin-left: 218px;
+    }
+
+    .header-right{
+        margin-right: 221px;
+    }
+
+    #inf_koyko{
+        width: 1298px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1295px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1295px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1298px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 225px;
+    }
+    #inf_diagnoses{
+        margin-left: 225px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 302px;
+    }
+    #inf_work_capacity{
+        margin-left: 237px;
+    }
+    #inf_translations{
+        margin-left: 225px;
+    }
+    #inf_post_mortem{
+        margin-left: 343px;
+    }
+    #inf_injury{
+        margin-left: 260px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 306px;
+    }
+    #inf_pregnancy{
+        margin-left: 453px;
+    }
+    #inf_disability{
+        margin-left: 384px;
+    }
+    #inf_patient_p{
+        margin-left: 288px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 299px;
+    }
+}
+@media (min-width: 1601px) and (max-width: 1650px){
+    #modal-content{
+        width: 1615px;
+        margin-left: -238px;
+    }
+    .med-card-pacienta-header{
+        width: 1348px;
+    }
+    .med-card-pacienta{
+        width: 1348px;
+    }
+
+    .header-left{
+        margin-left: 275px;
+    }
+
+    .header-right{
+        margin-right: 210px;
+    }
+
+    #inf_koyko{
+        width: 1347px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1345px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1344px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1347px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+
+    #inf_pers_info{
+        margin-left: 280px;
+    }
+    #inf_diagnoses{
+        margin-left: 280px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 331px;
+    }
+    #inf_work_capacity{
+        margin-left: 237px;
+    }
+    #inf_translations{
+        margin-left: 280px;
+    }
+    #inf_post_mortem{
+        margin-left: 368px;
+    }
+    #inf_injury{
+        margin-left: 286px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 318px;
+    }
+    #inf_pregnancy{
+        margin-left: 465px;
+    }
+    #inf_disability{
+        margin-left: 400px;
+    }
+    #inf_patient_p{
+        margin-left: 306px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 314px;
+    }
+}
+@media (min-width: 1651px) and (max-width: 1700px){
+    #modal-content{
+        width: 1661px;
+        margin-left: -261px;
+    }
+    .med-card-pacienta-header{
+        width: 1393px;
+    }
+    .med-card-pacienta{
+        width: 1393px;
+    }
+
+    .header-left{
+        margin-left: 286px;
+    }
+
+    .header-right{
+        margin-right: 240px;
+    }
+
+    #inf_koyko{
+        width: 1392px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1390px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1388px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1392px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 297px;
+    }
+    #inf_diagnoses{
+        margin-left: 297px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 350px;
+    }
+    #inf_work_capacity{
+        margin-left: 237px;
+    }
+    #inf_translations{
+        margin-left: 297px;
+    }
+    #inf_post_mortem{
+        margin-left: 382px;
+    }
+    #inf_injury{
+        margin-left: 315px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 334px;
+    }
+    #inf_pregnancy{
+        margin-left: 488px;
+    }
+    #inf_disability{
+        margin-left: 414px;
+    }
+    #inf_patient_p{
+        margin-left: 318px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 330px;
+    }
+}
+@media (min-width: 1701px) and (max-width: 1750px){
+    #modal-content{
+        width: 1713px;
+        margin-left: -287px;
+    }
+    .med-card-pacienta-header{
+        width: 1444px;
+    }
+    .med-card-pacienta{
+        width: 1444px;
+    }
+
+    .header-left{
+        margin-left: 333px;
+    }
+
+    .header-right{
+        margin-right: 264px;
+    }
+
+    #inf_koyko{
+        width: 1443px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1440px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1443px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1443px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 328px;
+    }
+    #inf_diagnoses{
+        margin-left: 328px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 368px;
+    }
+    #inf_work_capacity{
+        margin-left: 237px;
+    }
+    #inf_translations{
+        margin-left: 328px;
+    }
+    #inf_post_mortem{
+        margin-left: 414px;
+    }
+    #inf_injury{
+        margin-left: 326px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 355px;
+    }
+    #inf_pregnancy{
+        margin-left: 499px;
+    }
+    #inf_disability{
+        margin-left: 438px;
+    }
+    #inf_patient_p{
+        margin-left: 338px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 370px;
+    }
+}
+@media (min-width: 1751px) and (max-width: 1800px){
+    #modal-content{
+        width: 1762px;
+        margin-left: -312px;
+    }
+    .med-card-pacienta-header{
+        width: 1494px;
+    }
+    .med-card-pacienta{
+        width: 1494px;
+    }
+
+    
+    .header-left{
+        margin-left: 333px;
+    }
+
+    .header-right{
+        margin-right: 315px;
+    }
+
+    #inf_koyko{
+        width: 1493px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1491px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1493px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1493px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 328px;
+    }
+    #inf_diagnoses{
+        margin-left: 328px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 396px;
+    }
+    #inf_work_capacity{
+        margin-left: 285px;
+    }
+    #inf_translations{
+        margin-left: 343px;
+    }
+    #inf_post_mortem{
+        margin-left: 441px;
+    }
+    #inf_injury{
+        margin-left: 349px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 404px;
+    }
+    #inf_pregnancy{
+        margin-left: 544px;
+    }
+    #inf_disability{
+        margin-left: 467px;
+    }
+    #inf_patient_p{
+        margin-left: 361px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 397px;
+    }
+}
+@media (min-width: 1801px) and (max-width: 1850px){
+    #modal-content{
+        width: 1812px;
+        margin-left: -337px;
+    }
+    .med-card-pacienta-header{
+        width: 1543px;
+    }
+    .med-card-pacienta{
+        width: 1543px;
+    }
+
+    .header-left{
+        margin-left: 333px;
+    }
+
+    .header-right{
+        margin-right: 363px;
+    }
+
+
+    #inf_koyko{
+        width: 1542px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1539px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1542px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1542px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 366px;
+    }
+    #inf_diagnoses{
+        margin-left: 366px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 411px;
+    }
+    #inf_work_capacity{
+        margin-left: 317px;
+    }
+    #inf_translations{
+        margin-left: 357px;
+    }
+    #inf_post_mortem{
+        margin-left: 477px;
+    }
+    #inf_injury{
+        margin-left: 379px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 430px;
+    }
+    #inf_pregnancy{
+        margin-left: 544px;
+    }
+    #inf_disability{
+        margin-left: 467px;
+    }
+    #inf_patient_p{
+        margin-left: 361px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 397px;
+    }
+}
+
+@media (min-width: 1851px) and (max-width: 1900px){
+    #modal-content{
+        width: 1862px;
+        margin-left: -362px;
+    }
+    .med-card-pacienta-header{
+        width: 1594px;
+    }
+    .med-card-pacienta{
+        width: 1594px;
+    }
+
+    .header-left{
+        margin-left: 333px;
+    }
+
+    .header-right{
+        margin-right: 363px;
+    }
+
+    #inf_koyko{
+        width: 1593px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1593px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1593px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1593px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 366px;
+    }
+    #inf_diagnoses{
+        margin-left: 366px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 411px;
+    }
+    #inf_work_capacity{
+        margin-left: 317px;
+    }
+    #inf_translations{
+        margin-left: 357px;
+    }
+    #inf_post_mortem{
+        margin-left: 477px;
+    }
+    #inf_injury{
+        margin-left: 379px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 458px;
+    }
+    #inf_pregnancy{
+        margin-left: 544px;
+    }
+    #inf_disability{
+        margin-left: 467px;
+    }
+    #inf_patient_p{
+        margin-left: 361px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 397px;
+    }
+}
+@media (min-width: 1901px)and (max-width: 1920px){
+
+
+    #modal-content{
+        width: 1862px;
+        margin-left: -362px;
+    }
+    .med-card-pacienta-header{
+        width: 1594px;
+    }
+    .med-card-pacienta{
+        width: 1594px;
+    }
+
+    .header-left{
+        margin-left: 333px;
+    }
+
+    .header-right{
+        margin-right: 363px;
+    }
+
+    #inf_koyko{
+        width: 1593px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1593px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1593px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1593px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 366px;
+    }
+    #inf_diagnoses{
+        margin-left: 366px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 411px;
+    }
+    #inf_work_capacity{
+        margin-left: 317px;
+    }
+    #inf_translations{
+        margin-left: 357px;
+    }
+    #inf_post_mortem{
+        margin-left: 477px;
+    }
+    #inf_injury{
+        margin-left: 379px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 458px;
+    }
+    #inf_pregnancy{
+        margin-left: 544px;
+    }
+    #inf_disability{
+        margin-left: 467px;
+    }
+    #inf_patient_p{
+        margin-left: 361px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 397px;
+    }
+}
+@media (min-width: 1921px)and (max-width: 4500px){
+    /* #modal-content{
+        width: 1866px;
+        right: 330px;
+    }
+    .med-card-pacienta-header{
+        width: 1637px;
+    }
+    .med-card-pacienta{
+        width: 1637px;
+    }
+
+    .header-left{
+        margin-left: 333px;
+    }
+
+    .header-right{
+        margin-right: 363px;
+    } */
+
+
+    #modal-content{
+        width: 1862px;
+        margin-left: -362px;
+    }
+    .med-card-pacienta-header{
+        width: 1594px;
+    }
+    .med-card-pacienta{
+        width: 1594px;
+    }
+
+    .header-left{
+        margin-left: 333px;
+    }
+
+    .header-right{
+        margin-right: 363px;
+    }
+
+    #inf_koyko{
+        width: 1593px;
+        overflow: scroll;
+    }
+    #inf_operation{
+        width:  1593px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_complication{
+        width: 1593px;
+        overflow: scroll;
+        height: 400px;
+    }
+    #inf_manipulation{
+        width: 1593px;
+        overflow: scroll;
+        height: 400px;
+    }
+
+    #inf_pers_info{
+        margin-left: 366px;
+    }
+    #inf_diagnoses{
+        margin-left: 366px;
+    }
+    #inf_ks_zabolev{
+        margin-left: 411px;
+    }
+    #inf_work_capacity{
+        margin-left: 317px;
+    }
+    #inf_translations{
+        margin-left: 357px;
+    }
+    #inf_post_mortem{
+        margin-left: 477px;
+    }
+    #inf_injury{
+        margin-left: 379px;
+    }
+    #inf_policy_passport_snills{
+        margin-left: 404px;
+    }
+    #inf_pregnancy{
+        margin-left: 544px;
+    }
+    #inf_disability{
+        margin-left: 467px;
+    }
+    #inf_patient_p{
+        margin-left: 361px;
+    }
+    #inf_onmk{
+        margin-left: 400px;
+    }
+    #inf_onk{
+        margin-left: 397px;
+    }
+}

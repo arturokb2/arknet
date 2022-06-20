@@ -1,0 +1,1605 @@
+[2021-08-25 11:17:34,019: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2021-08-25 11:17:34,029: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-25 11:17:35,048: INFO/MainProcess] mingle: all alone
+[2021-08-25 11:17:35,077: WARNING/MainProcess] /var/www/arknet/env/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+[2021-08-25 11:17:35,078: INFO/MainProcess] celery@lemm920003a-ThinkCentre-M920x ready.
+
+worker: Warm shutdown (MainProcess)
+[2021-08-26 03:53:44,629: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 2.00 seconds... (1/100)
+
+[2021-08-26 03:53:46,632: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 4.00 seconds... (2/100)
+
+[2021-08-26 03:53:50,640: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 6.00 seconds... (3/100)
+
+[2021-08-26 03:53:56,649: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 8.00 seconds... (4/100)
+
+[2021-08-26 03:54:04,661: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 10.00 seconds... (5/100)
+
+[2021-08-26 03:54:14,674: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 12.00 seconds... (6/100)
+
+[2021-08-26 03:54:26,688: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 14.00 seconds... (7/100)
+
+[2021-08-26 03:54:40,706: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 16.00 seconds... (8/100)
+
+[2021-08-26 03:54:56,727: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 18.00 seconds... (9/100)
+
+[2021-08-26 03:55:14,751: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 20.00 seconds... (10/100)
+
+[2021-08-26 03:55:34,778: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 22.00 seconds... (11/100)
+
+[2021-08-26 03:55:56,807: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 24.00 seconds... (12/100)
+
+[2021-08-26 03:56:20,839: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 26.00 seconds... (13/100)
+
+[2021-08-26 03:56:46,871: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 28.00 seconds... (14/100)
+
+[2021-08-26 03:57:14,908: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 30.00 seconds... (15/100)
+
+[2021-08-26 03:57:44,947: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 03:58:16,990: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 03:58:49,031: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 03:59:21,071: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 03:59:53,108: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:00:25,143: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:00:57,177: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:01:29,214: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:02:01,250: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:02:33,287: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:03:05,320: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:03:37,354: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:04:09,384: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:04:41,418: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:05:13,452: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:05:45,489: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:06:17,527: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:06:49,562: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:07:21,595: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:07:53,630: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:08:25,668: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:08:57,709: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:09:29,750: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:10:01,789: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:10:33,829: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:11:05,866: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:11:37,903: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:12:09,940: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:12:41,979: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:13:14,017: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:13:46,051: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:14:18,086: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:14:50,121: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:15:22,157: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:15:54,196: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:16:26,230: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:16:58,266: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:17:30,303: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:18:02,337: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:18:34,375: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:19:06,413: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:19:38,447: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:20:10,482: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:20:42,515: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:21:14,550: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 04:21:46,588: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-26 12:09:28,740: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2021-08-26 12:09:28,746: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-26 12:09:29,760: INFO/MainProcess] mingle: all alone
+[2021-08-26 12:09:29,811: WARNING/MainProcess] /var/www/arknet/env/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+[2021-08-26 12:09:29,811: INFO/MainProcess] celery@len-m920-003a ready.
+[2021-08-26 12:14:18,247: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/var/www/arknet/env/lib/python3.8/site-packages/celery/worker/consumer/consumer.py", line 326, in start
+    blueprint.start(self)
+  File "/var/www/arknet/env/lib/python3.8/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/var/www/arknet/env/lib/python3.8/site-packages/celery/worker/consumer/consumer.py", line 618, in start
+    c.loop(*c.loop_args())
+  File "/var/www/arknet/env/lib/python3.8/site-packages/celery/worker/loops.py", line 81, in asynloop
+    next(loop)
+  File "/var/www/arknet/env/lib/python3.8/site-packages/kombu/asynchronous/hub.py", line 361, in create_loop
+    cb(*cbargs)
+  File "/var/www/arknet/env/lib/python3.8/site-packages/kombu/transport/redis.py", line 1128, in on_readable
+    self.cycle.on_readable(fileno)
+  File "/var/www/arknet/env/lib/python3.8/site-packages/kombu/transport/redis.py", line 398, in on_readable
+    chan.handlers[type]()
+  File "/var/www/arknet/env/lib/python3.8/site-packages/kombu/transport/redis.py", line 733, in _receive
+    ret.append(self._receive_one(c))
+  File "/var/www/arknet/env/lib/python3.8/site-packages/kombu/transport/redis.py", line 743, in _receive_one
+    response = c.parse_response()
+  File "/var/www/arknet/env/lib/python3.8/site-packages/redis/client.py", line 3505, in parse_response
+    response = self._execute(conn, conn.read_response)
+  File "/var/www/arknet/env/lib/python3.8/site-packages/redis/client.py", line 3479, in _execute
+    return command(*args, **kwargs)
+  File "/var/www/arknet/env/lib/python3.8/site-packages/redis/connection.py", line 739, in read_response
+    response = self._parser.read_response()
+  File "/var/www/arknet/env/lib/python3.8/site-packages/redis/connection.py", line 470, in read_response
+    self.read_from_socket()
+  File "/var/www/arknet/env/lib/python3.8/site-packages/redis/connection.py", line 429, in read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+[2021-08-26 12:14:18,252: WARNING/MainProcess] /var/www/arknet/env/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:361: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2021-08-26 12:14:18,264: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Connection closed by server..
+Trying again in 2.00 seconds... (1/100)
+
+
+worker: Warm shutdown (MainProcess)
+[2021-08-27 03:04:03,196: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 2.00 seconds... (1/100)
+
+[2021-08-27 03:04:05,201: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 4.00 seconds... (2/100)
+
+[2021-08-27 03:04:09,207: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 6.00 seconds... (3/100)
+
+[2021-08-27 03:04:15,217: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 8.00 seconds... (4/100)
+
+[2021-08-27 03:04:23,229: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 10.00 seconds... (5/100)
+
+[2021-08-27 03:04:33,242: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 12.00 seconds... (6/100)
+
+[2021-08-27 03:04:45,257: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 14.00 seconds... (7/100)
+
+[2021-08-27 03:04:59,273: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 16.00 seconds... (8/100)
+
+[2021-08-27 03:05:15,293: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 18.00 seconds... (9/100)
+
+[2021-08-27 03:05:33,317: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 20.00 seconds... (10/100)
+
+[2021-08-27 03:05:53,342: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 22.00 seconds... (11/100)
+
+[2021-08-27 03:06:15,370: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 24.00 seconds... (12/100)
+
+[2021-08-27 03:06:39,398: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 26.00 seconds... (13/100)
+
+[2021-08-27 03:07:05,431: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 28.00 seconds... (14/100)
+
+[2021-08-27 03:07:32,570: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 30.00 seconds... (15/100)
+
+[2021-08-27 03:08:02,598: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:08:34,630: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:09:06,662: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:09:38,694: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:10:10,727: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:10:42,763: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:11:14,795: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:11:46,828: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:12:18,862: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:12:50,895: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:13:22,928: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:13:54,961: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:14:26,993: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:14:59,025: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:15:31,056: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:16:03,089: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:16:35,123: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:17:07,152: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:17:39,183: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:18:11,215: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:18:43,248: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:19:15,280: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:19:47,312: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:20:19,343: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:20:51,375: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:21:23,406: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 32.00 seconds... (16/100)
+
+[2021-08-27 03:21:55,552: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2021-08-27 03:21:55,557: INFO/MainProcess] mingle: searching for neighbors
+[2021-08-27 03:21:56,572: INFO/MainProcess] mingle: all alone
+[2021-08-27 03:21:56,628: WARNING/MainProcess] /var/www/arknet/env/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+[2021-08-27 03:21:56,628: INFO/MainProcess] celery@len-m920-003a ready.
+[2021-08-27 03:54:16,604: INFO/MainProcess] Task hospital.tasks.save_oper_sluch[3bd86672-b2b5-4511-a5a5-513a383300d0] received
+[2021-08-27 03:54:38,339: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:38,455: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:38,597: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:38,751: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:38,886: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:39,020: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:39,138: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:39,291: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:39,427: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:39,515: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:39,617: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:39,768: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:39,883: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:39,996: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:40,093: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:40,194: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:40,313: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:40,464: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:40,562: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:40,705: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:40,843: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:40,957: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:41,058: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:41,145: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:41,276: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:41,401: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:41,516: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:41,665: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:41,814: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:41,929: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:42,043: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:42,158: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:42,265: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:42,417: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:42,544: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:42,564: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:42,674: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:42,817: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:42,950: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:43,102: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:43,227: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:43,338: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:43,451: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:43,556: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:43,683: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:43,784: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:43,875: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:44,008: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:44,125: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:44,255: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:44,393: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:44,509: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:44,614: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:44,724: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:44,841: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:44,948: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:45,034: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:45,166: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:45,268: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:45,372: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:45,437: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:45,506: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:45,631: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:45,738: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:45,854: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:46,026: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:46,106: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:46,233: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:46,307: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:46,428: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:46,557: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:46,692: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:46,816: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:46,921: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:47,037: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:47,135: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:47,235: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:47,321: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:47,332: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:47,488: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:47,661: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:47,828: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:47,926: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:48,015: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:48,143: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:48,265: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:48,366: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:48,490: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:48,665: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:48,860: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:49,039: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:49,142: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:49,228: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:49,345: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:49,471: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:49,610: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:49,732: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:49,830: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:49,951: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:50,068: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:50,192: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:50,292: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:50,410: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:50,514: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:50,664: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:50,833: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:50,946: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:51,059: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:51,174: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:51,298: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:51,405: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:51,504: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:51,630: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:51,729: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:51,849: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:51,957: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:52,078: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:52,211: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:52,312: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:52,394: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:52,504: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:52,629: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:52,740: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:52,890: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:53,066: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:53,243: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:53,428: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:53,532: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:53,662: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:53,820: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:53,965: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:54,069: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:54,186: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:54,311: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:54,449: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:54,595: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:54,815: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:54,966: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:55,118: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:55,241: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:55,389: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:55,541: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:55,623: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:55,751: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:55,852: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:55,963: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:56,066: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:56,200: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:56,300: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:56,403: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:56,518: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:56,639: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:56,764: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:56,886: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:57,027: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:57,225: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:57,326: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:57,427: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:57,511: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:57,598: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:57,702: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:57,802: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:57,917: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:58,063: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:58,190: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:58,291: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:58,417: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:58,548: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:58,624: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:58,715: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:58,836: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:58,972: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:59,111: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:59,234: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:59,350: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:59,472: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:59,495: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:59,614: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:59,717: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:54:59,833: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:00,001: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:00,153: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:00,287: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:00,309: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:00,428: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:00,549: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:00,710: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:00,797: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:00,906: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,032: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,163: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,281: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,298: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,415: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,529: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,672: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,758: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,843: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:01,979: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:02,092: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:02,244: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:02,364: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:02,513: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:02,672: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:02,773: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:02,924: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:03,025: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:03,134: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:03,278: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:03,381: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:03,503: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:03,625: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:03,720: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:03,811: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:03,925: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:04,088: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:04,209: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:04,322: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:04,442: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:04,613: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:04,727: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:04,825: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:04,911: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:05,043: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:05,184: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:05,311: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:05,451: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:05,556: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:05,673: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:05,818: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:05,944: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:06,129: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:06,252: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:06,405: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:06,566: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:06,722: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:06,851: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:06,968: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:07,101: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:07,210: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:07,327: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:07,446: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:07,584: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:07,735: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:07,891: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,009: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,029: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,144: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,258: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,367: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,499: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,618: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,716: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,843: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:08,959: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:09,049: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:09,177: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:09,298: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:09,403: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:09,548: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:09,661: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:09,810: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:09,935: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:10,036: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:10,122: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:10,266: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:10,383: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:10,518: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:10,677: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:10,827: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:10,970: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:10,987: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:11,013: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:11,129: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:11,240: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:11,351: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:11,482: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:11,650: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:11,815: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:11,966: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:12,071: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:12,214: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:12,369: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:12,530: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:12,659: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:12,761: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:12,905: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:13,034: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:13,185: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:13,302: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:13,393: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:13,409: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:13,552: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:13,657: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:13,815: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:13,933: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,044: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,127: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,199: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,265: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,367: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,466: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,601: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,713: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,849: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:14,944: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:15,090: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:15,101: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:15,183: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:15,265: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:15,385: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:15,536: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:15,634: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:15,738: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:15,880: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,022: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,124: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,217: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,314: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,413: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,529: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,615: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,735: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,851: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,965: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:16,984: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:17,136: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:17,273: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:17,409: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:17,548: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:17,666: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:17,795: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:17,912: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:18,063: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:18,170: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:18,278: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:18,395: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:18,520: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:18,677: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:18,807: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:18,930: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,055: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,192: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,272: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,369: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,467: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,597: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,715: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,815: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,914: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:19,936: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:20,083: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:20,210: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:20,322: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:20,402: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:20,487: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:20,588: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:20,733: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:20,862: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:20,965: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:21,083: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:21,200: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:21,298: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:21,415: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:21,568: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:21,718: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:21,843: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:21,976: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:22,071: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:22,195: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:22,287: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:22,385: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:22,670: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:22,788: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:22,902: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:23,027: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:23,186: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:23,333: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:23,434: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:23,446: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:23,573: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:23,702: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:23,821: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:23,935: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:24,106: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:24,232: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:24,383: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:24,482: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:24,610: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:24,779: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:24,931: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:25,045: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:25,153: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:25,298: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:25,432: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:25,572: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:25,726: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:25,862: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:25,971: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:26,101: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:26,122: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:26,246: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:26,396: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:26,493: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:26,598: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:26,727: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:26,865: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:27,484: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:27,591: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:27,728: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:27,834: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:27,932: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:27,946: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:39,587: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:39,747: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:39,846: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:39,953: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:40,070: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:40,168: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:40,277: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:40,374: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:40,469: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:40,594: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:40,714: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:40,903: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,009: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,119: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,139: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,279: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,432: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,526: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,598: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,707: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,852: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:41,935: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:42,051: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:42,197: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:42,310: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:42,420: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:42,508: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:42,611: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:42,782: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:42,918: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:42,941: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:43,013: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:43,161: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:43,315: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:43,428: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:43,541: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:43,558: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:43,678: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:43,774: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:43,921: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:44,012: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:44,127: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:44,231: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:44,320: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:44,408: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:44,555: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:44,678: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:44,840: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:44,961: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:45,042: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:45,168: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:45,293: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:45,438: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:45,535: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:45,667: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:45,776: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:45,924: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:46,043: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:46,211: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:46,335: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:46,460: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:46,607: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:46,734: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:46,754: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:46,879: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:46,993: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:47,086: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:47,207: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:47,345: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:47,468: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:47,596: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:47,709: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:47,727: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:47,844: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:47,942: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:48,064: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:48,180: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:48,344: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:48,525: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:48,677: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:48,812: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:48,939: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:49,089: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:49,180: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:49,319: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:49,455: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:49,600: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:49,721: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:49,877: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:50,019: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:50,125: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:50,223: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:50,330: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:50,447: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:50,532: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:50,655: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:50,796: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:50,927: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:51,087: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:51,208: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:51,302: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:51,393: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:51,498: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:51,602: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:51,751: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:51,896: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:52,032: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:52,137: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:52,277: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:52,392: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:52,513: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:52,661: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:52,820: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:52,969: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:53,116: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:53,230: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:53,334: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:53,446: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:53,545: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:53,679: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:53,814: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:53,919: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:54,034: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:54,050: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:54,176: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:54,304: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:54,398: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:54,496: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:54,617: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:54,766: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:54,884: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:55,031: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:55,137: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:55,234: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:55,331: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:55,461: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:55,561: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:55,670: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:55,794: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:55,934: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,082: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,166: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,272: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,379: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,466: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,546: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,640: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,722: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,828: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:56,948: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:57,085: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:57,211: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:57,313: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:57,412: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:57,551: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:57,675: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:57,794: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:57,941: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:58,090: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:58,275: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:58,391: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:58,499: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:58,633: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:58,785: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:58,996: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:59,106: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:59,224: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:59,369: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:59,519: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:59,650: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:59,762: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:59,886: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:55:59,912: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:00,076: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:00,216: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:00,409: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:00,490: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:00,587: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:00,741: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:00,876: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:00,998: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:01,157: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:01,278: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:01,419: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:01,515: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:01,650: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:01,761: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:01,917: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:02,050: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:02,162: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:02,300: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:02,449: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:02,533: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:02,742: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:02,871: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:02,895: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:03,047: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:03,175: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:03,290: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:03,411: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:03,539: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:03,664: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:03,751: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:03,870: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:04,011: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:04,137: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:04,280: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:04,395: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:04,532: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:04,618: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:04,722: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:04,834: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:04,963: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:05,095: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:05,202: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:05,332: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:05,447: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:05,591: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:05,683: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:05,787: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:05,938: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:06,126: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:06,245: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:06,362: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:06,616: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:06,688: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:06,778: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:06,790: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:06,908: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:07,030: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:07,150: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:07,266: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:07,384: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:07,484: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:07,618: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:07,761: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:07,886: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:08,026: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:08,142: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:08,276: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:08,446: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:08,609: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:08,727: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:08,877: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:09,043: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:09,160: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:09,296: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:09,390: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:09,517: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:09,640: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:09,759: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:09,861: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,032: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,152: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,162: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,267: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,410: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,574: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,596: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,716: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,825: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:10,959: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:11,075: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:11,192: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:11,299: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:11,411: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:11,552: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:11,662: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:11,775: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:11,879: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:12,006: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:12,125: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:12,225: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:12,309: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:12,439: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:12,567: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:12,696: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:12,829: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:12,915: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:13,009: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:13,134: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:13,236: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:13,362: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:13,478: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:13,596: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:13,713: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:13,830: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:13,911: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:14,001: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:14,130: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:14,261: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:14,389: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:14,526: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:14,659: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:14,790: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:14,873: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:14,978: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:15,098: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:15,224: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:15,362: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:15,457: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:15,612: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:15,742: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:15,831: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:15,938: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:16,086: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:16,207: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:16,296: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:16,419: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:16,570: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:16,697: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:16,828: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:16,932: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:17,017: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:17,166: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:17,327: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:17,472: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:17,561: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:17,657: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:17,749: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:17,836: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:17,943: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:18,088: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:18,218: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:18,336: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:18,466: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:18,597: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:18,738: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:18,836: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:18,920: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,019: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,097: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,213: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,335: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,470: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,486: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,572: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,665: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,768: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:19,912: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,011: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,090: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,174: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,287: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,393: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,512: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,613: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,627: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,726: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,853: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:20,979: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:21,108: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:21,244: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:21,378: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:21,474: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:21,573: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:21,689: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:21,825: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:21,913: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:21,999: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:22,080: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:22,241: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:22,345: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:22,451: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:22,538: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:22,663: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:22,765: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:22,881: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:23,001: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:23,102: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:23,212: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:23,339: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:23,353: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:23,474: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:23,573: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:23,741: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:23,889: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:24,034: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:24,143: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:24,243: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:24,377: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:24,497: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:24,612: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:24,738: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:24,880: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:24,997: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:25,126: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:25,214: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:25,345: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:25,497: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:25,639: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:25,772: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:25,871: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:25,961: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,051: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,145: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,225: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,300: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,445: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,563: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,582: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,717: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,732: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,827: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:26,951: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:27,069: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:27,192: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:27,309: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:27,461: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:27,595: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:27,696: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:27,808: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:27,920: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:27,945: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:28,427: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:28,613: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:28,765: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:28,985: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:31,878: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:32,782: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:32,923: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:33,958: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:34,961: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:35,977: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:36,867: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:37,001: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:40,564: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:40,703: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:40,833: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:40,975: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:41,100: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:41,220: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:41,331: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:41,508: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:41,608: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:41,733: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:41,897: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:42,039: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:42,142: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:42,261: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:42,412: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:42,551: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:42,664: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:42,747: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:42,832: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:42,947: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:43,064: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:43,215: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:43,308: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:43,420: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:43,547: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:43,645: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:43,746: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:43,887: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,081: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,101: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,243: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,408: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,426: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,546: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,651: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,781: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,878: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:44,893: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,011: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,109: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,280: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,379: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,499: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,514: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,660: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,738: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,817: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:45,912: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,036: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,146: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,165: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,181: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,193: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,261: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,343: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,448: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,569: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,694: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,779: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:46,874: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:47,007: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:47,133: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:47,236: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:47,348: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:47,497: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:47,637: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:47,761: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:47,857: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:47,972: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:48,118: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:48,236: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:48,260: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:48,386: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:48,530: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:48,647: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:48,765: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:48,877: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:48,977: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:49,105: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:49,279: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:49,380: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:49,514: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:49,621: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:49,740: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:49,837: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:49,946: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:50,067: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:50,236: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:50,358: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:50,470: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:50,612: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:50,715: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:50,811: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:50,898: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,006: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,109: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,208: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,304: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,395: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,493: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,601: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,749: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,769: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,791: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,884: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:51,996: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:52,190: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:52,343: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:52,487: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:52,645: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:52,768: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:52,900: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:53,018: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:53,152: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:53,266: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:53,379: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:53,537: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:53,712: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:53,833: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:53,936: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:54,084: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:54,246: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:54,259: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:54,334: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:54,426: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:54,519: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:54,618: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:54,742: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:54,895: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:55,010: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:55,107: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:55,237: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:55,358: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:55,490: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:55,623: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:55,742: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:55,859: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:55,974: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:56,059: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:56,157: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:56,320: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:56,456: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:56,578: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:56,698: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:56,778: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:56,892: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:56,994: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:57,004: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:57,088: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:57,227: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:57,359: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:57,504: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:57,627: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:57,745: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:57,883: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:58,013: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:58,144: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:58,342: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:58,471: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:58,628: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:58,748: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:58,893: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:58,913: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,060: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,188: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,328: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,517: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,663: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,679: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,697: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,839: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,859: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:56:59,876: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:00,053: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:00,232: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:00,364: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:00,462: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:00,574: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:00,592: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:00,729: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:00,845: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:00,992: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:01,011: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:01,119: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:01,215: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:01,326: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:01,424: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:01,560: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:01,712: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:01,858: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:01,944: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,041: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,147: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,241: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,352: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,376: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,398: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,417: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,516: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,640: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,797: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:02,934: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:03,061: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:03,203: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:03,327: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:03,345: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:03,469: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:03,570: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:03,710: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:03,868: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:03,976: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:04,143: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:04,285: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:04,447: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:04,610: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:04,764: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:04,885: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:05,015: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:05,151: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:05,276: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:05,394: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:05,410: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:05,539: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:05,678: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:05,854: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:05,972: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:06,131: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:06,277: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:06,411: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:06,564: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:06,725: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:06,851: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:07,004: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:07,149: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:07,295: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:07,429: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:07,568: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:07,708: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:07,869: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:08,043: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:08,189: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:08,347: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:08,432: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:08,575: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:08,710: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:08,864: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:08,999: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,113: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,134: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,153: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,309: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,439: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,538: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,661: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,781: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,882: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:09,975: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:10,094: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:10,197: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:10,301: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:10,425: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:10,510: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:10,524: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:10,664: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:10,774: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:10,893: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:11,044: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:11,187: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:11,302: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:11,416: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:11,548: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:11,740: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:11,913: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:12,008: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:12,119: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:12,224: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:12,347: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:12,491: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:12,591: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:12,696: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:12,834: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:12,983: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:13,086: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:13,179: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:13,272: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:13,368: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:13,492: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:13,607: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:13,707: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:13,811: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:13,953: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:14,063: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:14,173: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:14,270: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:14,447: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:14,562: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:14,661: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:14,815: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:14,954: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:15,098: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:15,234: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:15,366: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:15,529: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:15,549: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:15,646: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:15,762: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:15,894: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:16,020: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:16,145: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:16,262: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:16,413: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:16,604: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:16,717: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:16,913: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:17,042: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:17,160: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:17,280: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:17,395: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:17,541: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:17,690: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:17,824: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:17,954: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:18,076: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:18,196: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:18,351: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:18,449: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:18,545: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:18,660: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:18,758: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:18,866: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:18,978: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:19,095: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:19,223: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:19,326: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:19,486: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:19,597: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:19,717: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:19,801: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:19,956: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:20,126: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:20,280: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:20,373: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:20,519: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:20,664: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:20,782: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:20,937: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:21,087: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:21,221: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:21,352: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:21,496: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:21,643: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:21,779: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:21,891: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:21,996: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:22,112: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:22,264: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:22,435: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:22,548: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:22,706: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:22,838: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:22,945: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:23,046: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:23,165: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:23,317: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:23,434: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:23,560: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:23,679: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:23,804: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:23,917: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,054: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,203: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,326: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,346: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,365: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,510: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,658: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,779: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,904: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:24,995: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:25,145: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:25,250: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:25,379: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:25,526: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:25,649: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:25,799: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:25,914: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:25,918: INFO/MainProcess] 2 of 4 channels over capacity in group hospital_exportfrom1c_1
+[2021-08-27 03:57:25,999: INFO/MainProcess] Task hospital.tasks.save_oper_sluch[3bd86672-b2b5-4511-a5a5-513a383300d0] succeeded in 189.39451604600026s: {'OPER': True, 'SLUCH': True}

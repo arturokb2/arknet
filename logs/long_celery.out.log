@@ -1,0 +1,92 @@
+ 
+ -------------- celery@lemm920003a-ThinkCentre-M920x v5.1.2 (sun-harmonics)
+--- ***** ----- 
+-- ******* ---- Linux-5.11.0-27-generic-x86_64-with-glibc2.29 2021-08-25 11:17:33
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         www:0x7f738677a850
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     
+- *** --- * --- .> concurrency: 4 (solo)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . hospital.tasks.create_annual_reports
+  . hospital.tasks.create_mix_reports
+  . hospital.tasks.create_reestr
+  . hospital.tasks.create_reference_reports
+  . hospital.tasks.save_oper_sluch
+
+ 
+ -------------- celery@lemm920003a-ThinkCentre-M920x v5.1.2 (sun-harmonics)
+--- ***** ----- 
+-- ******* ---- Linux-5.11.0-27-generic-x86_64-with-glibc2.29 2021-08-26 03:53:44
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         www:0x7f04d2020850
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     
+- *** --- * --- .> concurrency: 4 (solo)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . hospital.tasks.create_annual_reports
+  . hospital.tasks.create_mix_reports
+  . hospital.tasks.create_reestr
+  . hospital.tasks.create_reference_reports
+  . hospital.tasks.save_oper_sluch
+
+ 
+ -------------- celery@len-m920-003a v5.1.2 (sun-harmonics)
+--- ***** ----- 
+-- ******* ---- Linux-5.11.0-27-generic-x86_64-with-glibc2.29 2021-08-26 12:09:28
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         www:0x7fbde138b850
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     
+- *** --- * --- .> concurrency: 4 (solo)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . hospital.tasks.create_annual_reports
+  . hospital.tasks.create_mix_reports
+  . hospital.tasks.create_reestr
+  . hospital.tasks.create_reference_reports
+  . hospital.tasks.save_oper_sluch
+
+ 
+ -------------- celery@len-m920-003a v5.1.2 (sun-harmonics)
+--- ***** ----- 
+-- ******* ---- Linux-5.11.0-27-generic-x86_64-with-glibc2.29 2021-08-27 03:04:03
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         www:0x7f6b6d5df850
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     
+- *** --- * --- .> concurrency: 4 (solo)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . hospital.tasks.create_annual_reports
+  . hospital.tasks.create_mix_reports
+  . hospital.tasks.create_reestr
+  . hospital.tasks.create_reference_reports
+  . hospital.tasks.save_oper_sluch
+

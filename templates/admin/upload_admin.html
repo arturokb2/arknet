@@ -1,0 +1,13 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+{% if messages %}
+<h3>{{ message }}</h3>
+{% endif %}
+<div>
+    <form action="" method="post" enctype="multipart/form-data">
+        {{form.as_p}}
+        {% csrf_token %}
+        <button type="submit">Обновить файлы</button>
+    </form>
+</div>
+{% endblock %}

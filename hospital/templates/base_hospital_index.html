@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arknet</title>
+  <link href="{% static 'css/hospital/bootstrap.css' %}?v={{ hash }}" rel="stylesheet">
+  <link rel="icon" href="https://www.okb2-tmn.ru//upload/2020/08/cropped-favicontest-32x32.png" sizes="32x32">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <link href="{% static 'css/floating-labels.css' %}?v={{ hash }}" rel="stylesheet">
+  <link href="{% static 'css/hospital/hospital.css' %}?v={{ hash }}" rel="stylesheet">
+  <link href="{% static 'css/hospital/loader-style.css' %}?v={{ hash }}" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="{% static 'css/hospital/jquery.fias.min.css' %}?v={{ hash }}">
+  <link rel="stylesheet" href="{% static 'css/hospital/styles_adr.css' %}?v={{ hash }}">
+
+</head>
+
+<body>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+  <script src="{% static 'js/hospital/jquery.js' %}?v={{ hash }}"></script>
+
+  <script src="{% static 'js/hospital/jquery_fias_min.js' %}?v={{ hash }}"></script>
+  <script src="{% static 'js/hospital/script_adr.js' %}?v={{ hash }}"></script>
+
+
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script> -->
+  <!-- <script src="{% static 'js/hospital/popper.js' %}"></script> -->
+  <!-- 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script> -->
+  <script src="{% static 'js/hospital/bootstrap_min.js' %}?v={{ hash }}"></script>
+
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <script src="{% static 'js/hospital/vue.js' %}?v={{ hash }}"></script>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+
+  <script src="{% static 'js/hospital/axios_min.js' %}?v={{ hash }}"></script>
+
+  {% block content %}
+  {% endblock %}
+
+
+
+  <script src="{% static 'js/hospital/sendRequest.js' %}?v={{ hash }}"></script>
+  <script src="{% static 'js/hospital/load_file_1c.js' %}?v={{ hash }}"></script>
+  <script src="{% static 'js/hospital/update_pers.js' %}?v={{ hash }}"></script>
+  <script src="{% static 'js/hospital/create_reestr.js' %}?v={{ hash }}"></script>
+  <script src="{% static 'js/hospital/maskedinput.js' %}?v={{ hash }}"></script>
+  <script src="{% static 'js/hospital/masked.js' %}?v={{ hash }}"></script>
+  <script src="{% static 'js/hospital/reports.js' %}?v={{ hash }}"></script>
+
+
+
+
+
+  <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+  <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+  <!-- <script>
+    function qqweqq(){
+    console.log('create_reestr12312')
+    }
+</script> -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,260 @@
+
+
+.flex-content{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.med-card-pacienta{
+   
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.med-card-pacienta-header{
+    /* height: 30%; */
+ 
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+.med-card-pacienta-mek{
+
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+   
+}
+
+.med-card-pacienta-info{
+  
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+.med-card-pacienta-dates{
+  
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.med-card-pacienta-inc {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+@media (min-width: 1200px){
+    .modal-xl {
+        max-width: 1140px;
+    }
+
+    .med-card{
+        width: 895px;
+        margin-right: 15px;
+    }
+
+     /* #otd-div{
+        margin-right: 112px;
+    } */
+
+    /* Персональные данные */
+    #otd-div input{
+        width: 314px;
+    }
+    #vec-div input{
+        width: 136px;
+    } 
+    #m_roj-div label{
+        margin-right: 23px;
+    }
+    #m_roj-div input{
+        width: 651px;
+    }
+    #adr-div label{
+        margin-right: 3px;
+    }
+    #adr-div input{
+        width: 652px;
+    }
+    #rab-div label{
+        margin-right: 59px;
+    }
+    #rab-div input{
+       width: 314px;
+    }
+    #prof-div input{
+        width: 236px;
+    }
+    #r_n-div label{
+        margin-right: 22px;
+    }
+    #r_n-div input{
+        width: 313px;
+    }
+    #in_t-div label{
+        padding-right: 3px;
+    }
+    #in_t-div input{
+        width: 315px;
+    }
+    #lpu-div label{
+        padding-right: 50px;
+    }
+    #lpu-div input{
+        width: 317px;
+    }
+    #napr_n-div label{
+        padding-right: 62px;
+    }
+    #op-div label{
+        padding-right: 72px;
+    }
+    #goc-div label{
+        padding-right: 44px;
+    }
+    #vrez-div label{
+        padding-right: 20px;
+    }
+    #ostupleniya-div label{
+        padding-right: 2px;
+    }
+
+    /* Сведения о диагнозах */
+    #dsny-div label{
+        padding-right: 3px;
+    }
+    #dsny-div input{
+        width: 196px;
+        margin-right: 6px;
+        margin-left: 6px
+    }
+    #dsny_naim-div input{
+        width: 424px;
+    }
+    #dsk_kod-div input{
+        margin-left: 69px;
+        width: 196px;
+        margin-right: 6px;
+    }
+    #dsk_naim-div input{
+        width: 424px;
+    }
+    #dskz_kod-div input{
+        margin-left: 72px;
+        width: 196px;
+        margin-right: 6px;
+    }
+    #dskz_naim-div input{
+        width: 424px;
+    }
+    #ds_osl_kod-div input{
+        margin-left: 100px;
+        width: 196px;
+        margin-right: 6px;
+    }
+    #ds_osl_naim-div input{
+        width: 424px;
+    }
+    #dsc_kod-div input{
+        margin-left: 75px;
+        width: 196px;
+        margin-right: 6px;
+    }
+    #dsc_naim-div input{
+        width: 424px;
+    }
+
+    #dson_kod-div input{
+        margin-left: 112px;
+        width: 196px;
+        margin-right: 6px;
+    }
+    #dson_naim-div input{
+        width: 424px;
+    }
+    #icx-div input{
+        margin-left: 76px;
+        width: 196px;
+    }
+    #rez-div input{
+        margin-left: 51px;
+        width: 196px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* .otdel input{
+     width: 197px;
+ } */
+
+
+ .control_input {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+ }
+ /* .form-group {
+     margin-bottom: -4px;
+ }
+ .modal-xl{
+     max-width: width auto;
+ } */
+
+/* .med-card-menu-inc-list ul li{
+    padding: 3px;
+} */
+/* .med-card-menu-inc-list  a{
+    text-decoration: none;
+}  */
+
+ /* .menu{
+    min-width: 960px;
+} */
+
+/* 
+#Modal-history .modal-xl {
+    max-width: 1200px;
+    min-width: 1175px;
+} */
+
+#med_card_menu .list-group-item {
+    padding: 1px 1px;
+}
+
+/* #content .modal-content{
+    width: auto;
+} */
+
+/* .modal-dialog {
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+} */
+
+
+.input-is-invalid{
+    border-color: #dc3545;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
