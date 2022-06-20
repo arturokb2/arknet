@@ -1718,55 +1718,162 @@ class GroupP25(AnnualReportABC):
     def create(self):
         pass
 
-class VaultOtdTTT(AnnualReportABC):
+
+class VaultOtd(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
-    def create(self):
-        pass
-class VaultOtdNNN(AnnualReportABC):
-    def __init__(self,user, request):
-        super().__init__(user, request)
+        self.request = request
         self.user_group_name = 'hospital_reports_%s' % user
+
     def create(self):
-        file = self.is_file('vault_otd_rep_nnn.xlsx')
-        if file:
-            wb = load_workbook(file)
-            sheet = wb.active
-            os.remove(file)
-            patients = PatientsData(self.date_1, self.date_2, self.user)
-            patients.sluchays()
-            data = []
+        typ = self.request.get('type',None)
+        patients = PatientsData(self.date_1, self.date_2, self.user)
+        patients.sluchays()
+        data = []
+        otdel = self.request.get('otdel',None)
+
+        if typ != 'null':
             for p in patients.patients:
-                if p.sluchay.otd and p.sluchay.otd.naim in ('НЕВРОЛОГИЯ N1','НЕВРОЛОГИЯ N2','НЕВРОЛОГИЯ N3'):
-                    if (p.sluchay.icx and p.sluchay.icx.id_iz in (105, 106)) \
-                            or (p.sluchay.rslt and p.sluchay.rslt.id_tip in (105, 106)):
+                if typ == 'ttt':
+                    if p.sluchay.otd and p.sluchay.otd.naim in ['ТРАВМА N1','ТРАВМА N2','ТРАВМА N3']:
                         data.append(p)
-            dic = dict([('sheet', sheet), ('data', data), ('name', self.user.statistics_type.name),
-                        ('date_1', self.date_1), ('date_2', self.date_2)])
-            insert_sheet_nnn(**dic)
-            wb.save(self.path() + f'group_nnn_{self.user.user.id}.xlsx')
-            async_to_sync(get_channel_layer().group_send)(self.user_group_name,
-                                                          {'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
-            async_to_sync(get_channel_layer().group_send)(self.user_group_name,
-                                                          {'type': 'download_vault_otd',
-                                                           'text': self.path() + f'group_nnn_{self.user.user.id}.xlsx'})
-class VaultOtdHH(AnnualReportABC):
-    def __init__(self,user, request):
-        super().__init__(user, request)
-        self.user_group_name = 'hospital_reports_%s' % user
-    def create(self):
+                elif typ == 'nnn':
+                    if p.sluchay.otd and p.sluchay.otd.naim in ['НЕВРОЛОГИЯ N1','НЕВРОЛОГИЯ N2','НЕВРОЛОГИЯ N3']:
+                        data.append(p)
+                elif typ == 'hh':
+                    if p.sluchay.otd and p.sluchay.otd.naim in ['ХИРУРГИЧЕСКОЕ N1','ХИРУРГИЧЕСКОЕ N2(гн)']:
+                        data.append(p)
+        else:
+            for p in patients.patients:
+                    if p.sluchay.otd and p.sluchay.otd.naim == otdel:
+                        data.append(p)
+
+        n = self.request.get('n',None)
+        if n == '1':
+            self.oth_1(data)
+        elif n == '2':
+            self.oth_2(data)
+        elif n == '3':
+            self.oth_3(data)
+        elif n == '4':
+            self.oth_4(data)
+        elif n == '5':
+            self.oth_5(data)
+        elif n == '6':
+            self.oth_6(data)
+        elif n == '7':
+            self.oth_7(data)
+        elif n == '8':
+            self.oth_8(data)
+        elif n == '9':
+            self.oth_9(data)
+        elif n == 'a':
+            self.oth_a(data)
+        elif n == 'b':
+            self.oth_b(data)
+        elif n == 'v':
+            self.oth_v(data)
+        elif n == 'g':
+            self.oth_g(data)
+        elif n == 'd':
+            self.oth_d(data)
+
+    def oth_1(self,data):
+        #
+        print(data)
+    
+    def oth_2(self,data):
         pass
-        # file = self.is_file('vault_otd_rep_nnn.xlsx')
-        # if file:
-        #     wb = load_workbook(file)
-        #     sheet = wb.active
-        #     os.remove(file)
-        #     patients = PatientsData(self.date_1, self.date_2, self.user)
-        #     patients.sluchays()
-        #     data = []
-        #     for p in patients.patients:
-        #         if p.sluchay.otd and p.sluchay.otd.naim in ['НЕВРОЛОГИЯ N1','НЕВРОЛОГИЯ N2','НЕВРОЛОГИЯ N3']:
-        #             if
+    
+    def oth_3(self,data):
+        pass
+
+    def oth_4(self,data):
+        #otd_rep_4
+        print(data)
+
+    def oth_5(self,data):
+        pass
+
+    def oth_6(self,data):
+        pass
+
+    def oth_7(self,data):
+        pass
+
+    def oth_8(self,data):
+        pass
+
+    def oth_9(self,data):
+        pass
+
+    def oth_a(self,data):
+        pass
+
+    def oth_b(self,data):
+        pass
+
+    def oth_v(self,data):
+        pass
+    
+    def oth_g(self,data):
+        pass
+    
+    def oth_d(self,data):
+        pass
+
+
+
+# class VaultOtdTTT(AnnualReportABC):
+#     def __init__(self,user, request):
+#         super().__init__(user, request)
+#     def create(self):
+#         pass
+# class VaultOtdNNN(AnnualReportABC):
+#     def __init__(self,user, request):
+#         super().__init__(user, request)
+#         self.user_group_name = 'hospital_reports_%s' % user
+#     def create(self):
+#         file = self.is_file('vault_otd_rep_nnn.xlsx')
+#         if file:
+#             wb = load_workbook(file)
+#             sheet = wb.active
+#             os.remove(file)
+#             patients = PatientsData(self.date_1, self.date_2, self.user)
+#             patients.sluchays()
+#             data = []
+#             for p in patients.patients:
+#                 if p.sluchay.otd and p.sluchay.otd.naim in ('НЕВРОЛОГИЯ N1','НЕВРОЛОГИЯ N2','НЕВРОЛОГИЯ N3'):
+#                     if (p.sluchay.icx and p.sluchay.icx.id_iz in (105, 106)) \
+#                             or (p.sluchay.rslt and p.sluchay.rslt.id_tip in (105, 106)):
+#                         data.append(p)
+#             dic = dict([('sheet', sheet), ('data', data), ('name', self.user.statistics_type.name),
+#                         ('date_1', self.date_1), ('date_2', self.date_2)])
+#             insert_sheet_nnn(**dic)
+#             wb.save(self.path() + f'group_nnn_{self.user.user.id}.xlsx')
+#             async_to_sync(get_channel_layer().group_send)(self.user_group_name,
+#                                                           {'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
+#             async_to_sync(get_channel_layer().group_send)(self.user_group_name,
+#                                                           {'type': 'download_vault_otd',
+#                                                            'text': self.path() + f'group_nnn_{self.user.user.id}.xlsx'})
+
+# class VaultOtdHH(AnnualReportABC):
+#     def __init__(self,user, request):
+#         super().__init__(user, request)
+#         self.user_group_name = 'hospital_reports_%s' % user
+#     def create(self):
+#         pass
+#         # file = self.is_file('vault_otd_rep_nnn.xlsx')
+#         # if file:
+#         #     wb = load_workbook(file)
+#         #     sheet = wb.active
+#         #     os.remove(file)
+#         #     patients = PatientsData(self.date_1, self.date_2, self.user)
+#         #     patients.sluchays()
+#         #     data = []
+#         #     for p in patients.patients:
+#         #         if p.sluchay.otd and p.sluchay.otd.naim in ['НЕВРОЛОГИЯ N1','НЕВРОЛОГИЯ N2','НЕВРОЛОГИЯ N3']:
+#         #             if
 
 class AOth1(AnnualReportABC):
     def __init__(self,user, request):
@@ -2148,15 +2255,15 @@ def ReferenceReport(user,request):
         report = GroupP25(user,request)
         report.create()
 
-    if type_fun == 'vault_otd_rep_ttt':
-        report = VaultOtdTTT(user,request)
+    if type_fun == 'vault_otd_rep':
+        report = VaultOtd(user, request)
         report.create()
-    elif type_fun == 'vault_otd_rep_nnn':
-        report = VaultOtdNNN(user,request)
-        report.create()
-    elif type_fun == 'vault_otd_rep_hh':
-        report = VaultOtdHH(user,request)
-        report.create()
+    # elif type_fun == 'vault_otd_rep_nnn':
+    #     report = VaultOtdNNN(user,request)
+    #     report.create()
+    # elif type_fun == 'vault_otd_rep_hh':
+    #     report = VaultOtdHH(user,request)
+    #     report.create()
 
 
     type_fun = request.get('type_report')

@@ -1078,8 +1078,8 @@ let report_oth = new Vue({
         },
         departments_rep_onchange:function(event){
             let val = event.target.value
-            let btn = document.getElementById("statistics_rep_btn")
-            btn.setAttribute('btn',`departments_rep_${val}`)
+            let btn = document.getElementById("vault_otd_btn")
+            btn.setAttribute('n',val)
 
 
         },
@@ -3466,35 +3466,41 @@ function departments_reports() {
 function vra_reports() {
 }
 
-function otd_reports(event) {
-    if (event.target.value == 'ттт') {
-        document.getElementById("vault_otd_btn").setAttribute('value', 'ттт')
-    }
-    else if (event.target.value == 'ннн') {
-        document.getElementById("vault_otd_btn").setAttribute('value', 'ннн')
-    }
-    else {
-        document.getElementById("vault_otd_btn").setAttribute('value', '')
-    }
+function otd_reports() {
+    document.getElementById("select_vault_otd").value=''
+    // if (event.target.value == 'ттт') {
+    //     document.getElementById("vault_otd_btn").setAttribute('value', 'ттт')
+    // }
+    // else if (event.target.value == 'ннн') {
+    //     document.getElementById("vault_otd_btn").setAttribute('value', 'ннн')
+    // }
+    // else {
+    //     document.getElementById("vault_otd_btn").setAttribute('value', '')
+    // }
+}
+function on_select_vault_otd(){
+    document.getElementById("vault_otd_btn").setAttribute('t',document.getElementById("otd_reports_onchange").value)
+    document.getElementById("vault_otd_btn").setAttribute('n',document.getElementById("select_vault_otd").value)
 }
 
-function vault_otd_reports(event) {
+function vault_otd_reports() {
     let date1 = document.getElementById("date1")
     let date2 = document.getElementById("date2")
     var formData = new FormData()
-    formData.append('task_type', 'kcc_cb')
-    if (event.target.value == 'ттт') {
-        formData.append('group_p_list', 'vault_otd_rep_ttt')
-    }
-    else if (event.target.value == 'ннн') {
-        formData.append('group_p_list', 'vault_otd_rep_nnn')
-    }
-    else {
-        formData.append('group_p_list', 'vault_otd_rep_hh')
-    }
 
+    let btn = document.getElementById("vault_otd_btn")
     formData.append("date_1", date1.value)
     formData.append("date_2", date2.value)
+    formData.append("type",btn.getAttribute("t"))
+    formData.append("n",btn.getAttribute("n"))
+    formData.append('group_p_list', 'vault_otd_rep')
+    formData.append('task_type', 'reports')
+    try {
+        formData.append('otdel',document.getElementById("otdel").value)
+    }
+    catch{
+        formData.append('otdel','')
+    }
 
     report_oth.$data.group_shaping = true
     report_oth.$data.group_create = false

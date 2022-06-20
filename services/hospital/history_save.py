@@ -530,12 +530,15 @@ class Save():
 
         # 7.Трудоспособность
         try:
-            sluchay.trs = Trs.objects.get(naim=str(history['trs']).upper(), dateend=None) if history[
-                                                                                                 'trs'] != None and \
-                                                                                             history[
-                                                                                                 'trs'] != '' else None
-        except Trs.DoesNotExist:
-            sluchay.trs = None
+            try:
+                sluchay.trs = Trs.objects.get(naim=str(history['trs']).upper(), dateend=None) if history[
+                                                                                                    'trs'] != None and \
+                                                                                                history[
+                                                                                                    'trs'] != '' else None
+            except Trs.DoesNotExist:
+                sluchay.trs = None
+        except:
+            pass
 
         # 8.Манипуляции
         tem_manipulation = []
@@ -999,6 +1002,7 @@ class Save():
             le_vr.kd = int(str(data['N']).strip()) if data['N'] != None and data['N'] != "" else None
         except ValueError:
             print('error int le_vr.kd')
+            
         try:
             le_vr.aro = str(data['aro']).strip()
         except:
