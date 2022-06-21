@@ -677,6 +677,36 @@
                           </select>
                         </div>
                         <br>
+
+
+                        <div class="list-group text-center" >
+                          <select class="text-center" v-if="select_vault_otd_8">
+                            <option value=""></option>
+                            <option value="1">3.сводный отчет (ф.4000)</option>
+                            <option value="2">3.расшифровка (ф.4000)</option>
+                            <option value="3">3.1 лица старше труд.возраста (4001)</option>
+                            <option value="4">операции у детей в возр-те до 1 года (4002)</option>
+                            <option value="5">1.2 вкладыш в ф.14 (1001)</option>
+                            <option value="6">1.2 вкладыш в ф.14 (1001) расшифровка</option>
+                            <option value="7">1.3 хирург.актив-ть при забол-х легких(1002)</option>
+                            <option value="8">4.операции с применением ВМП</option>
+                          </select>
+                        </div>
+
+                        <br>
+                        <div class="list-group text-center" >
+                          <select class="text-center" v-if="select_vault_otd_9">
+                            <option value=""></option>
+                            <option value="1">А.Взрослые 18 лет и старше</option>
+                            <option value="2">Б.Взрослые нетрудоспособного возраста</option>
+                            <option value="3">В.Дети до 18 лет</option>
+                            <option value="4">ф.2001 - 2900</option>
+                            <option value="5">ф.2001 (А,Б,В,ф.2001-2900)</option>
+                          </select>
+                        </div>
+
+                        <br>
+
                         <!-- <div class="text-center" style="margin-bottom: 10px;">
                           <button type="button" onclick="create_reports(event)" id="statistics_rep_btn"
                             class="btn btn-primary btn-lg" style="padding: 0px;">Создать отчет</button>
@@ -795,7 +825,7 @@
                         </div>
                         <br>
                         <div class="list-group text-center" >
-                          <select class="text-center">
+                          <select class="text-center" v-if="select_vault_otd_8">
                             <option value=""></option>
                             <option value="1">3.сводный отчет (ф.4000)</option>
                             <option value="2">3.расшифровка (ф.4000)</option>
@@ -805,6 +835,18 @@
                             <option value="6">1.2 вкладыш в ф.14 (1001) расшифровка</option>
                             <option value="7">1.3 хирург.актив-ть при забол-х легких(1002)</option>
                             <option value="8">4.операции с применением ВМП</option>
+                          </select>
+                        </div>
+
+                        <br>
+                        <div class="list-group text-center" >
+                          <select class="text-center" v-if="select_vault_otd_9">
+                            <option value=""></option>
+                            <option value="1">А.Взрослые 18 лет и старше</option>
+                            <option value="2">Б.Взрослые нетрудоспособного возраста</option>
+                            <option value="3">В.Дети до 18 лет</option>
+                            <option value="4">ф.2001 - 2900</option>
+                            <option value="5">ф.2001 (А,Б,В,ф.2001-2900)</option>
                           </select>
                         </div>
 

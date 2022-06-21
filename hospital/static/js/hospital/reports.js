@@ -519,7 +519,8 @@ let report_oth = new Vue({
         panel_m_31: false,
         panel_m_32: false,
         panel_m_33: false,
-
+        select_vault_otd_8: false,
+        select_vault_otd_9: false
 
 
     },
@@ -701,6 +702,9 @@ let report_oth = new Vue({
             if (date_1 != null) { date_1.value = '' }
             if (date_2 != null) { date_2.value = '' }
             this.m_filter = false
+
+            this.select_vault_otd_8 = false
+            this.select_vault_otd_9 = false
 
         },
         references: function () {
@@ -1072,15 +1076,29 @@ let report_oth = new Vue({
             this.init_oth()
             this.departments_reports = !this.departments_reports
             setTimeout(() => {
-                document.getElementById("otdel").style="width:-moz-available;text-align: center;"
+                document.getElementById("otdel").style = "width:-moz-available;text-align: center;"
             }, 300)
 
         },
-        departments_rep_onchange:function(event){
+        departments_rep_onchange: function (event) {
             let val = event.target.value
             let btn = document.getElementById("vault_otd_btn")
-            btn.setAttribute('n',val)
+            btn.setAttribute('n', val)
 
+            if (val == '8'){
+                report_oth.$data.select_vault_otd_8 = true
+            }
+            else{
+                report_oth.$data.select_vault_otd_8 = false
+            }
+
+
+            if (val == '9'){
+                report_oth.$data.select_vault_otd_9 = true
+            }
+            else{
+                report_oth.$data.select_vault_otd_9 = false
+            }
 
         },
         vra_rep: function () {
@@ -1088,7 +1106,7 @@ let report_oth = new Vue({
             this.vra_reports = !this.vra_reports
             setTimeout(() => {
                 vra_rep()
-                document.getElementById("vra_n_k").style="width:-moz-available;text-align: center;"
+                document.getElementById("vra_n_k").style = "width:-moz-available;text-align: center;"
             }, 300)
             // let vra_list = document.getElementById("vra_kod_naim")
             // vra_list.innerHTML = ""
@@ -1307,15 +1325,15 @@ function onchange_group_p_list_a_oth() {
     if (val == 'a_oth_1') {
         report_oth.$data.panel_m_1 = true
         setTimeout(() => {
-            document.getElementById("abobsh").style="width:-moz-available;text-align: center;"
-            document.getElementById("vra").style="width:-moz-available;text-align: center;"
-            document.getElementById("otdel").style="width:-moz-available;text-align: center;"
-            document.getElementById("fam_pat").style="width:-moz-available;text-align: center;"
-            document.getElementById("agegroup").style="width:-moz-available;text-align: center;"
-            document.getElementById("v014").style="width:-moz-available;text-align: center;"
-            document.getElementById("prpg").style="width:-moz-available;text-align: center;"
-            document.getElementById("v005").style="width:-moz-available;text-align: center;"
-            document.getElementById("v012").style="width:-moz-available;text-align: center;" 
+            document.getElementById("abobsh").style = "width:-moz-available;text-align: center;"
+            document.getElementById("vra").style = "width:-moz-available;text-align: center;"
+            document.getElementById("otdel").style = "width:-moz-available;text-align: center;"
+            document.getElementById("fam_pat").style = "width:-moz-available;text-align: center;"
+            document.getElementById("agegroup").style = "width:-moz-available;text-align: center;"
+            document.getElementById("v014").style = "width:-moz-available;text-align: center;"
+            document.getElementById("prpg").style = "width:-moz-available;text-align: center;"
+            document.getElementById("v005").style = "width:-moz-available;text-align: center;"
+            document.getElementById("v012").style = "width:-moz-available;text-align: center;"
         }, 300)
     }
     else if (val == 'a_oth_2') {
@@ -1379,24 +1397,24 @@ function onchange_group_p_list_a_oth() {
         report_oth.$data.panel_m_19 = true
         setTimeout(() => {
             // document.getElementById("trv").style="width:-moz-available;text-align: center;"
-            document.getElementById("trvnas").style="width:-moz-available;text-align: center;"
+            document.getElementById("trvnas").style = "width:-moz-available;text-align: center;"
         }, 300)
-        
+
     }
     else if (val == 'a_oth_20') {
         report_oth.$data.panel_m_20 = true
         setTimeout(() => {
-            document.getElementById("isfin").style="width:-moz-available;text-align: center;"
-            document.getElementById("v014").style="width:-moz-available;text-align: center;"
-            document.getElementById("f003").style="width:-moz-available;text-align: center;"
+            document.getElementById("isfin").style = "width:-moz-available;text-align: center;"
+            document.getElementById("v014").style = "width:-moz-available;text-align: center;"
+            document.getElementById("f003").style = "width:-moz-available;text-align: center;"
         }, 300)
     }
     else if (val == 'a_oth_21') {
         report_oth.$data.panel_m_21 = true
         setTimeout(() => {
-            document.getElementById("a_oth_21_input_1").style="width:-moz-available;text-align: center;"
-            document.getElementById("a_oth_21_input_2").style="width:-moz-available;text-align: center;"
-            document.getElementById("vra").style="width:-moz-available;text-align: center;"
+            document.getElementById("a_oth_21_input_1").style = "width:-moz-available;text-align: center;"
+            document.getElementById("a_oth_21_input_2").style = "width:-moz-available;text-align: center;"
+            document.getElementById("vra").style = "width:-moz-available;text-align: center;"
         }, 300)
     }
     else if (val == 'a_oth_22') {
@@ -1417,7 +1435,7 @@ function onchange_group_p_list_a_oth() {
     else if (val == 'a_oth_27') {
         report_oth.$data.panel_m_27 = true
         setTimeout(() => {
-            document.getElementById("v020").style="width:-moz-available;text-align: center;"
+            document.getElementById("v020").style = "width:-moz-available;text-align: center;"
         }, 300)
     }
     else if (val == 'a_oth_28') {
@@ -1624,7 +1642,7 @@ function all_filters() {
                 || this.id == 'metod_hmp' || this.id == 'vid_hmp') {
                 let inp = document.createElement("input")
                 inp.setAttribute('id', `in_${this.id}`)
-                inp.type ='text'
+                inp.type = 'text'
                 div_block.appendChild(inp)
             }
             else if (this.id == 'dskz_filt' || this.id == 'srber_filt') {
@@ -1907,9 +1925,9 @@ function get_checked_filters() {
 function vra_rep() {
     let vra_list = document.getElementById("vra_kod_naim")
     vra_list.innerHTML = ""
-    for (d of report_oth.$data.sprav_list.VraListKodName){
+    for (d of report_oth.$data.sprav_list.VraListKodName) {
         let op = document.createElement("option")
-        op.value = d.kod +' '+d.naim
+        op.value = d.kod + ' ' + d.naim
         vra_list.appendChild(op)
     }
 }
@@ -3416,7 +3434,7 @@ function annual_pr_vra(type_report) {
     }
 }
 
-function departments_rep(type_report){
+function departments_rep(type_report) {
     console.log(type_report)
 }
 // function departments_rep_2(type_report){}
@@ -3467,7 +3485,7 @@ function vra_reports() {
 }
 
 function otd_reports() {
-    document.getElementById("select_vault_otd").value=''
+    document.getElementById("select_vault_otd").value = ''
     // if (event.target.value == 'ттт') {
     //     document.getElementById("vault_otd_btn").setAttribute('value', 'ттт')
     // }
@@ -3478,9 +3496,26 @@ function otd_reports() {
     //     document.getElementById("vault_otd_btn").setAttribute('value', '')
     // }
 }
-function on_select_vault_otd(){
-    document.getElementById("vault_otd_btn").setAttribute('t',document.getElementById("otd_reports_onchange").value)
-    document.getElementById("vault_otd_btn").setAttribute('n',document.getElementById("select_vault_otd").value)
+function on_select_vault_otd() {
+    let v = document.getElementById("select_vault_otd").value
+
+    if (v == '8') {
+        report_oth.$data.select_vault_otd_8 = true
+    }
+    else {
+        report_oth.$data.select_vault_otd_8 = false
+    }
+
+    if (v == '9') {
+        report_oth.$data.select_vault_otd_9 = true
+    }
+    else {
+        report_oth.$data.select_vault_otd_9 = false
+    }
+
+
+    document.getElementById("vault_otd_btn").setAttribute('t', document.getElementById("otd_reports_onchange").value)
+    document.getElementById("vault_otd_btn").setAttribute('n', document.getElementById("select_vault_otd").value)
 }
 
 function vault_otd_reports() {
@@ -3491,15 +3526,15 @@ function vault_otd_reports() {
     let btn = document.getElementById("vault_otd_btn")
     formData.append("date_1", date1.value)
     formData.append("date_2", date2.value)
-    formData.append("type",btn.getAttribute("t"))
-    formData.append("n",btn.getAttribute("n"))
+    formData.append("type", btn.getAttribute("t"))
+    formData.append("n", btn.getAttribute("n"))
     formData.append('group_p_list', 'vault_otd_rep')
     formData.append('task_type', 'reports')
     try {
-        formData.append('otdel',document.getElementById("otdel").value)
+        formData.append('otdel', document.getElementById("otdel").value)
     }
-    catch{
-        formData.append('otdel','')
+    catch {
+        formData.append('otdel', '')
     }
 
     report_oth.$data.group_shaping = true
@@ -3569,10 +3604,10 @@ function p_list_lit(h) {
 //     let div = $('#filters')
 //     let inp = $('input', div)
 //     console.log(inp)
-    // inp = document.getElementById("filters")
-    // for (i of inp.childNodes){
-    //     console.log(i)
-    // }
+// inp = document.getElementById("filters")
+// for (i of inp.childNodes){
+//     console.log(i)
+// }
 // }
 // function width_input_off(){}
 
@@ -3637,14 +3672,14 @@ function onchange_group_p_list() {
         init_list_data(true, true)
         let data = ['stay_in_mo_filt']
         set_checked_filters(data)
-        document.getElementById("stay_in_mo_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
+        document.getElementById("stay_in_mo_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
         p_list_cast(250)
     }
     else if (select.value == 'group_p6') {
         init_list_data(true, true)
         let data = ['kod_op_filt']
         set_checked_filters(data)
-        document.getElementById("kod_op_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
+        document.getElementById("kod_op_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
         p_list_cast(250)
     }
     else if (select.value == 'group_p7') {
@@ -3665,7 +3700,7 @@ function onchange_group_p_list() {
         init_list_data(true, true)
         let data = ['rai_in_filt']
         set_checked_filters(data)
-        document.getElementById("rai_in_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
+        document.getElementById("rai_in_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
         p_list_cast(250)
     }
     else if (select.value == 'group_p11') {
@@ -3701,16 +3736,16 @@ function onchange_group_p_list() {
         set_checked_filters(['dskz_filt'])
         set_checked_filters(['icx_filt'])
 
-        document.getElementById("man_list_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("kod_vra_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("otd_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("fam_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("age_group_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("goc_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("prpg_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("pol_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
+        document.getElementById("man_list_block").querySelector("input").style = "width:-moz-available;text-align: center;"
+        document.getElementById("kod_vra_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
+        document.getElementById("otd_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
+        document.getElementById("fam_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
+        document.getElementById("age_group_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
+        document.getElementById("goc_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
+        document.getElementById("prpg_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
+        document.getElementById("pol_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
         // document.getElementById("dskz_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("icx_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
+        document.getElementById("icx_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
 
 
         p_list_cast(400)
@@ -3719,7 +3754,7 @@ function onchange_group_p_list() {
         init_list_data(true, true)
         let data = ['stay_in_mo_filt']
         set_checked_filters(data)
-        document.getElementById("stay_in_mo_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
+        document.getElementById("stay_in_mo_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
         p_list_cast(250)
     }
     else if (select.value == 'group_p17') {
@@ -3749,9 +3784,9 @@ function onchange_group_p_list() {
         set_checked_filters(['vid_hmp'])
         p_list_cast(350)
 
-        document.getElementById("otd_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("metod_hmp_block").querySelector("input").style="width:-moz-available;text-align: center;"
-        document.getElementById("vid_hmp_block").querySelector("input").style="width:-moz-available;text-align: center;"
+        document.getElementById("otd_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
+        document.getElementById("metod_hmp_block").querySelector("input").style = "width:-moz-available;text-align: center;"
+        document.getElementById("vid_hmp_block").querySelector("input").style = "width:-moz-available;text-align: center;"
     }
     else if (select.value == 'group_p23') {
         init_list_data(true, true)
@@ -3762,7 +3797,7 @@ function onchange_group_p_list() {
         set_checked_filters(['dskz_filt'])
         set_checked_filters(['terr_filt'])
 
-        document.getElementById("terr_filt_block").querySelector("input").style="width:-moz-available;text-align: center;"
+        document.getElementById("terr_filt_block").querySelector("input").style = "width:-moz-available;text-align: center;"
 
         p_list_cast(250)
     }

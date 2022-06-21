@@ -44,7 +44,7 @@ function start_prot() {
     prot_23()
     prot_24()
     prot_25()
-    prot_26()
+//    prot_26()
     prot_27()
 }
 
@@ -399,7 +399,7 @@ function prot_25() {
     t_pol = document.getElementById("t_pol")
     ctkom = document.getElementById("ctkom")
     if (ctkom.value != 'БЕЗ ПОЛИСА' && ctkom.value != 'БЕЗ ПОЛИСА ТФОМС ТО Г.ТЮМЕНЬ' && ctkom.value != 'ОПЛАТА ПО СЧЕТУ' 
-        && ctkom.value != 'ОПЛАТА В КАССУ ЛПУ' && ctkom.value != 'ДМС'){
+        && ctkom.value != 'ОПЛАТА В КАССУ ЛПУ'){
         if (t_pol.value == '') {
             add_prot('Не заполнен тип полиса')
         }
@@ -410,8 +410,9 @@ function prot_26() {
     nctp = document.getElementById("nctp")
     t_pol = document.getElementById("t_pol")
     ctkom = document.getElementById("ctkom")
+    vds = document.getElementById("vds")
     if (ctkom.value != 'БЕЗ ПОЛИСА' || ctkom.value != 'БЕЗ ПОЛИСА ТФОМС ТО Г.ТЮМЕНЬ' || ctkom.value != 'ОПЛАТА ПО СЧЕТУ' 
-        || ctkom.value != 'ОПЛАТА В КАССУ ЛПУ' || ctkom.value != 'ДМС' ){
+        || ctkom.value != 'ОПЛАТА В КАССУ ЛПУ' || vds.value != 'ДМС'){
         if (nctp.value.length > 0) {
             if (nctp.value.length == 16) {
                 if (t_pol.value != 'Полис ОМС единого образца') {

@@ -1728,7 +1728,7 @@ class VaultOtd(AnnualReportABC):
     def create(self):
         typ = self.request.get('type',None)
         patients = PatientsData(self.date_1, self.date_2, self.user)
-        patients.sluchays()
+        patients.sluchays(cah=True)
         data = []
         otdel = self.request.get('otdel',None)
 
@@ -1779,7 +1779,7 @@ class VaultOtd(AnnualReportABC):
             self.oth_d(data)
 
     def oth_1(self,data):
-        #
+        #otd_rep_1.xlsx
         print(data)
     
     def oth_2(self,data):
