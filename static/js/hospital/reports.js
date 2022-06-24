@@ -1079,6 +1079,8 @@ let report_oth = new Vue({
                 document.getElementById("otdel").style = "width:-moz-available;text-align: center;"
             }, 300)
 
+
+            
         },
         departments_rep_onchange: function (event) {
             let val = event.target.value
