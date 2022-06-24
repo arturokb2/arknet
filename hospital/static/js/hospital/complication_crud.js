@@ -17,10 +17,12 @@ function Complication_add() {
         // console.log(v_oper[opers])
         let option = document.createElement("option")
 
-        if (v_oper[opers]['pop'] == "Да"){
-            option.innerText = v_oper[opers]['kod_op']
-            select.appendChild(option)
-        }
+//        if (v_oper[opers]['pop'] == "Да"){
+//            option.innerText = v_oper[opers]['kod_op']
+//            select.appendChild(option)
+//        }
+        option.innerText = v_oper[opers]['kod_op']
+        select.appendChild(option)
     }
 
     let tr = document.createElement("tr")
@@ -44,7 +46,9 @@ function Complication_add() {
             select.setAttribute("tr", n)
             select.classList.add('custom-select')
             select.classList.add('text-center')
-            let xosl = ['при лечении', 'интрооперационное', 'послеоперационное', 'другое']
+//            let xosl = ['при лечении', 'интрооперационное', 'послеоперационное', 'другое']
+            let xosl = ['1', '2', '3', '4']
+
             for (let i = 0; i < xosl.length; i++) {
                 let option = document.createElement("option")
                 option.innerText = xosl[i]
@@ -62,7 +66,8 @@ function Complication_add() {
             select.setAttribute("tr", n)
             select.classList.add('custom-select')
             select.classList.add('text-center')
-            let posl = ['из-за болезни', 'ятрогенная', 'тех.оснащение', 'другая']
+//            let posl = ['из-за болезни', 'ятрогенная', 'тех.оснащение', 'другая']
+            let posl = ['1', '2', '3', '4']
             for (let i = 0; i < posl.length; i++) {
                 let option = document.createElement("option")
                 option.innerText = posl[i]
@@ -81,7 +86,8 @@ function Complication_add() {
             select.classList.add('custom-select')
             select.classList.add('text-center')
 
-            let aosl = ['приведшеее к летальному исходу', 'опасное для жизни', 'удлиняющее пребывание', 'другое']
+//            let aosl = ['приведшеее к летальному исходу', 'опасное для жизни', 'удлиняющее пребывание', 'другое']
+                let aosl = ['1', '2', '3', '4']
             for (let i = 0; i < aosl.length; i++) {
                 let option = document.createElement("option")
                 option.innerText = aosl[i]
@@ -164,10 +170,12 @@ function Complication_edit() {
     
         
                 
-                if (v_oper[opers]['pop'] == "Да"){
-                    option.innerText = v_oper[opers]['kod_op']
-                    select.appendChild(option)
-                }
+//                if (v_oper[opers]['pop'] == "Да"){
+//                    option.innerText = v_oper[opers]['kod_op']
+//                    select.appendChild(option)
+//                }
+                option.innerText = v_oper[opers]['kod_op']
+                select.appendChild(option)
             }
             for (let com in complication) {
     
@@ -190,7 +198,8 @@ function Complication_edit() {
                     select.setAttribute("tr", n)
                     select.classList.add('custom-select')
                     select.classList.add('text-center')
-                    let xosl = ['при лечении', 'интрооперационное', 'послеоперационное', 'другое']
+//                    let xosl = ['при лечении', 'интрооперационное', 'послеоперационное', 'другое']
+                    let xosl = ['1', '2', '3', '4']
                     for (let i = 0; i < xosl.length; i++) {
                         let option = document.createElement("option")
                         option.innerText = xosl[i]
@@ -208,7 +217,8 @@ function Complication_edit() {
                     select.setAttribute("tr", n)
                     select.classList.add('custom-select')
                     select.classList.add('text-center')
-                    let posl = ['из-за болезни', 'ятрогенная', 'тех.оснащение', 'другая']
+//                    let posl = ['из-за болезни', 'ятрогенная', 'тех.оснащение', 'другая']
+                    let posl = ['1', '2', '3', '4']
                     for (let i = 0; i < posl.length; i++) {
                         let option = document.createElement("option")
                         option.innerText = posl[i]
@@ -226,7 +236,8 @@ function Complication_edit() {
                     select.setAttribute("tr", n)
                     select.classList.add('custom-select')
                     select.classList.add('text-center')
-                    let aosl = ['приведшеее к летальному исходу', 'опасное для жизни', 'удлиняющее пребывание', 'другое']
+//                    let aosl = ['приведшеее к летальному исходу', 'опасное для жизни', 'удлиняющее пребывание', 'другое']
+                    let aosl = ['1', '2', '3', '4']
                     for (let i = 0; i < aosl.length; i++) {
                         let option = document.createElement("option")
                         option.innerText = aosl[i]

@@ -1,10 +1,13 @@
 from django.contrib import admin
 from .models import *
 
+class SluchayAdmin(admin.ModelAdmin):
+    search_fields = ('id','nib')
+
 admin.site.register(Load_1c)
 admin.site.register(temp_oper)
 admin.site.register(temp_sluch)
-admin.site.register(Sluchay)
+admin.site.register(Sluchay,SluchayAdmin)
 admin.site.register(Vb_s)
 admin.site.register(Vb_a)
 admin.site.register(Vds)
@@ -26,6 +29,8 @@ admin.site.register(Patient_P)
 class PatientAdmin(admin.ModelAdmin):
     search_fields = ('id',)
 admin.site.register(Patient,PatientAdmin)
+
+
 
 admin.site.register(Onmk_sp)
 admin.site.register(Onmk_li)

@@ -3,13 +3,15 @@ from django import forms
 
 
 
+# PROGRAMMS = (
+#             ('ambulatory/','Амбулаторные'),
+#             ('reestr/','Реестры'),
+#             ('convector/','Конвектор'),
+#             ('hospital/','Стационар')
+#             )
 PROGRAMMS = (
-            ('ambulatory/','Амбулаторные'),
-            ('reestr/','Реестры'),
-            ('convector/','Конвектор'),
-            ('hospital/','Стационар')
+            ('hospital/','Стационар'),
             )
-
 class Form_auth(forms.Form):
 # Класс Form_auth создает форму авторизации и выбора программы 
     username = forms.CharField(max_length=100,

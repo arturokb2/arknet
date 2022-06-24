@@ -254,10 +254,10 @@ class History:
 
         # 6.Oсложнение
         oslo_list = []
-        # print(oper)
-        for o in range(len(oper)):
-            op = Oper.objects.get(id=oper[o]['id'])
-            oslo_values = op.oslo.values('id')
+
+        # for o in range(len(oper)):
+        if sluchay.oslo.count() > 0:
+            oslo_values = sluchay.oslo.values('id')
             if len(oslo_values) != 0:
                 for os in range(len(oslo_values)):
                     oslo_d = {}
@@ -269,9 +269,9 @@ class History:
                         str(obj_oslo.dato)) if obj_oslo.dato != None else ''
                     oslo_d['osl'] = obj_oslo.osl.kod if obj_oslo.osl != None else ''
                     oslo_d['osl_naim'] = obj_oslo.osl.naim if obj_oslo.osl != None else ''
-                    oslo_d['xosl'] = obj_oslo.xosl.naim if obj_oslo.xosl != None else ''
-                    oslo_d['posl'] = obj_oslo.posl.naim if obj_oslo.posl != None else ''
-                    oslo_d['aosl'] = obj_oslo.aosl.naim if obj_oslo.aosl != None else ''
+                    oslo_d['xosl'] = str(obj_oslo.xosl.kod) if obj_oslo.xosl != None else ''
+                    oslo_d['posl'] = str(obj_oslo.posl.kod) if obj_oslo.posl != None else ''
+                    oslo_d['aosl'] = str(obj_oslo.aosl.kod) if obj_oslo.aosl != None else ''
                     oslo_list.append(oslo_d)
            
 

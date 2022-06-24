@@ -89,7 +89,9 @@ class Patients:
         le_vr = sluchay.le_vr
         le_trv = sluchay.le_trv
         oper = list(Sluchay.objects.get(id=sluchay.id).oper.all())
-        oslo = list([Oper.objects.get(id=o.id).oslo.all() for o in oper][0]) if len(oper) > 0 else None
+        # oslo = list([Oper.objects.get(id=o.id).oslo.all() for o in oper][0]) if len(oper) > 0 else None
+        oslo = list(Sluchay.objects.get(id=sluchay.id).oslo.all())
+
         manpy = list(Sluchay.objects.get(id=sluchay.id).manpy.all())
         disability = sluchay.disability
         napr = sluchay.napr
@@ -110,7 +112,7 @@ class Patients:
         temp_d['le_vr'] = le_vr
         temp_d['le_trv'] = le_trv
         temp_d['oper'] = oper if len(oper) > 0 else None
-        temp_d['oslo'] = oslo
+        temp_d['oslo'] = oslo if len(oslo) > 0 else None
         temp_d['manpy'] = manpy if len(manpy) > 0 else None
         temp_d['disability'] = disability
         temp_d['napr'] = napr
@@ -190,7 +192,8 @@ class PatientsData:
             le_vr = sluchay.le_vr
             le_trv = sluchay.le_trv
             oper = list(Sluchay.objects.get(id=sluchay.id).oper.all())
-            oslo = list([Oper.objects.get(id=o.id).oslo.all() for o in oper][0]) if len(oper) > 0 else None
+            # oslo = list([Oper.objects.get(id=o.id).oslo.all() for o in oper][0]) if len(oper) > 0 else None
+            oslo = list(Sluchay.objects.get(id=sluchay.id).oslo.all())
             manpy = list(Sluchay.objects.get(id=sluchay.id).manpy.all())
             disability = sluchay.disability
             napr = sluchay.napr
@@ -213,7 +216,7 @@ class PatientsData:
                                       .set_le_vr(le_vr)\
                                       .set_le_trv(le_trv)\
                                       .set_oper(oper if len(oper) > 0 else None)\
-                                      .set_oslo(oslo)\
+                                      .set_oslo(oslo if len(oslo) > 0 else None)\
                                       .set_manpy(manpy if len(manpy) > 0 else None)\
                                       .set_disability(disability)\
                                       .set_napr(napr)\

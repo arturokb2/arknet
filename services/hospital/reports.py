@@ -452,10 +452,15 @@ class CountSluchaySpecification(Specification):
     def is_satisfied(self,item):
         return 1 if item.sluchay is not None else 0
 
+class CountSluchayPlanSpecification(Specification):
+    def is_satisfied(self,item):
+        return 1 if item.sluchay.goc != None and item.sluchay.goc.tip_name == 'Плановая' else 0
+
+
 class ProfKNSpecification(Specification):
 #prof_k_n
     def is_satisfied(self,item):
-        return item.le_vr.otd if item.le_vr is not None and item.le_vr is not '' else 0
+        return item.le_vr.kd if item.le_vr is not None and item.le_vr.kd is not '' else 0
 
 class GocEkSpecification(Specification):
 #goc_ek
@@ -478,6 +483,11 @@ class RezUmerOperSpecification(Specification):
             return 1 if item.sluchay.rslt is not None and item.sluchay.rslt.id_tip in [105,106] else 0
         return 0
 
+class RezUmerOperKDSpecification(Specification):
+    def is_satisfied(self, item):
+        if  item.sluchay.oper.count() > 0:
+            return item.le_vr.kd if item.sluchay.rslt is not None and item.sluchay.rslt.id_tip in [105,106] else 0
+        return 0
 
 class RezUmerKdSpecification(Specification):
 #rez_umer_kd
@@ -544,6 +554,16 @@ class PredOperKdSpecification(Specification):
             return 0
         return 0
 
+class PredOperKdAllSpecification(Specification):
+    def is_satisfied(self,item):
+        if item.sluchay.oper.count() != 0:
+            oper = item.sluchay.oper.filter(pop=True)
+            if oper.count() > 0:
+                day = (oper[0].dato - item.sluchay.datp).days if oper[0].dato != None else 0
+                return day
+            return 0
+        return 0
+
 class PredOperSpecification(Specification):
     def is_satisfied(self,item):
         if item.sluchay.oper.count() != 0 and item.sluchay.goc != None and item.sluchay.goc.tip_name == 'Плановая':
@@ -575,11 +595,14 @@ class PoslOperKdSpecification(Specification):
 
 class OsloCountAllSpecification(Specification):
     def is_satisfied(self,item):
-        if item.sluchay.oper.count() > 0:
-            oslos = item.sluchay.oper.exclude(oslo=None)
-            if oslos.count() > 0:
-                return oslos.count()
-            return 0
+        # if item.sluchay.oper.count() > 0:
+        #     oslos = item.sluchay.oper.exclude(oslo=None)
+        #     if oslos.count() > 0:
+        #         return oslos.count()
+        #     return 0
+        # return 0
+        if item.sluchay.oslo.count() > 0:
+            return item.sluchay.oslo.count()
         return 0
 
 class AgeSpecification(Specification):

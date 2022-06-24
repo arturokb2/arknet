@@ -503,15 +503,41 @@ class Save():
         history['oslo'].clear()
         history['oslo'] = tem_oslo
 
+        # if len(history['oslo']) > 0:
+        #     if oper.oslo.count() == len(history['oslo']):
+        #         oslos = oper.oslo.values('id')
+        #         for o in range(len(oslos)):
+        #             oslo = Oslo.objects.get(id=oslos[o]['id'])
+        #             self.update_oslo(oslo, history['oslo'][o])
+        #             oslo.save()
+        #             oper.oslo.add(oslo)
+        #     else:
+        #         oslos = oper.oslo.values('id')
+        #         for o in oslos:
+        #             Oslo.objects.get(id=o['id']).delete()
+        #         for o in range(len(history['oslo'])):
+        #             oslo = Oslo()
+        #             oslo.save()
+        #             self.update_oslo(oslo, history['oslo'][o])
+        #             oslo.save()
+        #             oper.oslo.add(oslo)
+        # else:
+        #     if sluchay.oper.count() > 0:
+        #         opers = sluchay.oper.values('id')
+        #         for o in opers:
+        #             oper = Oper.objects.get(id=o['id'])
+        #             oper.oslo.clear()
+        #             oper.save()
+
         if len(history['oslo']) > 0:
-            if oper.oslo.count() == len(history['oslo']):
-                oslos = oper.oslo.values('id')
+            if sluchay.oslo.count() == len(history['oslo']):
+                oslos = sluchay.oslo.values('id')
                 for o in range(len(oslos)):
                     oslo = Oslo.objects.get(id=oslos[o]['id'])
                     self.update_oslo(oslo, history['oslo'][o])
                     oslo.save()
             else:
-                oslos = oper.oslo.values('id')
+                oslos = sluchay.oslo.values('id')
                 for o in oslos:
                     Oslo.objects.get(id=o['id']).delete()
                 for o in range(len(history['oslo'])):
@@ -519,14 +545,13 @@ class Save():
                     oslo.save()
                     self.update_oslo(oslo, history['oslo'][o])
                     oslo.save()
-                    oper.oslo.add(oslo)
+                    sluchay.oslo.add(oslo)
         else:
-            if sluchay.oper.count() > 0:
-                opers = sluchay.oper.values('id')
-                for o in opers:
-                    oper = Oper.objects.get(id=o['id'])
-                    oper.oslo.clear()
-                    oper.save()
+            if sluchay.oslo.count() > 0:
+                oslos = sluchay.oslo.values('id')
+                for o in oslos:
+                    oslo = Oslo.objects.get(id=o['id'])
+                    oslo.delete()
 
         # 7.Трудоспособность
         try:
@@ -1259,22 +1284,37 @@ class Save():
             oslo.osl = None
 
         try:
-            oslo.xosl = Xosl.objects.get(naim=str(data['xosl']).strip(),dateend=None) if (
-                        (data['xosl'] != None) and (data['xosl'] != "")) else None
-        except Xosl.DoesNotExist:
-            oslo.xosl = None
+            oslo.xosl = Xosl.objects.get(kod=int(data['xosl']))
+        except:
+            pass
 
         try:
-            oslo.posl = Posl.objects.get(naim=str(data['posl']).strip(),dateend=None) if (
-                        (data['posl'] != None) and (data['posl'] != "")) else None
-        except Posl.DoesNotExist:
-            oslo.posl
+            oslo.posl = Posl.objects.get(kod=int(data['posl']))
+        except:
+            pass
 
         try:
-            oslo.aosl = Aosl.objects.get(naim=str(data['aosl']).strip(),dateend=None) if (
-                        (data['aosl'] != None) and (data['aosl'] != "")) else None
-        except Aosl.DoesNotExist:
-            oslo.aosl = None
+            oslo.aosl = Aosl.objects.get(kod=int(data['aosl']))
+        except:
+            pass
+
+        # try:
+        #     oslo.xosl = Xosl.objects.get(naim=str(data['xosl']).strip(),dateend=None) if (
+        #                 (data['xosl'] != None) and (data['xosl'] != "")) else None
+        # except Xosl.DoesNotExist:
+        #     oslo.xosl = None
+        #
+        # try:
+        #     oslo.posl = Posl.objects.get(naim=str(data['posl']).strip(),dateend=None) if (
+        #                 (data['posl'] != None) and (data['posl'] != "")) else None
+        # except Posl.DoesNotExist:
+        #     oslo.posl
+        #
+        # try:
+        #     oslo.aosl = Aosl.objects.get(naim=str(data['aosl']).strip(),dateend=None) if (
+        #                 (data['aosl'] != None) and (data['aosl'] != "")) else None
+        # except Aosl.DoesNotExist:
+        #     oslo.aosl = None
 
     def update_manpy(self, manpy, data):
         try:

@@ -12,7 +12,8 @@ import json
 import numpy
 from services.hospital.reports import *
 from operator import itemgetter, attrgetter, methodcaller
-from hospital.models import Oper
+from hospital.models import Oper,Oslo,V001,Manpy,PR_OSOB
+from okb2.models import Ds,Vra
 
 border = Border(left=Side(border_style='thin',color='000000'),
                             right=Side(border_style='thin', color='000000'),
@@ -50,6 +51,82 @@ def get_list_otd(data):
         otds_sl.append(temp)
     return otds_sl
 
+def get_list_ds(data):
+    ds_list = []
+    for d in data:
+        if d.sluchay.dskz and d.sluchay.dskz not in ds_list:
+            ds_list.append(d.sluchay.dskz)
+    ds = []
+    for o in ds_list:
+        temp = [[], []]
+        temp[0].append(o)
+        for d in data:
+            if d.sluchay.dskz and o.kod == d.sluchay.dskz.kod:
+                temp[1].append(d)
+        ds.append(temp)
+    return ds
+
+def get_list_ds_oper(data):
+    ds_list = []
+    for d in data:
+        if d.sluchay.dskz and d.sluchay.dskz.kod not in ds_list:
+            ds_list.append(d.sluchay.dskz.kod)
+    ds_oper = []
+    for o in ds_list:
+        temp = [[],[],[]]
+        temp[0].append(o)
+        for d in data:
+            if d.sluchay.dskz and o == d.sluchay.dskz.kod:
+                if d.sluchay.oper.count() > 0:
+                    opers = d.sluchay.oper.values('id')
+                    for op in opers:
+                        oper = Oper.objects.get(id=op['id'])
+                        temp[1].append(oper.kod_op.kod if oper.kod_op else None)
+        ds_oper.append(temp)
+
+    for v in ds_oper:
+        v[1] = list(set(v[1]))
+
+
+    for v in ds_oper:
+        for d in data:
+            if d.sluchay.dskz and v[0][0] == d.sluchay.dskz.kod:
+                if d.sluchay.oper.count() > 0:
+                    opers = d.sluchay.oper.values('id')
+                    for op in opers:
+                        oper = Oper.objects.get(id=op['id'])
+                        if oper.kod_op and oper.kod_op.kod in v[1]:
+                            v[2].append(d)
+                else:
+                    v[2].append(d)
+
+    return ds_oper
+
+def get_list_oper(data):
+    oper_kod_list = []
+    for d in data:
+        if d.sluchay.oper.count() > 0:
+            opers = d.sluchay.oper.values('id')
+            for o in opers:
+                oper = Oper.objects.get(id=o['id'])
+                if oper.kod_op and oper.kod_op.kod not in oper_kod_list:
+                    oper_kod_list.append(oper.kod_op.kod)
+
+    opers_list = []
+    for o in oper_kod_list:
+        temp = [[], []]
+        temp[0].append(o)
+        for d in data:
+            if d.sluchay.oper.count() > 0:
+                opers = d.sluchay.oper.values('id')
+                for op in opers:
+                    oper = Oper.objects.get(id=op['id'])
+                    if oper.kod_op and oper.kod_op.kod == o:
+                        temp[1].append(d)
+        opers_list.append(temp)
+    return opers_list
+
+
 def get_list_otd_prof(data):
     otds_list = []
     for d in data:
@@ -81,6 +158,68 @@ def get_list_otd_prof(data):
 
     return otds_prof_list
 
+def get_rez_rep_4(data,d=None):
+    if d == None:
+        bf = BetterFilter()
+        sp = CountSluchaySpecification() ^ GocEkSpecification() ^ ProfKNSpecification() ^ OperCountSpecification() ^ \
+             OperAllKdSpecification() ^ OperAllCountSpecification() ^ PredOperKdAllSpecification() ^ RezUmerOperSpecification() ^ \
+             RezUmerKdSpecification() ^ RezUmerOperSpecification() ^ RezUmerOperKDSpecification()
+        all_temp = []
+        for patient in data:
+            for p in bf.filter(patient, sp):
+                temp = bf.format_list(p)
+                for t in range(len(temp)):
+                    if temp[t] == 'None':
+                        temp[t] = 0
+                all_temp.append([int(i) for i in temp])
+        all_temp = [sum([all_temp[i][x] for i in range(len(all_temp))]) for x in range(11)]
+        all_temp.insert(11,copy.deepcopy(all_temp[2]))
+        all_temp.insert(12,copy.deepcopy(all_temp[4]))
+        all_temp.insert(13,copy.deepcopy(all_temp[8]))
+        all_temp.insert(14,copy.deepcopy(all_temp[10]))
+
+        try:
+            all_temp[2]= float('{0:.2f}'.format(all_temp[2]/all_temp[0]))
+        except ZeroDivisionError:
+            all_temp[2] = 0
+
+        try:
+            all_temp[4]= float('{0:.2f}'.format(all_temp[4]/all_temp[3]))
+        except ZeroDivisionError:
+            all_temp[4] = 0
+
+        try:
+            all_temp[8]= float('{0:.2f}'.format(all_temp[8]/all_temp[7]))
+        except ZeroDivisionError:
+            all_temp[8] = 0
+
+        try:
+            all_temp[10]= float('{0:.2f}'.format(all_temp[10]/all_temp[9]))
+        except ZeroDivisionError:
+            all_temp[10] = 0
+
+        return all_temp
+    else:
+        try:
+            data[2]= float('{0:.2f}'.format(data[11]/data[0]))
+        except ZeroDivisionError:
+            data[2] = 0
+
+        try:
+            data[4]= float('{0:.2f}'.format(data[12]/data[3]))
+        except ZeroDivisionError:
+            data[4] = 0
+
+        try:
+            data[8]= float('{0:.2f}'.format(data[13]/data[7]))
+        except ZeroDivisionError:
+            data[8] = 0
+
+        try:
+            data[10]= float('{0:.2f}'.format(data[14]/data[9]))
+        except ZeroDivisionError:
+            data[10] = 0
+        return data
 
 class PatientsDataFiltrs(PatientsData):
     def __init__(self,date_1,date_2,user,request):
@@ -1031,7 +1170,84 @@ def insert_sheet_a_oth_20(**kwargs):
                         row += 1
                         sheet.cell(row=row, column=2).value = r[0] if r[0] != 0 else ''
 
+def get_rez_a_oth_23_list(data):
+    v1 = 0
+    v2 = 0
+    v3 = 0
+    v4 = 0
+    v5 = 0
+    v6 = 0
+    for d in data:
+        le_trv = d.sluchay.le_trv
+        if le_trv.details and le_trv.details.kod[:3] in ['V10','V19']:
+            v1+=1
+        if le_trv.details and le_trv.details.kod[:3] in ['V20','V29']:
+            v2+=1
+        if le_trv.details and le_trv.details.kod[:3] in ['V01','V09']:
+            v3+=1
+        if le_trv.details and le_trv.details.kod[:3] in ['V30', 'V39']:
+            v4 += 1
+        if le_trv.details and le_trv.details.kod[:3] in ['V40', 'V69']:
+            v5 += 1
+        if le_trv.details and le_trv.details.kod[:3] in ['V70', 'V79']:
+            v6 += 1
+    return [v1,v2,v3,v4,v5,v6]
 
+def insert_sheet_a_oth_23(**kwargs):
+    sheet = kwargs['sheet']
+    name = kwargs['name']
+    date_1 = kwargs['date_1']
+    date_2 = kwargs['date_2']
+
+    data_ymer = []
+    data_17 = []
+    data_65 = []
+    data_60 = []
+    data_old = []
+    for d in kwargs['data']:
+        if d.sluchay.le_trv:
+            le_trv = d.sluchay.le_trv
+            if le_trv.t_trv and le_trv.t_trv.kod == '7':
+                year = datetime.now().year - d.patient.datr.year
+                if d.sluchay.rslt and d.sluchay.rslt.id_tip in [105,106]:
+                    data_ymer.append(d)
+                if 0 < year <= 17:
+                    data_17.append(d)
+                if d.patient.pol and d.patient.pol.id_pol == 1:
+                    if 16 < year <= 65:
+                        data_65.append(d)
+                    elif year > 65:
+                        data_old.append(d)
+                if d.patient.pol and d.patient.pol.id_pol == 2:
+                    if 16 < year <= 60:
+                        data_60.append(d)
+                    elif year > 60:
+                        data_old.append(d)
+    # print(len(data_ymer))
+    # print(len(data_17))
+    # print(len(data_65))
+    # print(len(data_60))
+    # print(len(data_old))
+    sheet.cell(row=8, column=3).value = len(data_ymer)
+    sheet.cell(row=9, column=3).value = len(data_17)
+    rez = get_rez_a_oth_23_list(data_17)
+    for n,r in enumerate(rez):
+        sheet.cell(row=10+n, column=3).value = r
+    sheet.cell(row=16, column=3).value = len(data_65) + len(data_60)
+    rez65 = get_rez_a_oth_23_list(data_65)
+    rez60 = get_rez_a_oth_23_list(data_60)
+    rez_65_60 = []
+    rez_65_60.append(rez65)
+    rez_65_60.append(rez60)
+    r = None
+    for o in range(len(rez_65_60)):
+        if o == 0:
+            r = numpy.array(rez_65_60[o])
+        else:
+            r += numpy.array(rez_65_60[o])
+    rez = r.tolist()
+    for n, r in enumerate(rez):
+        sheet.cell(row=17 + n, column=3).value = r
 def get_rez_32_list(data,ds):
     temp = []
     ds_list = []
@@ -1728,25 +1944,29 @@ class VaultOtd(AnnualReportABC):
     def create(self):
         typ = self.request.get('type',None)
         patients = PatientsData(self.date_1, self.date_2, self.user)
-        patients.sluchays(cah=True)
+        patients.sluchays()
         data = []
         otdel = self.request.get('otdel',None)
-
+        otd = ''
         if typ != 'null':
             for p in patients.patients:
                 if typ == 'ttt':
+                    otd = ' '.join(['ТРАВМА N1','ТРАВМА N2','ТРАВМА N3'])
                     if p.sluchay.otd and p.sluchay.otd.naim in ['ТРАВМА N1','ТРАВМА N2','ТРАВМА N3']:
                         data.append(p)
                 elif typ == 'nnn':
+                    otd = ' '.join(['НЕВРОЛОГИЯ N1','НЕВРОЛОГИЯ N2','НЕВРОЛОГИЯ N3'])
                     if p.sluchay.otd and p.sluchay.otd.naim in ['НЕВРОЛОГИЯ N1','НЕВРОЛОГИЯ N2','НЕВРОЛОГИЯ N3']:
                         data.append(p)
                 elif typ == 'hh':
+                    otd = ' '.join(['ХИРУРГИЧЕСКОЕ N1','ХИРУРГИЧЕСКОЕ N2(гн)'])
                     if p.sluchay.otd and p.sluchay.otd.naim in ['ХИРУРГИЧЕСКОЕ N1','ХИРУРГИЧЕСКОЕ N2(гн)']:
                         data.append(p)
         else:
+            otd = otdel
             for p in patients.patients:
-                    if p.sluchay.otd and p.sluchay.otd.naim == otdel:
-                        data.append(p)
+                if p.sluchay.otd and p.sluchay.otd.naim == otdel:
+                    data.append(p)
 
         n = self.request.get('n',None)
         if n == '1':
@@ -1754,9 +1974,9 @@ class VaultOtd(AnnualReportABC):
         elif n == '2':
             self.oth_2(data)
         elif n == '3':
-            self.oth_3(data)
+            self.oth_3(data,otd)
         elif n == '4':
-            self.oth_4(data)
+            self.oth_4(data,otd)
         elif n == '5':
             self.oth_5(data)
         elif n == '6':
@@ -1770,13 +1990,13 @@ class VaultOtd(AnnualReportABC):
         elif n == 'a':
             self.oth_a(data)
         elif n == 'b':
-            self.oth_b(data)
+            self.oth_b(data,otd)
         elif n == 'v':
-            self.oth_v(data)
+            self.oth_v(data,otd)
         elif n == 'g':
-            self.oth_g(data)
+            self.oth_g(data,otd)
         elif n == 'd':
-            self.oth_d(data)
+            self.oth_d(data,otd)
 
     def oth_1(self,data):
         #otd_rep_1.xlsx
@@ -1785,12 +2005,142 @@ class VaultOtd(AnnualReportABC):
     def oth_2(self,data):
         pass
     
-    def oth_3(self,data):
-        pass
+    def oth_3(self,data,otd):
+        file = self.is_file('otd_rep_3.xlsx')
+        if file:
+            wb = load_workbook(file)
+            sheet = wb.active
+            os.remove(file)
+            sheet.cell(row=3, column=1).value = f'{otd}'
+            sheet.cell(row=5,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
 
-    def oth_4(self,data):
-        #otd_rep_4
-        print(data)
+            bf = BetterFilter()
+            sp = CountSluchaySpecification() ^ OperCountSpecification() ^ OperAllCountSpecification() ^ OperAllCountGocEkSpecification() ^ \
+                    OsloCountAllSpecification() ^ RezUmerOperSpecification() ^ OperAllKdSpecification() ^ PredOperKdSpecification() ^ CountSluchayPlanSpecification()
+            all_temp = []
+            for patient in data:
+                for p in bf.filter(patient, sp):
+                    temp = bf.format_list(p)
+                    for t in range(len(temp)):
+                        if temp[t] == 'None':
+                            temp[t] = 0
+                    all_temp.append([int(i) for i in temp])
+            all_temp = [sum([all_temp[i][x] for i in range(len(all_temp))]) for x in range(9)]
+
+            sheet.cell(row=6, column=2).value = all_temp[1] if all_temp[1] != 0 else None
+            sheet.cell(row=7, column=2).value = all_temp[2] if all_temp[2] != 0 else None
+            sheet.cell(row=8, column=2).value = all_temp[3] if all_temp[3] != 0 else None
+            try:
+                v = float('{0:.2f}'.format((all_temp[1]*100)/all_temp[0]))
+            except ZeroDivisionError:
+                v = 0
+            sheet.cell(row=9, column=2).value = v if v != 0 else None
+            sheet.cell(row=10, column=2).value = all_temp[4] if all_temp[4] != 0 else None
+            try:
+                v = float('{0:.2f}'.format((all_temp[4]*100)/all_temp[2]))
+            except ZeroDivisionError:
+                v = 0
+            sheet.cell(row=11, column=2).value = v if v != 0 else None
+            sheet.cell(row=12, column=2).value = all_temp[5] if all_temp[5] != 0 else None
+            try:
+                v = float('{0:.2f}'.format((all_temp[5]*100)/all_temp[1]))
+            except ZeroDivisionError:
+                v = 0
+            sheet.cell(row=13, column=2).value = v if v != 0 else None
+            try:
+                v = float('{0:.2f}'.format((all_temp[6])/all_temp[1]))
+            except ZeroDivisionError:
+                v = 0
+            sheet.cell(row=14, column=2).value = v if v != 0 else None
+            try:
+                v = float('{0:.2f}'.format((all_temp[7])/all_temp[8]))
+            except ZeroDivisionError:
+                v = 0
+            sheet.cell(row=15, column=2).value = v if v != 0 else None
+
+            opers = get_list_oper(data)
+            row = 18
+            count_oper = 0
+            all_ek = 0
+            for o in opers:
+                row+=1
+                v = V001.objects.get(kod=o[0][0])
+                sheet.cell(row=row, column=1).value = f'{v.kod} {v.naim[:40]}'
+                count_oper += len(o[1])
+                sheet.cell(row=row, column=2).value = len(o[1]) if len(o[1]) != 0 else None
+                sheet.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center",vertical="center")
+                sheet.cell(row=row, column=3).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=4).alignment = styles.Alignment(horizontal="center", vertical="center")
+                ek = 0
+                for d in o[1]:
+                    if d.sluchay.goc and d.sluchay.goc.tip_name == 'Экстренная':
+                        ek+=1
+                all_ek+=ek
+                sheet.cell(row=row, column=4).value = ek if ek != 0 else None
+            else:
+                row+=1
+                sheet.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=3).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=4).alignment = styles.Alignment(horizontal="center", vertical="center")
+
+            row = 18
+            for o in opers:
+                row+=1
+                try:
+                    v = float('{0:.2f}'.format((len(o[1])*100) / count_oper))
+                except ZeroDivisionError:
+                    v = 0
+                sheet.cell(row=row, column=3).value = v if v != 0 else None
+
+            row+=1
+            sheet.cell(row=row, column=1).value = 'ИТОГО'
+            sheet.cell(row=row, column=2).value = count_oper if count_oper != 0 else None
+            sheet.cell(row=row, column=3).value = 100.0
+            sheet.cell(row=row, column=4).value = all_ek if all_ek != 0 else None
+
+            wb.save(self.path() + f'otd_rep_3_{self.user.user.id}.xlsx')
+
+
+
+    def oth_4(self,data,otd):
+        data = get_list_ds(data)
+        file = self.is_file('otd_rep_4.xlsx')
+        if file:
+            wb = load_workbook(file)
+            sheet = wb.active
+            os.remove(file)
+            sheet.cell(row=3,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            sheet.cell(row=4, column=1).value = f'отделение {otd}'
+            row = 7
+            all_rez = []
+            for d in data:
+                row+=1
+                rez = get_rez_rep_4(d[1])
+                all_rez.append(rez)
+                sheet.cell(row=row, column=1).value = f'{d[0][0].kod} {d[0][0].naim[:45]}'
+                for n,v in enumerate(rez):
+                    if n <= 10:
+                        sheet.cell(row=row, column=2+n).value = v if v != 0 else None
+                        sheet.cell(row=row, column=2+n).alignment = styles.Alignment(horizontal="center",vertical="center")
+                else:
+                    for c in range(1, 13):
+                        sheet.cell(row=row, column=c).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+            else:
+                row+=1
+                sheet.cell(row=row, column=1).value = 'ВСЕГО'
+                r = None
+                for o in range(len(all_rez)):
+                    if o == 0:
+                        r = numpy.array(all_rez[o])
+                    else:
+                        r += numpy.array(all_rez[o])
+                rez = r.tolist()
+                rez = get_rez_rep_4(rez,d=True)
+                for n,v in enumerate(rez):
+                    if n <= 10:
+                        sheet.cell(row=row, column=2+n).value = v if v != 0 else None
+                        sheet.cell(row=row, column=2+n).alignment = styles.Alignment(horizontal="center",vertical="center")
+            wb.save(self.path() + f'otd_rep_4_{self.user.user.id}.xlsx')
 
     def oth_5(self,data):
         pass
@@ -1810,18 +2160,365 @@ class VaultOtd(AnnualReportABC):
     def oth_a(self,data):
         pass
 
-    def oth_b(self,data):
-        pass
+    def oth_b(self,data,otd):
+        file = self.is_file('otd_rep_b.xlsx')
+        if file:
+            wb = load_workbook(file)
+            sheet = wb.active
+            os.remove(file)
+            dat = []
+            ym = 0
+            s1 = 0
+            n = 0
+            font = styles.Font(size=10, name='Arial')
+            sheet.cell(row=3,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            sheet.cell(row=5,column=1).value = str(self.user.statistics_type.name).capitalize()
+            sheet.cell(row=6, column=1).value = otd
+            for d in data:
+                if d.sluchay.rslt and d.sluchay.rslt.id_tip in [105,106]:
+                    ord = OrderedDict()
+                    n+=1
+                    ord['otd'] = d.sluchay.otd.naim if d.sluchay.otd else None
+                    ord['nib'] = f'{d.sluchay.nib}'
+                    ord['fio'] = f'{d.patient.fam} {d.patient.im[0] if len(d.patient.im) > 0 else ""}.{d.patient.ot[0] if len(d.patient.ot) > 0 else ""}'
+                    ord['age'] = f'{datetime.now().year - d.patient.datr.year} {d.patient.nvs}'
+                    ord['datp'] = d.sluchay.datp.strftime('%d.%m.%Y') if d.sluchay.datp else None
+                    ord['datv'] = d.sluchay.datv.strftime('%d.%m.%Y') if d.sluchay.datv else None
+                    ord['vra'] = d.sluchay.le_vr.kod.naim if d.sluchay.le_vr and d.sluchay.le_vr.kod else None
+                    oper = get_pop_oper(d)
+                    ord['dato'] = oper.dato.strftime('%d.%m.%Y') if oper else None
+                    if d.sluchay.goc and d.sluchay.goc.tip_name == 'Экстренная':
+                        ord['goc'] = 'экс'
+                    elif d.sluchay.goc and d.sluchay.goc.tip_name == 'Плановая':
+                        ord['goc'] = 'пл'
+                    else:
+                        ord['goc'] = ''
+                    ord['vra_oper'] = f'{oper.kodx.kod} {oper.kodx.naim} {oper.kodx.ini}' if oper is not None and oper.kodx else None
+                    ord['dskz'] = f'{d.sluchay.dskz.kod}-{d.sluchay.dskz.naim}' if d.sluchay.dskz else None
+                    ord['dspat'] = f'{d.sluchay.dspat.kod}-{d.sluchay.dspat.naim}' if d.sluchay.dspat else None
+                    ord['pri'] = d.sluchay.pri.naim if d.sluchay.pri else None
+                    ord['vra_oper'] = f'{oper.kodx.naim}' if oper is not None and oper.kodx else None
+                    ord['oper_kod'] = oper.kod_op.kod if oper is not None and oper.kod_op else None
+                    if d.sluchay.oslo.count() > 0:
+                        ord['oslo'] = 'oslo'
+                    else:
+                        ord['oslo'] = ''
+                    if d.sluchay.otd_y and d.sluchay.otd_y.naim in ['АРО N1','АРО N2','АРО N3 (ЛДО)','ПРИЕМНОЕ']:
+                        ym +=1
+                    if d.sluchay.icx and d.sluchay.icx.id_iz == 106:
+                        s1 +=1
+                    dat.append(ord)
+            row = 7
+            for d in dat:
+                row+=1
+                sheet.cell(row=row, column=1).value = f'{d["nib"][4:]} {d["fio"]}'
+                sheet.cell(row=row, column=2).value = d['age']
+                sheet.cell(row=row, column=3).value = d['datp']
+                sheet.cell(row=row, column=4).value = d['datv']
+                sheet.cell(row=row, column=5).value = d['goc']
+                sheet.cell(row=row, column=6).value = d['vra']
+                sheet.cell(row=row, column=7).value = f'1.{d["dskz"][:30]}' if d["dskz"] != None else ''
+                row+=1
+                sheet.cell(row=row, column=1).value = f'{d["otd"]}'
+                sheet.cell(row=row, column=7).value = f'2.{d["dspat"][:30]}' if d["dspat"] != None else ''
+                if d['pri'] != None:
+                    row+=1
+                    sheet.cell(row=row, column=7).value = f'3.{d["pri"][:20]}' if d['pri'] != None else ''
+                if d['oper_kod'] != None:
+                    row+=1
+                    sheet.cell(row=row, column=4).value = d['dato']
+                    sheet.cell(row=row, column=6).value = d['vra_oper']
+                    sheet.cell(row=row, column=7).value = d['oper_kod']
 
-    def oth_v(self,data):
-        pass
-    
-    def oth_g(self,data):
-        pass
-    
-    def oth_d(self,data):
-        pass
+                for c in range(1, 8):
+                    sheet.cell(row=row, column=c).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+            else:
+                row += 3
+                sheet.merge_cells(f"A{sheet.cell(row=row, column=1).row}:B{sheet.cell(row=row, column=2).row}")
+                sheet.cell(row=row, column=1).value = f'Умерло всего - {n}'
+                sheet.cell(row=row, column=1).font = font
+                row += 1
+                sheet.merge_cells(f"A{sheet.cell(row=row, column=1).row}:B{sheet.cell(row=row, column=2).row}")
+                sheet.cell(row=row, column=1).value = f'в том числе'
+                sheet.cell(row=row, column=1).font = font
+                row += 1
+                sheet.merge_cells(f"A{sheet.cell(row=row, column=1).row}:C{sheet.cell(row=row, column=3).row}")
+                sheet.cell(row=row, column=1).value = f'в реанимации и прием.отд-ии - {ym}'
+                sheet.cell(row=row, column=1).font = font
+                row += 1
+                sheet.merge_cells(f"A{sheet.cell(row=row, column=1).row}:B{sheet.cell(row=row, column=2).row}")
+                sheet.cell(row=row, column=1).value = f'в 1-е сутки - {s1}'
+                sheet.cell(row=row, column=1).font = font
+            wb.save(self.path() + f'otd_rep_b_{self.user.user.id}.xlsx')
 
+    def oth_v(self,data,otd):
+        file = self.is_file('otd_rep_v.xlsx')
+        if file:
+            wb = load_workbook(file)
+            sheet = wb.active
+            os.remove(file)
+            dat = []
+            font = styles.Font(size=10, name='Arial')
+            sheet.cell(row=3,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            sheet.cell(row=5, column=1).value = str(self.user.statistics_type.name).capitalize()
+            sheet.cell(row=6, column=1).value = otd
+
+            n = 0
+            for d in data:
+                if d.sluchay.oslo.count() > 0:
+                    for o in d.sluchay.oslo.values('id'):
+                        n += 1
+                        oslo = Oslo.objects.get(id=o['id'])
+                        ord = OrderedDict()
+                        ord['n'] = n
+                        ord['fio'] = f'{d.patient.fam} {d.patient.im[0] if len(d.patient.im) > 0 else ""}.{d.patient.ot[0] if len(d.patient.ot) > 0 else ""}'
+                        ord['datp'] = d.sluchay.datp.strftime('%d.%m.%Y') if d.sluchay.datp else None
+                        ord['datv'] = d.sluchay.datv.strftime('%d.%m.%Y') if d.sluchay.datv else None
+                        ord['nib'] = f'{d.sluchay.nib}'
+                        ord['age'] = f'{datetime.now().year - d.patient.datr.year} {d.patient.nvs}'
+                        ord['dskz'] = f'{d.sluchay.dskz.kod}-{d.sluchay.dskz.naim}' if d.sluchay.dskz else None
+                        ord['osl'] = oslo.osl.naim if oslo.osl else None
+                        ord['xosl'] = oslo.xosl.naim if oslo.xosl else None
+                        ord['posl'] = oslo.posl.naim if oslo.posl else None
+                        dat.append(ord)
+            row = 7
+            for d in dat:
+                row+=1
+                sheet.cell(row=row, column=1).value = d['n']
+                sheet.cell(row=row, column=1).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=2).value = d['fio']
+                sheet.cell(row=row, column=3).value = d['nib'][4:]
+                sheet.cell(row=row, column=3).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=4).value = d['age']
+                sheet.cell(row=row, column=4).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=5).value = f'1.{d["dskz"][:40]}' if d['dskz'] else None
+                row+=1
+                sheet.cell(row=row, column=2).value = f'{d["datp"]} - {d["datv"]}'
+                sheet.cell(row=row, column=5).value = f'2.{d["osl"][:40]}'
+                row+=1
+                sheet.cell(row=row, column=5).value = f'3.{d["xosl"][:40]}'
+                row+=1
+                sheet.cell(row=row, column=5).value = f'4.{d["posl"][:40]}'
+                for c in range(1,6):
+                    sheet.cell(row=row, column=c).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+
+
+
+            wb.save(self.path() + f'otd_rep_v_{self.user.user.id}.xlsx')
+    
+    def oth_g(self,data,otd):
+        file = self.is_file('otd_rep_g.xlsx')
+        if file:
+            wb = load_workbook(file)
+            sheet = wb.active
+            os.remove(file)
+            sheet.cell(row=3,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            sheet.cell(row=5, column=1).value = f'отделение {otd}'
+
+            ds_oper = get_list_ds_oper(data)
+            row = 8
+            all_sl = []
+            for d in ds_oper:
+                row += 1
+                ds = Ds.objects.values('id').filter(kod=d[0][0])
+                ds = Ds.objects.get(id=ds[0]['id'])
+                sheet.cell(row=row, column=1).value = f'{ds.kod} {ds.naim[:35]}'
+                bf = BetterFilter()
+                sp = CountSluchaySpecification() ^ ProfKNSpecification() ^ RezUmerSpecification() ^ OperAllCountSpecification()
+                all_temp = []
+                for patient in d[2]:
+                    for p in bf.filter(patient, sp):
+                        temp = bf.format_list(p)
+                        for t in range(len(temp)):
+                            if temp[t] == 'None':
+                                temp[t] = 0
+                        all_temp.append([int(i) for i in temp])
+                all_temp = [sum([all_temp[i][x] for i in range(len(all_temp))]) for x in range(4)]
+                all_sl.append(all_temp)
+
+                sheet.cell(row=row, column=2).value = all_temp[0] if all_temp[0] != 0 else None
+                sheet.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=3).value = all_temp[1] if all_temp[1] != 0 else None
+                sheet.cell(row=row, column=3).alignment = styles.Alignment(horizontal="center", vertical="center")
+                try:
+                    v = float('{0:.2f}'.format(all_temp[1]/all_temp[0]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet.cell(row=row, column=4).value = v if v != 0 else None
+                sheet.cell(row=row, column=4).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=5).value = all_temp[2] if all_temp[2] != 0 else None
+                sheet.cell(row=row, column=5).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=6).value = all_temp[3] if all_temp[3] != 0 else None
+                sheet.cell(row=row, column=6).alignment = styles.Alignment(horizontal="center", vertical="center")
+                if len(d[1]) > 0:
+                    for n,o in enumerate(d[1],1):
+                        if n != 1:
+                            row+=1
+                        k = V001.objects.get(kod=o)
+                        sheet.cell(row=row, column=7).value = k.kod
+                        sheet.cell(row=row, column=7).alignment = styles.Alignment(horizontal="center", vertical="center")
+                        sheet.cell(row=row, column=8).value = k.naim[:25]
+                        count_oper = 0
+                        count_ym = 0
+                        for c in d[2]:
+                            opers = c.sluchay.oper.values('id')
+                            for ope in opers:
+                                oper = Oper.objects.get(id=ope['id'])
+                                if oper.kod_op and oper.kod_op.kod == k.kod:
+                                    count_oper +=1
+                                    if c.sluchay.rslt and c.sluchay.rslt.id_tip in [105,106]:
+                                        count_ym+=1
+
+                        sheet.cell(row=row, column=9).value = count_oper if count_oper != 0 else None
+                        sheet.cell(row=row, column=9).alignment = styles.Alignment(horizontal="center", vertical="center")
+                        sheet.cell(row=row, column=10).value = count_ym if count_ym != 0 else None
+                        sheet.cell(row=row, column=10).alignment = styles.Alignment(horizontal="center", vertical="center")
+                    for c in range(1, 11):
+                        sheet.cell(row=row, column=c).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+                else:
+                    for c in range(1, 11):
+                        sheet.cell(row=row, column=c).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+            else:
+                row+=1
+                sheet.cell(row=row, column=1).value = 'ИТОГО'
+                sheet.cell(row=row, column=1).alignment = styles.Alignment(horizontal="center", vertical="center")
+                r = None
+                for o in range(len(all_sl)):
+                    if o == 0:
+                        r = numpy.array(all_sl[o])
+                    else:
+                        r += numpy.array(all_sl[o])
+                rez = r.tolist()
+                sheet.cell(row=row, column=2).value = rez[0] if rez[0] != 0 else None
+                sheet.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=3).value = rez[1] if rez[1] != 0 else None
+                sheet.cell(row=row, column=3).alignment = styles.Alignment(horizontal="center", vertical="center")
+                try:
+                    v = float('{0:.2f}'.format(rez[1]/rez[0]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet.cell(row=row, column=4).value = v if v != 0 else None
+                sheet.cell(row=row, column=4).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=5).value = rez[2] if rez[2] != 0 else None
+                sheet.cell(row=row, column=5).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet.cell(row=row, column=6).value = rez[3] if rez[3] != 0 else None
+                sheet.cell(row=row, column=6).alignment = styles.Alignment(horizontal="center", vertical="center")
+
+            wb.save(self.path() + f'otd_rep_g_{self.user.user.id}.xlsx')
+
+    def oth_d(self,data,otd):
+        file = self.is_file('otd_rep_d.xlsx')
+        if file:
+            wb = load_workbook(file)
+            sheet = wb.active
+            os.remove(file)
+            sheet.cell(row=3,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            sheet.cell(row=5, column=1).value = f'отделение {otd}'
+
+            list_vra = []
+
+            for d in data:
+                if d.sluchay.le_vr.kod and d.sluchay.le_vr.kod.kod not in list_vra:
+                    list_vra.append(d.sluchay.le_vr.kod.kod)
+
+                if d.sluchay.oper.count() > 0:
+                    opers = d.sluchay.oper.values('id')
+                    for op in opers:
+                        oper = Oper.objects.get(id=op['id'])
+                        if oper.kodx and oper.kodx.kod not in list_vra:
+                            list_vra.append(oper.kodx.kod)
+
+
+                if d.sluchay.manpy.count() > 0:
+                    manpys = d.sluchay.manpy.values('id')
+                    for m in manpys:
+                        manpy = Manpy.objects.get(id=m['id'])
+                        if manpy.tnvr and manpy.tnvr.kod not in list_vra:
+                            list_vra.append(manpy.tnvr.kod)
+            row = 8
+            count_all_vra = []
+            for v in list_vra:
+                row+=1
+                vra = Vra.objects.values('id').filter(kod=v)[0]['id']
+                vra = Vra.objects.get(id=vra)
+
+                sheet.cell(row=row, column=1).value = vra.kod
+                sheet.cell(row=row, column=1).alignment = styles.Alignment(horizontal="center", vertical="center")
+
+                sheet.cell(row=row, column=2).value = vra.naim
+                sheet.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sl_count = 0
+                ek_count = 0
+                lek_kd = 0
+                oper_count = 0
+                oper_op_count = 0
+                oper_e_count = 0
+                oper_kodxa_count = 0
+                manpy_con_count = 0
+                manpy_count = 0
+
+                for d in data:
+                    if d.sluchay.le_vr.kod and d.sluchay.le_vr.kod.kod == vra.kod:
+                        sl_count+=1
+                        if d.sluchay.goc and d.sluchay.goc.tip_name == 'Экстренная':
+                            ek_count += 1
+
+                        if d.sluchay.le_vr.kd != None and d.sluchay.le_vr.kd != '':
+                            lek_kd+=d.sluchay.le_vr.kd
+
+                    if d.sluchay.oper.count() > 0:
+                        if d.sluchay.le_vr.kod and d.sluchay.le_vr.kod.kod == vra.kod:
+                            oper_count+=1
+                        opers = d.sluchay.oper.values('id')
+                        for op in opers:
+                            oper = Oper.objects.get(id=op['id'])
+                            if oper.kodx and oper.kodx.kod == vra.kod:
+                                oper_op_count+=1
+                            if oper.pr_osob.count() > 0:
+                                pr_osobs = oper.pr_osob.values('id')
+                                for pr in pr_osobs:
+                                    pr_osob = PR_OSOB.objects.get(id=pr['id'])
+                                    if pr_osob.kod == 'Э':
+                                        oper_e_count+=1
+                            if oper.kodxa and oper.kodxa.kod == vra.kod:
+                                oper_kodxa_count += 1
+                            if oper.kodxa1 and oper.kodxa1.kod == vra.kod:
+                                oper_kodxa_count += 1
+                    if d.sluchay.manpy.count() > 0:
+                        manpys = d.sluchay.manpy.values('id')
+                        for m in manpys:
+                            manpy = Manpy.objects.get(id=m['id'])
+                            if manpy.tnvr and manpy.tnvr.kod == vra.kod:
+                                manpy_count+=1
+                                if manpy.kodmn and manpy.kodmn.kod == '01013':
+                                    manpy_con_count+=1
+                count_all_vra.append(
+                    [sl_count,ek_count,lek_kd,oper_count,oper_op_count,oper_e_count,oper_kodxa_count,manpy_count,manpy_con_count])
+
+                _ = [sl_count,ek_count,lek_kd,oper_count,oper_op_count,oper_e_count,oper_kodxa_count,manpy_count,manpy_con_count]
+                for n,v in enumerate(_):
+                    sheet.cell(row=row, column=3+n).value = v if v != 0 else None
+                    sheet.cell(row=row, column=3 + n).alignment = styles.Alignment(horizontal="center", vertical="center")
+
+                for c in range(1,13):
+                    sheet.cell(row=row, column=c).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+
+            r = None
+            for o in range(len(count_all_vra)):
+                if o == 0:
+                    r = numpy.array(count_all_vra[o])
+                else:
+                    r += numpy.array(count_all_vra[o])
+            rez = r.tolist()
+            row+=1
+            sheet.cell(row=row, column=2).value = 'ИТОГО'
+            sheet.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center", vertical="center")
+            for n,v in enumerate(rez):
+                sheet.cell(row=row, column=3 + n).value = v if v != 0 else None
+                sheet.cell(row=row, column=3 + n).alignment = styles.Alignment(horizontal="center", vertical="center")
+            for c in range(1, 13):
+                sheet.cell(row=row, column=c).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+            wb.save(self.path() + f'otd_rep_d_{self.user.user.id}.xlsx')
 
 
 # class VaultOtdTTT(AnnualReportABC):
@@ -2070,7 +2767,17 @@ class AOth23(AnnualReportABC):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        file = self.is_file('a_oth_23.xlsx')
+        if file:
+            wb = load_workbook(file)
+            os.remove(file)
+            sheet = wb.active
+            patients = PatientsData(self.date_1, self.date_2, self.user)
+            patients.sluchays(cah=True)
+            dic = dict([('sheet', sheet), ('data', patients.patients), ('name', self.user.statistics_type.name),
+                        ('date_1', self.date_1), ('date_2', self.date_2)])
+            insert_sheet_a_oth_23(**dic)
+            wb.save(self.path() + f'a_oth_23_{self.user.user.id}.xlsx')
 class AOth24(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)

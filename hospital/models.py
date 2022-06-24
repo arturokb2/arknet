@@ -413,7 +413,7 @@ class Oper(models.Model):
     metobz = models.CharField(max_length=5, blank=True, null=True)
     dato = models.DateField(blank=True, null=True)
     tm_o = models.CharField(max_length=100, blank=True, null=True)
-    oslo = models.ManyToManyField(Oslo, blank=True)
+    oslo = models.ManyToManyField(Oslo, blank=True,related_name='oslo')
     is_1c = models.BooleanField(blank=True, null=True, default=None)
 
 class Manpy(models.Model):

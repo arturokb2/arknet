@@ -771,8 +771,8 @@ def insert_sheet_VRA(**kwargs):
                                 data[op][1][3] += 1
                             if o.kodan:
                                 data[op][1][4] += 1
-                            if o.oslo.count()>0:
-                                data[op][1][5] += 1
+                            # if o.oslo.count()>0:
+                            #     data[op][1][5] += 1
     count = sum([d[1][0] for d in data])
     row = 8
     all_temp = [x[1] for x in data]
@@ -1101,10 +1101,6 @@ def get_rez_apr_2(data,d=None,count=0):
         bf = BetterFilter()
         sp = OperCountSpecification() ^ OperCountGocEkSpecification() ^ OperAllCountSpecification() ^ OperAllCountGocEkSpecification() ^\
             OperAllKdSpecification() ^ PredOperSpecification() ^ OsloCountAllSpecification()^ RezUmerOperSpecification() ^ PredOperKdSpecification()
-    #sp = 0-OperCountSpecification() ^ 1-OperCountGocEkSpecification() ^ 2-OperAllCountSpecification() ^ 3-OperAllCountGocEkSpecification() ^\
-    # 4- OperAllKdSpecification()/OperCountSpecification()^5-new ^ 6-new ^ 7-OsloCountAllSpecification() ^new-8^ 9-RezUmerOperSpecification()^10-new ^ 11-PredOperKdSpecification()
-    # sp = 0-OperCountSpecification() ^ 1-OperCountGocEkSpecification() ^2- OperAllCountSpecification() ^3- OperAllCountGocEkSpecification() ^\
-    # 4-OperAllKdSpecification() ^ 5-PredOperSpecification() ^ OsloCountAllSpecification()^ RezUmerOperSpecification() ^ PredOperKdSpecification()
         all_temp = []
         for patient in data:
             for p in bf.filter(patient,sp):
@@ -1115,22 +1111,22 @@ def get_rez_apr_2(data,d=None,count=0):
                 all_temp.append([int(i) for i in temp])
         all_temp = [sum([all_temp[i][x] for i in range(len(all_temp))]) for x in range(9)]
     
-        # print(all_temp)
+        print(all_temp)
 
         # all_temp.insert(5,0)
         all_temp.insert(6,0)
         all_temp.insert(8,0)
         all_temp.insert(10,0)
         all_temp.insert(12,copy.deepcopy(all_temp[4]))
-        
+        print(all_temp)
         try:
             all_temp[4]= float('{0:.2f}'.format(all_temp[4]/all_temp[0]))
         except ZeroDivisionError:
             all_temp[4] = 0
         try:
-            all_temp[5]= float('{0:.2f}'.format(all_temp[11]/all_temp[5]))
+            all_temp[5]= float('{0:.2f}'.format(all_temp[11]/(all_temp[0]-all_temp[1])))
         except ZeroDivisionError:
-            all_temp[5] = 0  
+            all_temp[5] = 0
 
         # try:
         #     all_temp[6]= float('{0:.2f}'.format(all_temp[0]*100/all_temp[2]))
@@ -1160,9 +1156,9 @@ def get_rez_apr_2(data,d=None,count=0):
     except ZeroDivisionError:
         data[4] = 0
     try:
-        data[5]= float('{0:.2f}'.format(data[11]/data[5]))
+        data[5]= float('{0:.2f}'.format(data[11]/(data[0]-data[1])))
     except ZeroDivisionError:
-        data[5] = 0  
+        data[5] = 0
     # try:
     #     data[6]= float('{0:.2f}'.format(data[0]*100/data[2]))
     # except ZeroDivisionError:
