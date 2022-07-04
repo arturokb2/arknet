@@ -882,37 +882,38 @@ def insert_sheet_a_oth_5(**kwargs):
         age_data_filter = 0
         row+=1
         sheet.cell(row=row, column=1).value = 'ВСЕГО'
-        r = None
-        for o in range(len(all_sl)):
-            if o == 0:
-                r = numpy.array(all_sl[o])
-            else:
-                r+= numpy.array(all_sl[o])
-        rez_data = r.tolist()
-        fields_data = [i for i in range(1,15) if i % 2 == 1]
-        age_data = float('{0:.2f}'.format(rez_data[7]/rez_data[0]))
-        for f in range(len(fields_data)):
-            sheet.cell(row=row, column=1+fields_data[f]).value = rez_data[f] if rez_data[f] != 0 else None
-            sheet.cell(row=row, column=1+fields_data[f]).alignment = styles.Alignment(horizontal="center", vertical="center")
-        if len(all_sl_filter) != 0:
+        if len(all_sl) > 0:
             r = None
-            for o in range(len(all_sl_filter)):
+            for o in range(len(all_sl)):
                 if o == 0:
-                    r = numpy.array(all_sl_filter[o])
+                    r = numpy.array(all_sl[o])
                 else:
-                    r+= numpy.array(all_sl_filter[o])
-            rez_filter = r.tolist()
-            age_data_filter = float('{0:.2f}'.format(rez_filter[7]/rez_filter[0]))
-            fields_data = [i for i in range(1,15) if i % 2 == 0]
+                    r+= numpy.array(all_sl[o])
+            rez_data = r.tolist()
+            fields_data = [i for i in range(1,15) if i % 2 == 1]
+            age_data = float('{0:.2f}'.format(rez_data[7]/rez_data[0]))
             for f in range(len(fields_data)):
-                sheet.cell(row=row, column=1+fields_data[f]).value = rez_filter[f] if rez_filter[f] != 0 else None
+                sheet.cell(row=row, column=1+fields_data[f]).value = rez_data[f] if rez_data[f] != 0 else None
                 sheet.cell(row=row, column=1+fields_data[f]).alignment = styles.Alignment(horizontal="center", vertical="center")
-        row+=1
-        sheet.cell(row=row, column=1).value = 'Средний возраст (кол-во лет)'
-        sheet.cell(row=row, column=2).value = age_data if age_data != 0 else None
-        sheet.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center", vertical="center")
-        sheet.cell(row=row, column=3).value = age_data_filter if age_data_filter != 0 else None
-        sheet.cell(row=row, column=3).alignment = styles.Alignment(horizontal="center", vertical="center")
+            if len(all_sl_filter) != 0:
+                r = None
+                for o in range(len(all_sl_filter)):
+                    if o == 0:
+                        r = numpy.array(all_sl_filter[o])
+                    else:
+                        r+= numpy.array(all_sl_filter[o])
+                rez_filter = r.tolist()
+                age_data_filter = float('{0:.2f}'.format(rez_filter[7]/rez_filter[0]))
+                fields_data = [i for i in range(1,15) if i % 2 == 0]
+                for f in range(len(fields_data)):
+                    sheet.cell(row=row, column=1+fields_data[f]).value = rez_filter[f] if rez_filter[f] != 0 else None
+                    sheet.cell(row=row, column=1+fields_data[f]).alignment = styles.Alignment(horizontal="center", vertical="center")
+            row+=1
+            sheet.cell(row=row, column=1).value = 'Средний возраст (кол-во лет)'
+            sheet.cell(row=row, column=2).value = age_data if age_data != 0 else None
+            sheet.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center", vertical="center")
+            sheet.cell(row=row, column=3).value = age_data_filter if age_data_filter != 0 else None
+            sheet.cell(row=row, column=3).alignment = styles.Alignment(horizontal="center", vertical="center")
 
 
 
@@ -948,6 +949,7 @@ def insert_sheet_a_oth_7(**kwargs):
     fs = ['Выбыло','Койко/день','Сред.к/день','Оперировано','К-во операц','Умерло']
     #Всего пациентов
     sl_all = []
+
     for d in data:
         for b in range(1,13):
             sheet.cell(row=row, column=b).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
@@ -1007,26 +1009,27 @@ def insert_sheet_a_oth_7(**kwargs):
         row+=1
         for b in range(1,13):
             sheet.cell(row=row, column=b).border = styles.Border(top=styles.Side(border_style='thin', color='000000'))
-        r = None
-        for o in range(len(sl_all)):
-            if o == 0:
-                r = numpy.array(sl_all[o])
-            else:
-                r+= numpy.array(sl_all[o])
-        rez = r.tolist()
-        # rez = rez[0]
-        rez[2] = (numpy.array(rez[1])/numpy.array(rez[0])).tolist()
-        rez[2][1] = rez[2][2] + rez[2][3] + rez[2][4] 
+        if len(sl_all)>0:
+            r = None
+            for o in range(len(sl_all)):
+                if o == 0:
+                    r = numpy.array(sl_all[o])
+                else:
+                    r+= numpy.array(sl_all[o])
+            
+            rez = r.tolist()
+            rez[2] = (numpy.array(rez[1])/numpy.array(rez[0])).tolist()
+            rez[2][1] = rez[2][2] + rez[2][3] + rez[2][4] 
 
-        sheet.cell(row=row, column=1).value = 'Всего'
-        for f in range(len(fs)):
-                sheet.cell(row=row, column=3).value = fs[f]
-                for b in range(3,13):
-                    sheet.cell(row=row, column=b).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
-                for v in range(len(rez[f])):
-                    sheet.cell(row=row, column=4+v).value =  float('{0:.2f}'.format(rez[f][v])) if rez[f][v] != None and rez[f][v] != 0 else None
-                    sheet.cell(row=row, column=4+v).alignment = styles.Alignment(horizontal="center", vertical="center")
-                row+=1
+            sheet.cell(row=row, column=1).value = 'Всего'
+            for f in range(len(fs)):
+                    sheet.cell(row=row, column=3).value = fs[f]
+                    for b in range(3,13):
+                        sheet.cell(row=row, column=b).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+                    for v in range(len(rez[f])):
+                        sheet.cell(row=row, column=4+v).value =  float('{0:.2f}'.format(rez[f][v])) if rez[f][v] != None and rez[f][v] != 0 else None
+                        sheet.cell(row=row, column=4+v).alignment = styles.Alignment(horizontal="center", vertical="center")
+                    row+=1
 
 def get_rez_7(data):
     bf = BetterFilter()
@@ -1199,7 +1202,12 @@ def insert_sheet_a_oth_23(**kwargs):
     date_1 = kwargs['date_1']
     date_2 = kwargs['date_2']
 
-    data_ymer = []
+    data_ymer = 0
+    data_17_ym = []
+    data_65_ym = []
+    data_60_ym = []
+    data_old_ym = []
+    all_count = 0
     data_17 = []
     data_65 = []
     data_60 = []
@@ -1210,30 +1218,66 @@ def insert_sheet_a_oth_23(**kwargs):
             if le_trv.t_trv and le_trv.t_trv.kod == '7':
                 year = datetime.now().year - d.patient.datr.year
                 if d.sluchay.rslt and d.sluchay.rslt.id_tip in [105,106]:
-                    data_ymer.append(d)
-                if 0 < year <= 17:
-                    data_17.append(d)
-                if d.patient.pol and d.patient.pol.id_pol == 1:
-                    if 16 < year <= 65:
-                        data_65.append(d)
-                    elif year > 65:
-                        data_old.append(d)
-                if d.patient.pol and d.patient.pol.id_pol == 2:
-                    if 16 < year <= 60:
-                        data_60.append(d)
-                    elif year > 60:
-                        data_old.append(d)
-    # print(len(data_ymer))
-    # print(len(data_17))
-    # print(len(data_65))
-    # print(len(data_60))
-    # print(len(data_old))
-    sheet.cell(row=8, column=3).value = len(data_ymer)
-    sheet.cell(row=9, column=3).value = len(data_17)
-    rez = get_rez_a_oth_23_list(data_17)
+                    data_ymer+=1
+                    if 0 < year <= 17:
+                        data_17_ym.append(d)
+                    if d.patient.pol and d.patient.pol.id_pol == 1:
+                        if 16 < year <= 65:
+                            data_65_ym.append(d)
+                        elif year > 65:
+                            data_old_ym.append(d)
+                    if d.patient.pol and d.patient.pol.id_pol == 2:
+                        if 16 < year <= 60:
+                            data_60_ym.append(d)
+                        elif year > 60:
+                            data_old_ym.append(d)
+                else:
+                    all_count += 1
+                    if 0 < year <= 17:
+                        data_17.append(d)
+                    if d.patient.pol and d.patient.pol.id_pol == 1:
+                        if 16 < year <= 65:
+                            data_65.append(d)
+                        elif year > 65:
+                            data_old.append(d)
+                    if d.patient.pol and d.patient.pol.id_pol == 2:
+                        if 16 < year <= 60:
+                            data_60.append(d)
+                        elif year > 60:
+                            data_old.append(d)
+
+
+    sheet.cell(row=8, column=3).value = data_ymer if data_ymer != 0 else None
+    sheet.cell(row=9, column=3).value = len(data_17_ym) if len(data_17_ym) != 0 else None
+    rez = get_rez_a_oth_23_list(data_17_ym)
     for n,r in enumerate(rez):
-        sheet.cell(row=10+n, column=3).value = r
-    sheet.cell(row=16, column=3).value = len(data_65) + len(data_60)
+        sheet.cell(row=10+n, column=3).value = r if r != 0 else None
+    sheet.cell(row=16, column=3).value = len(data_65_ym) + len(data_60_ym) if (len(data_65_ym) + len(data_60_ym)) != 0 else None
+    rez65 = get_rez_a_oth_23_list(data_65_ym)
+    rez60 = get_rez_a_oth_23_list(data_60_ym)
+    rez_65_60 = []
+    rez_65_60.append(rez65)
+    rez_65_60.append(rez60)
+    r = None
+    for o in range(len(rez_65_60)):
+        if o == 0:
+            r = numpy.array(rez_65_60[o])
+        else:
+            r += numpy.array(rez_65_60[o])
+    rez = r.tolist()
+    for n, r in enumerate(rez):
+        sheet.cell(row=17 + n, column=3).value = r if r != 0 else None
+    rez_old = get_rez_a_oth_23_list(data_old_ym)
+    sheet.cell(row=23, column=3).value = len(data_old_ym) if len(data_old_ym) != 0 else None 
+    for n,r in enumerate(rez_old):
+        sheet.cell(row=24+n, column=3).value = r if r != 0 else None
+
+    sheet.cell(row=30, column=3).value = all_count if all_count != 0 else None
+    sheet.cell(row=31, column=3).value = len(data_17) if len(data_17) != 0 else None
+    rez = get_rez_a_oth_23_list(data_17)
+    for n, r in enumerate(rez):
+        sheet.cell(row=32 + n, column=3).value = r if r != 0 else None
+    sheet.cell(row=38, column=3).value = len(data_65) + len(data_60) if (len(data_65) + len(data_60)) != 0 else None
     rez65 = get_rez_a_oth_23_list(data_65)
     rez60 = get_rez_a_oth_23_list(data_60)
     rez_65_60 = []
@@ -1247,7 +1291,11 @@ def insert_sheet_a_oth_23(**kwargs):
             r += numpy.array(rez_65_60[o])
     rez = r.tolist()
     for n, r in enumerate(rez):
-        sheet.cell(row=17 + n, column=3).value = r
+        sheet.cell(row=39 + n, column=3).value = r if r != 0 else None
+    rez_old = get_rez_a_oth_23_list(data_old)
+    sheet.cell(row=45, column=3).value = len(data_old) if len(data_old) != 0 else None
+    for n,r in enumerate(rez_old):
+        sheet.cell(row=46+n, column=3).value = r if r != 0 else None
 def get_rez_32_list(data,ds):
     temp = []
     ds_list = []
@@ -2578,25 +2626,24 @@ class AOth1(AnnualReportABC):
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
         async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
-
 class AOth2(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth3(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth4(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth5(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
@@ -2632,7 +2679,7 @@ class AOth6(AnnualReportABC):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth7(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
@@ -2655,80 +2702,78 @@ class AOth7(AnnualReportABC):
                                                            'btn':'download_a_oth_7'
                                                            },
                                                           )
-
-
 class AOth8(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth9(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth10(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth11(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth12(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth13(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth14(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth15(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth16(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth17(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth18(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth19(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth20(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
@@ -2748,20 +2793,22 @@ class AOth20(AnnualReportABC):
             async_to_sync(get_channel_layer().group_send)(self.user_group_name,
                                                           {'type': 'report_group_data', 'text': 'Отчет cфромирован'})
             async_to_sync(get_channel_layer().group_send)(self.user_group_name,
-                                                          {'type': 'download',
-                                                           'text': self.path() + f'a_oth_20_{self.user.user.id}.xlsx'})
+                                                          {'type': 'download_a_oth',
+                                                           'text': self.path() + f'a_oth_20_{self.user.user.id}.xlsx'
+                                                           }
+                                                          )
 class AOth21(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth22(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth23(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
@@ -2773,59 +2820,66 @@ class AOth23(AnnualReportABC):
             os.remove(file)
             sheet = wb.active
             patients = PatientsData(self.date_1, self.date_2, self.user)
-            patients.sluchays(cah=True)
+            patients.sluchays()
             dic = dict([('sheet', sheet), ('data', patients.patients), ('name', self.user.statistics_type.name),
                         ('date_1', self.date_1), ('date_2', self.date_2)])
             insert_sheet_a_oth_23(**dic)
             wb.save(self.path() + f'a_oth_23_{self.user.user.id}.xlsx')
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,
+                                                          {'type': 'report_group_data', 'text': 'Отчет cфромирован'})
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,
+                                                          {'type': 'download_a_oth',
+                                                           'text': self.path() + f'a_oth_23_{self.user.user.id}.xlsx'
+                                                           }
+                                                          )
 class AOth24(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth25(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth26(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth27(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth28(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth29(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth30(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth31(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth32(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
@@ -2853,15 +2907,16 @@ class AOth32(AnnualReportABC):
             async_to_sync(get_channel_layer().group_send)(self.user_group_name,
                                                           {'type': 'report_group_data', 'text': 'Отчет cфромирован'})
             async_to_sync(get_channel_layer().group_send)(self.user_group_name,
-                                                          {'type': 'download',
-                                                           'text': self.path() + f'a_oth_32_{self.user.user.id}.xlsx'})
-
+                                                          {'type': 'download_a_oth',
+                                                           'text': self.path() + f'a_oth_32_{self.user.user.id}.xlsx'
+                                                           }
+                                                          )
 class AOth33(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
     def create(self):
-        pass
+        async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 
 
 
