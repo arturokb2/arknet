@@ -2455,15 +2455,24 @@ function a_oth_18_f(type_report) {
 function a_oth_19_f(type_report) {
     let date_1 = $("#panel_m-19").find("#date1")
     let date_2 = $("#panel_m-19").find("#date2")
-    let trv = document.getElementById("trv")
+    let trv = document.getElementById("otdel").querySelector("ul")
     let trvnas = document.getElementById("trvnas")
+    
+
+        let list_input = trv.querySelectorAll("input")
+        let checked_input = []
+        for (input of list_input) {
+            if (input.checked) {
+                checked_input.push(input.value)
+            }
+        }
 
 
     var filter = {}
 
 
     filter.t_trv = {
-        t_trv: trv.value,
+        t_trv: checked_input,
     }
 
     filter.trav_ns = {
@@ -2477,14 +2486,10 @@ function a_oth_19_f(type_report) {
     formData.append('type_report', type_report)
     formData.append("date_1", date_1.val())
     formData.append("date_2", date_2.val())
-    // formData.append("trv", trv.value)
-    // formData.append("trvnas", trvnas.value)
     formData.append("filter", JSON.stringify({ filter }))
 
     if (date_1.val() != "" && date_2.val() != "") {
         sendRequest_f(formData)
-        // report_oth.$data.create = false
-        // report_oth.$data.shaping = true
     }
 }
 function a_oth_20_f(type_report) {
@@ -3596,10 +3601,10 @@ function p_list_cast(h) {
 
 }
 function p_list_lit(h) {
-    let menu = document.getElementById("menu-annual-reports").getElementsByClassName('col-md-4')
-    for (m of menu) {
-        m.childNodes[0].setAttribute('style', `height: ${h}px;position: static`)
-    }
+    // let menu = document.getElementById("menu-annual-reports").getElementsByClassName('col-md-4')
+    // for (m of menu) {
+    //     m.childNodes[0].setAttribute('style', `height: ${h}px;position: static`)
+    // }
 }
 
 // function width_input_on(){

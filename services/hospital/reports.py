@@ -476,6 +476,12 @@ class RezUmerSpecification(Specification):
 #rez_umer
     def is_satisfied(self,item):
         return 1 if item.sluchay.rslt is not None and item.sluchay.rslt.id_tip in [105,106] else 0
+
+class IshUmerSpecification(Specification):
+    def is_satisfied(self,item):
+        if item.sluchay.icx and item.sluchay.icx.id_iz in [105,106]:
+            return 1
+        return 0
         
 class RezUmerOperSpecification(Specification):
     def is_satisfied(self, item):
@@ -611,8 +617,52 @@ class AgeSpecification(Specification):
 
 class NibSpecification(Specification):
     def is_satisfied(self, item):
-        print(item.sluchay.nib)
         return item.sluchay.nib
+
+class PolSpecification(Specification):
+    def __init__(self,pol):
+        self.pol = pol
+    def is_satisfied(self, item):
+        if item.patient.pol and (item.patient.pol.id_pol == self.pol):
+            return 1
+        return 0
+
+class TerrSpecification(Specification):
+    def __int__(self,t,c=None):
+        self.t = t
+        self.c = c
+    def is_satisfied(self,item):
+        adr = item.patient.m_roj
+        c_oksm = item.patient.c_oksm.kod if item.patient.c_oksm else None
+        if c_oksm == 643 and self.c==643:
+            if self.t == 'г.Тюменю':
+                if 'Тюмень' in adr:
+                    return 1
+                return 0
+            elif self.t == 'Юг Тюм.обл.кроме Тюм.р-н':
+                if (('Тюменская обл' in adr) or ('обл. Тюменская' in adr) or ('ОБЛ ТЮМЕНСКАЯ' in adr)) \
+                           and (('Тюменский р-н' not in adr) or ('р-н. Тюменский' not in adr)):
+                    return 1
+                return 0
+            elif self.t == 'Тюменский р-н':
+                if 'Тюменский р-н' in adr or 'р-н. Тюменский' in adr:
+                    return 1
+                return 0
+            elif self.t == 'Ханты-Мансйский АО':
+                if 'Ханты-Мансийский' in adr:
+                    return 1
+                return 0
+            elif self.t == 'Ямало-Немецкий АО':
+                if 'Ямало-Ненецкий' in adr:
+                    return 1
+                return 0
+            elif self.t == 'Др.регионы Россий':
+                if (('Тюменская обл' not in adr) and ('обл. Тюменская' not in adr) and ('ОБЛ ТЮМЕНСКАЯ' not in adr)) \
+                           and (('Тюменский р-н' not in adr) and ('р-н. Тюменский' not in adr)):
+                    return 1
+                return 0
+        else:
+            return 1
 
 # class DSTSpecification(Specification):
 #     def __init__(self,typ=None,ds=None,r=None):

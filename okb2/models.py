@@ -690,6 +690,7 @@ class otde(models.Model):
     zagl1 = models.CharField(max_length=500,blank=True,null=True)
     naim_s = models.CharField(max_length=100,blank=True,null=True)
     tipe = models.IntegerField(blank=True,null=True)
+    number_beds = models.IntegerField(blank=True,null=True)
     datebeg = models.DateField(blank=True, null=True)
     dateend = models.DateField(blank=True, null=True)
 

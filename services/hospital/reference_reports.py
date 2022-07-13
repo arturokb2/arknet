@@ -1,5 +1,5 @@
 import copy
-
+from django.db.models import Q
 from services.hospital.annual_reports import AnnualReportABC, get_rez_apr_1
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
@@ -13,12 +13,35 @@ import numpy
 from services.hospital.reports import *
 from operator import itemgetter, attrgetter, methodcaller
 from hospital.models import Oper,Oslo,V001,Manpy,PR_OSOB
-from okb2.models import Ds,Vra
+from okb2.models import Ds,Vra,otde
 
 border = Border(left=Side(border_style='thin',color='000000'),
                             right=Side(border_style='thin', color='000000'),
                             top=Side(border_style='thin',color='000000'),
                             bottom=Side(border_style='thin', color='000000'))
+
+
+nzI60=ds = list(Ds.objects.values('kod').filter(kod__range=('I60','I60.9')))
+nzI60 = [k['kod'] for k in nzI60]
+
+nzI61_I62 = list(Ds.objects.values('kod').filter(kod__range=('I61','I62.9')))
+nzI61_I62 = [k['kod'] for k in nzI61_I62]
+
+nzI63=ds = list(Ds.objects.values('kod').filter(kod__range=('I63','I63.9')))
+nzI63 = [k['kod'] for k in nzI63]
+
+nzI67_I69 = list(Ds.objects.values('kod').filter(kod__range=('I67','I69.9')))
+nzI67_I69 = [k['kod'] for k in nzI67_I69]
+
+nzG00_G09 = list(Ds.objects.values('kod').filter(kod__range=('G00','G09.9')))
+nzG00_G09 = [k['kod'] for k in nzG00_G09]
+
+nzG92=ds = list(Ds.objects.values('kod').filter(kod__range=('G92','G92.9')))
+nzG92 = [k['kod'] for k in nzG92]
+
+nzC70C72_C32_C33 = Ds.objects.values('kod').filter(Q(kod__range=('C70','C72.9'))|Q(kod__range=('C32','C33.9')))
+nzC70C72_C32_C33 = [k['kod'] for k in nzC70C72_C32_C33]
+
 
 
 def get_pop_oper(patient):
@@ -51,6 +74,20 @@ def get_list_otd(data):
         otds_sl.append(temp)
     return otds_sl
 
+def get_list_lpu(data):
+    lpu_list = []
+    for d in data:
+        if d.sluchay.lpy and d.sluchay.lpy.naim not in lpu_list:
+            lpu_list.append(d.sluchay.lpy.naim)
+    sl = []
+    for o in lpu_list:
+        temp = [[],[]]
+        temp[0].append(o)
+        for d in data:
+            if d.sluchay.lpy and o == d.sluchay.lpy.naim:
+                temp[1].append(d)
+        sl.append(temp)
+    return sl
 def get_list_ds(data):
     ds_list = []
     for d in data:
@@ -220,6 +257,29 @@ def get_rez_rep_4(data,d=None):
         except ZeroDivisionError:
             data[10] = 0
         return data
+
+def get_rez_rep_5(data,t):
+    if t == 1:
+        I60 = [0,0,0,0,0,0,0,0,0,0,0,0]
+        I61_I62 = [0,0,0,0,0,0,0,0,0,0,0,0]
+        I63 = [0,0,0,0,0,0,0,0,0,0,0,0]
+        I67_I69 = [0,0,0,0,0,0,0,0,0,0,0,0]
+        G00_G09 = [0,0,0,0,0,0,0,0,0,0,0,0]
+        C70C72_C32_C33 = [0,0,0,0,0,0,0,0,0,0,0,0]
+        for d in data:
+            if d.sluchay.dskz:
+                ds = d.sluchay.dskz.kod
+                year = datetime.now().year - d.patient.datr.year
+                if ds in nzI60:
+                    I60[0]+=1
+                    if 15 <= year <= 17:
+                        I60[1]+=1
+                    if 15 <= year <= 17:
+                        I60[1]+=1
+
+
+    else:
+        pass
 
 class PatientsDataFiltrs(PatientsData):
     def __init__(self,date_1,date_2,user,request):
@@ -1996,6 +2056,7 @@ class VaultOtd(AnnualReportABC):
         data = []
         otdel = self.request.get('otdel',None)
         otd = ''
+        oth_typ = None
         if typ != 'null':
             for p in patients.patients:
                 if typ == 'ttt':
@@ -2010,15 +2071,17 @@ class VaultOtd(AnnualReportABC):
                     otd = ' '.join(['ХИРУРГИЧЕСКОЕ N1','ХИРУРГИЧЕСКОЕ N2(гн)'])
                     if p.sluchay.otd and p.sluchay.otd.naim in ['ХИРУРГИЧЕСКОЕ N1','ХИРУРГИЧЕСКОЕ N2(гн)']:
                         data.append(p)
+            oth_typ=False
         else:
             otd = otdel
             for p in patients.patients:
                 if p.sluchay.otd and p.sluchay.otd.naim == otdel:
                     data.append(p)
+            oth_typ=True
 
         n = self.request.get('n',None)
         if n == '1':
-            self.oth_1(data)
+            self.oth_1(data,oth_typ,otd)
         elif n == '2':
             self.oth_2(data)
         elif n == '3':
@@ -2046,12 +2109,412 @@ class VaultOtd(AnnualReportABC):
         elif n == 'd':
             self.oth_d(data,otd)
 
-    def oth_1(self,data):
-        #otd_rep_1.xlsx
-        print(data)
+    def rez_oth_1_2(self,data):
+        bf = BetterFilter()
+        sp = CountSluchaySpecification() ^ ProfKNSpecification() ^ IshUmerSpecification() ^ PolSpecification(1) ^ PolSpecification(2)
+        all_temp = []
+        for patient in data:
+            for p in bf.filter(patient,sp):
+                temp = bf.format_list(p)
+                for t in range(len(temp)):
+                    if temp[t] == 'None':
+                        temp[t] = 0
+                all_temp.append([int(i) for i in temp])
+
+        all_temp = [sum([all_temp[i][x] for i in range(len(all_temp))]) for x in range(5)]
+        return all_temp
+
+    def rez_oth_1_4(self,data,t,c_oksm):
+        # _ = [0,0,0,0,0]
+        _ = []
+        for d in data:
+            adr = d.patient.m_roj
+            c_oksm_p = d.patient.c_oksm.kod if d.patient.c_oksm else None
+            if c_oksm_p == c_oksm == 643:
+                if t == 'г.Тюменю':
+                    if 'Тюмень' in adr:
+                        _.append(d)
+                elif t == 'Юг Тюм.обл.кроме Тюм.р-н':
+                    if (('Тюменская обл' in adr) or ('обл. Тюменская' in adr) or ('ОБЛ ТЮМЕНСКАЯ' in adr)) \
+                            and (('Тюменский р-н' not in adr) or ('р-н. Тюменский' not in adr)):
+                        _.append(d)
+                elif t == 'Тюменский р-н':
+                    if 'Тюменский р-н' in adr or 'р-н. Тюменский' in adr:
+                        _.append(d)
+                elif t == 'Ханты-Мансйский АО':
+                    if 'Ханты-Мансийский' in adr:
+                        _.append(d)
+                elif t == 'Ямало-Немецкий АО':
+                    if 'Ямало-Ненецкий' in adr:
+                        _.append(d)
+                elif t == 'Др.регионы Россий':
+                    if (('Тюменская обл' not in adr) and ('обл. Тюменская' not in adr) and ('ОБЛ ТЮМЕНСКАЯ' not in adr)) \
+                            and (('Тюменский р-н' not in adr) and ('р-н. Тюменский' not in adr)):
+                        _.append(d)
+            else:
+                _.append(d)
+        return _
+
+    def rez_oth_1_4_all(self,data):
+        _ = [0, 0, 0, 0, 0]
+        _[0] = len(data)
+        for d in data:
+            if d.sluchay.goc and d.sluchay.goc.tip_name == 'Экстренная':
+                _[1] += 1
+            if d.le_vr and d.le_vr.kd != None and d.le_vr.kd != '':
+                _[2] += d.le_vr.kd
+            if d.sluchay.oper.count() != 0:
+                _[3] += 1
+            if d.sluchay.icx and d.sluchay.icx.id_iz in [105, 106]:
+                _[4] += 1
+        return _
+
+    def rez_oth_1_5(self,data):
+        bf = BetterFilter()
+        sp = CountSluchaySpecification() ^ GocEkSpecification() ^ ProfKNSpecification()^ \
+             OperCountSpecification() ^ RezUmerSpecification()
+        all_temp = []
+        for patient in data:
+            for p in bf.filter(patient,sp):
+                temp = bf.format_list(p)
+                for t in range(len(temp)):
+                    if temp[t] == 'None':
+                        temp[t] = 0
+                all_temp.append([int(i) for i in temp])
+        all_temp = [sum([all_temp[i][x] for i in range(len(all_temp))]) for x in range(5)]
+        return all_temp
+
+    def oth_1(self,data,oth_typ,otd):
+        file = self.is_file('otd_rep_1.xlsx')
+        if file:
+            wb = load_workbook(file)
+            sheet = wb.active
+            os.remove(file)
+            sheet1=wb.get_sheet_by_name('Лист1')
+            sheet2=wb.get_sheet_by_name('Лист2')
+            sheet3=wb.get_sheet_by_name('Лист3')
+            sheet4=wb.get_sheet_by_name('Лист4')
+            sheet5=wb.get_sheet_by_name('Лист5')
+
+            #Лист1
+            sheet1.cell(row=3,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            sheet1.cell(row=4, column=1).value = f'отделение {otd}'
+            otd = otde.objects.values('id').filter(naim=otd)[0]['id']
+            otd = otde.objects.get(id=otd)
+
+            number_beds = otd.number_beds if otd.number_beds and otd.number_beds != 0 else 0 
+            sheet1.cell(row=10, column=2).value = number_beds
+            sheet1.cell(row=11, column=2).value = number_beds
+
+            datp_count = 0
+            datv_count = 0
+            rslt_umer = 0
+            #не понятно 
+            otd_y = 0
+            goc_ek_count=0
+            goc_pl_count=0    
+
+            for d in data:
+                if self.date_1 <= d.sluchay.datp <= self.date_2:
+                    datp_count+=1
+                if self.date_1 <= d.sluchay.datv <= self.date_2:
+                    datv_count+=1
+                if d.sluchay.rslt and  d.sluchay.rslt.id_tip in [105,106]:
+                    rslt_umer+=1
+                # if d.sluchay.otd_y and d.sluchay.otd_y.
+                if d.sluchay.goc:
+                    if d.sluchay.goc.id_tip == 1:
+                        goc_ek_count+=1
+                    elif  d.sluchay.goc.id_tip == 3:
+                        goc_pl_count+=1
+
+            sheet1.cell(row=12, column=2).value = datp_count
+            sheet1.cell(row=13, column=2).value = datv_count
+            sheet1.cell(row=14, column=2).value = rslt_umer
+            try:
+                v = float('{0:.2f}'.format((datp_count+datv_count) / 2))
+            except ZeroDivisionError:
+                v = 0
+            sheet1.cell(row=16, column=2).value = v if v != 0 else None
+            sheet1.cell(row=18, column=2).value = number_beds * 29
+
+            try:
+                v = float('{0:.2f}'.format((rslt_umer*100) / datv_count))
+            except ZeroDivisionError:
+                v = 0
+            sheet1.cell(row=29, column=2).value = v if v != 0 else None
+
+            sheet1.cell(row=32, column=3).value = goc_ek_count if goc_ek_count != 0 else None
+            try:
+                v = float('{0:.2f}'.format((goc_ek_count*100) / len(data)))
+            except ZeroDivisionError:
+                v = 0
+            sheet1.cell(row=32, column=4).value = f'{v}%' if v != 0 else None
+            sheet1.cell(row=33, column=3).value = goc_pl_count if goc_pl_count != 0 else None
+            try:
+                v = float('{0:.2f}'.format((goc_pl_count*100) / len(data)))
+            except ZeroDivisionError:
+                v = 0
+            sheet1.cell(row=33, column=4).value = f'{v}%' if v != 0 else None
+            #Лист2
+
+            data_20_29 = []
+            data_30_39 = []
+            data_40_49 = []
+            data_50_59 = []
+            data_60_69 = []
+            data_70_79 = []
+            data_80 = []
+
+            t_trv_1 = [0,0]
+            t_trv_2 = [0,0]
+            t_trv_3 = [0,0]
+            t_trv_4 = [0,0]
+            t_trv_all = [t_trv_1,t_trv_2,t_trv_3,t_trv_4]
+            for d in data:
+                year = datetime.now().year - d.patient.datr.year
+
+                if d.le_trv and d.le_trv.t_trv:
+                    if d.le_trv.t_trv.kod == '6':
+                        t_trv_1[0]+=1
+                        if d.sluchay.alg and d.sluchay.alg in ['2']:
+                            t_trv_1[1] += 1
+                    elif d.le_trv.t_trv.kod == '5':
+                        t_trv_2[0] += 1
+                        if d.sluchay.alg and d.sluchay.alg in ['2']:
+                            t_trv_2[1] += 1
+                    elif d.le_trv.t_trv.kod == '7':
+                        t_trv_3[0] += 1
+                        if d.sluchay.alg and d.sluchay.alg in ['2']:
+                            t_trv_3[1] += 1
+                    elif d.le_trv.t_trv.kod == '10':
+                        t_trv_4[0] += 1
+                        if d.sluchay.alg and d.sluchay.alg in ['2']:
+                            t_trv_4[1] += 1
+
+                if 20<= year <= 29:
+                    data_20_29.append(d)
+                if 30 <= year <= 39:
+                    data_30_39.append(d)
+                if 40 <= year <= 49:
+                    data_40_49.append(d)
+                if 50 <= year <= 59:
+                    data_50_59.append(d)
+                if 60 <= year <= 69:
+                    data_60_69.append(d)
+                if 70 <= year <= 79:
+                    data_70_79.append(d)
+                if 80 >= year:
+                    data_80.append(d)
+
+            rez_20 = self.rez_oth_1_2(data_20_29)
+            rez_30 = self.rez_oth_1_2(data_30_39)
+            rez_40 = self.rez_oth_1_2(data_40_49)
+            rez_50 = self.rez_oth_1_2(data_50_59)
+            rez_60 = self.rez_oth_1_2(data_60_69)
+            rez_70 = self.rez_oth_1_2(data_70_79)
+            rez_80 = self.rez_oth_1_2(data_80)
+
+            rez_all = [rez_20,rez_30,rez_40,rez_50,rez_60,rez_70,rez_80]
+            r = None
+            for o in range(len(rez_all)):
+                if o == 0:
+                    r = numpy.array(rez_all[o])
+                else:
+                    r += numpy.array(rez_all[o])
+            rez = r.tolist()
+            row=3
+            for r in rez_all:
+                row+=1
+                sheet2.cell(row=row, column=2).value = r[0] if r[0] != 0 else None
+                try:
+                    v = float('{0:.2f}'.format((r[0] * 100) / rez[0]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet2.cell(row=row, column=3).value = v if v != 0 else None
+                sheet2.cell(row=row, column=4).value = r[1] if r[1] != 0 else None
+                try:
+                    v = float('{0:.2f}'.format((r[1] * 100) / rez[1]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet2.cell(row=row, column=5).value = v if v != 0 else None
+                try:
+                    v = float('{0:.2f}'.format(r[1] / r[0]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet2.cell(row=row, column=6).value = v if v != 0 else None
+                sheet2.cell(row=row, column=7).value = r[2] if r[2] != 0 else None
+                sheet2.cell(row=row, column=8).value = r[3] if r[3] != 0 else None
+                sheet2.cell(row=row, column=9).value = r[4] if r[4] != 0 else None
+            else:
+                sheet2.cell(row=12, column=2).value = rez[0] if rez[0] != 0 else None
+                sheet2.cell(row=12, column=3).value = 100
+                sheet2.cell(row=12, column=4).value = rez[1] if rez[1] != 0 else None
+                sheet2.cell(row=12, column=5).value = 100
+                try:
+                    v = float('{0:.2f}'.format(rez[1] / rez[0]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet2.cell(row=12, column=6).value = v if v != 0 else None
+                sheet2.cell(row=12, column=7).value = rez[2] if rez[2] != 0 else None
+                sheet2.cell(row=12, column=8).value = rez[3] if rez[3] != 0 else None
+                sheet2.cell(row=12, column=9).value = rez[4] if rez[4] != 0 else None
+
+            #Лист3
+            for o in range(len(t_trv_all)):
+                if o == 0:
+                    r = numpy.array(t_trv_all[o])
+                else:
+                    r += numpy.array(t_trv_all[o])
+            rez = r.tolist()
+            row=3
+            for t in t_trv_all:
+                row+=1
+                sheet3.cell(row=row, column=3).value = t[0]
+                try:
+                    v = float('{0:.2f}'.format((t[0] * 100) / rez[0]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet3.cell(row=row, column=4).value = v if v != 0 else None
+                sheet3.cell(row=row, column=5).value = t[1] if t[1] != 0 else None
+            else:
+                row+=1
+                sheet3.cell(row=row, column=3).value = rez[0] if rez[0] != 0 else None
+                sheet3.cell(row=row, column=4).value = 100
+                sheet3.cell(row=row, column=5).value = rez[1] if rez[1] != 0 else None
+
+            #Лист4
+            rez1 = self.rez_oth_1_4(data,t='г.Тюменю',c_oksm=643)
+            rez2 = self.rez_oth_1_4(data, t='Юг Тюм.обл.кроме Тюм.р-н', c_oksm=643)
+            rez3 = self.rez_oth_1_4(data, t='Тюменский р-н', c_oksm=643)
+            rez4 = self.rez_oth_1_4(data, t='Ханты-Мансйский АО', c_oksm=643)
+            rez5 = self.rez_oth_1_4(data, t='Ямало-Немецкий АО', c_oksm=643)
+            rez6 = self.rez_oth_1_4(data, t='Др.регионы Россий', c_oksm=643)
+            rez7 = self.rez_oth_1_4(data, t='', c_oksm=0)
+
+            rez1_all = self.rez_oth_1_4_all(rez1)
+            rez2_all = self.rez_oth_1_4_all(rez2)
+            rez3_all = self.rez_oth_1_4_all(rez3)
+            rez4_all = self.rez_oth_1_4_all(rez4)
+            rez5_all = self.rez_oth_1_4_all(rez5)
+            rez6_all = self.rez_oth_1_4_all(rez6)
+            rez7_all = self.rez_oth_1_4_all(rez7)
+
+            _ = [rez1_all,rez2_all,rez3_all,rez4_all,rez5_all,rez6_all,rez7_all]
+            for o in range(len(_)):
+                if o == 0:
+                    r = numpy.array(_[o])
+                else:
+                    r += numpy.array(_[o])
+            rez = r.tolist()
+            _.append(rez)
+            row=6
+            for r in _:
+                row+=1
+                sheet4.cell(row=row, column=2).value = r[0] if r[0] != 0 else None
+                sheet4.cell(row=row, column=3).value = r[1] if r[1] != 0 else None
+                try:
+                    v = float('{0:.2f}'.format(r[2] / r[0]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet4.cell(row=row, column=4).value = v if v != 0 else None
+                sheet4.cell(row=row, column=5).value = r[3] if r[3] != 0 else None
+                sheet4.cell(row=row, column=6).value = r[4] if r[4] != 0 else None
+
+            sel = []
+            for d in data:
+                if d.patient.cj and d.patient.cj.kod == 2:
+                    sel.append(d)
+
+            sel = self.rez_oth_1_4_all(sel)
+            row=15
+            sheet4.cell(row=row, column=2).value = sel[0] if sel[0] != 0 else None
+            sheet4.cell(row=row, column=3).value = sel[1] if sel[1] != 0 else None
+            try:
+                v = float('{0:.2f}'.format(sel[2] / sel[0]))
+            except ZeroDivisionError:
+                v = 0
+            sheet4.cell(row=row, column=4).value = v if v != 0 else None
+            sheet4.cell(row=row, column=5).value = sel[3] if sel[3] != 0 else None
+            sheet4.cell(row=row, column=6).value = sel[4] if sel[4] != 0 else None
+            ing = []
+            for d in data:
+                c_oksm_p = d.patient.c_oksm.kod if d.patient.c_oksm else None
+                adr = d.patient.m_roj
+                if c_oksm_p == 643:
+                    if 'г.Тюмень' not in adr:
+                        ing.append(d)
+
+            ing = self.rez_oth_1_4_all(ing)
+            row = 16
+            sheet4.cell(row=row, column=2).value = ing[0] if ing[0] != 0 else None
+            sheet4.cell(row=row, column=3).value = ing[1] if ing[1] != 0 else None
+            try:
+                v = float('{0:.2f}'.format(ing[2] / ing[0]))
+            except ZeroDivisionError:
+                v = 0
+            sheet4.cell(row=row, column=4).value = v if v != 0 else None
+            sheet4.cell(row=row, column=5).value = ing[3] if ing[3] != 0 else None
+            sheet4.cell(row=row, column=6).value = ing[4] if ing[4] != 0 else None
+
+            # Лист5
+            list_lpu = get_list_lpu(data)
+            row=6
+            rez_all = []
+            for l in list_lpu:
+                row+=1
+                sheet5.cell(row=row, column=1).value = l[0][0]
+                rez = self.rez_oth_1_5(l[1])
+                rez_all.append(rez)
+                sheet5.cell(row=row, column=2).value = rez[0] if rez[0] != 0 else None
+                sheet5.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet5.cell(row=row, column=3).value = rez[1] if rez[1]!=0 else None
+                sheet5.cell(row=row, column=3).alignment = styles.Alignment(horizontal="center", vertical="center")
+                try:
+                    v = float('{0:.2f}'.format(rez[2] / rez[0]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet5.cell(row=row, column=4).value = v if v != 0 else None
+                sheet5.cell(row=row, column=4).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet5.cell(row=row, column=5).value = rez[3] if rez[3] != 0 else None
+                sheet5.cell(row=row, column=5).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet5.cell(row=row, column=6).value = rez[4] if rez[4] != 0 else None
+                sheet5.cell(row=row, column=6).alignment = styles.Alignment(horizontal="center", vertical="center")
+                for r in range(6):
+                    sheet5.cell(row=row, column=1+r).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+            else:
+                row+=1
+                sheet5.cell(row=row, column=1).value = 'Итого'
+                r = None
+                for o in range(len(rez_all)):
+                    if o == 0:
+                        r = numpy.array(rez_all[o])
+                    else:
+                        r += numpy.array(rez_all[o])
+                rez_all = r.tolist()
+                sheet5.cell(row=row, column=2).value = rez_all[0] if rez_all[0] != 0 else None
+                sheet5.cell(row=row, column=2).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet5.cell(row=row, column=3).value = rez_all[1] if rez_all[1]!=0 else None
+                sheet5.cell(row=row, column=3).alignment = styles.Alignment(horizontal="center", vertical="center")
+                try:
+                    v = float('{0:.2f}'.format(rez_all[2] / rez_all[0]))
+                except ZeroDivisionError:
+                    v = 0
+                sheet5.cell(row=row, column=4).value = v if v != 0 else None
+                sheet5.cell(row=row, column=4).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet5.cell(row=row, column=5).value = rez_all[3] if rez_all[3] != 0 else None
+                sheet5.cell(row=row, column=5).alignment = styles.Alignment(horizontal="center", vertical="center")
+                sheet5.cell(row=row, column=6).value = rez_all[4] if rez_all[4] != 0 else None
+                sheet5.cell(row=row, column=6).alignment = styles.Alignment(horizontal="center", vertical="center")
+                for r in range(6):
+                    sheet5.cell(row=row, column=1+r).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
+
+            wb.save(self.path() + f'otd_rep_1_{self.user.user.id}.xlsx')
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_1_{self.user.user.id}.xlsx'})
     
     def oth_2(self,data):
-        pass
+         async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
     
     def oth_3(self,data,otd):
         file = self.is_file('otd_rep_3.xlsx')
@@ -2147,9 +2610,9 @@ class VaultOtd(AnnualReportABC):
             sheet.cell(row=row, column=4).value = all_ek if all_ek != 0 else None
 
             wb.save(self.path() + f'otd_rep_3_{self.user.user.id}.xlsx')
-
-
-
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_3_{self.user.user.id}.xlsx'})
+            
     def oth_4(self,data,otd):
         data = get_list_ds(data)
         file = self.is_file('otd_rep_4.xlsx')
@@ -2189,18 +2652,42 @@ class VaultOtd(AnnualReportABC):
                         sheet.cell(row=row, column=2+n).value = v if v != 0 else None
                         sheet.cell(row=row, column=2+n).alignment = styles.Alignment(horizontal="center",vertical="center")
             wb.save(self.path() + f'otd_rep_4_{self.user.user.id}.xlsx')
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_4_{self.user.user.id}.xlsx'})
 
     def oth_5(self,data):
-        pass
+        # print(nzI60)
+        # print(nzI61_I62)
+        # print(nzI63)
+        # print(nzI67_I69)
+        # print(nzG00_G09)
+        # print(nzG92)
+        # print(nzC70C72_C32_C33)
+        file = self.is_file('otd_rep_5.xlsx')
+        if file:
+            wb = load_workbook(file)
+            os.remove(file)
+
+            sheet1 = wb.get_sheet_by_name('Лист1')
+            sheet2 = wb.get_sheet_by_name('Лист2')
+            sheet3 = wb.get_sheet_by_name('Лист3')
+            sheet4 = wb.get_sheet_by_name('Лист4')
+
+            #Лист1
+            rez = get_rez_rep_5(data,t=1)
+            
+            wb.save(self.path() + f'otd_rep_5_{self.user.user.id}.xlsx')
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_5_{self.user.user.id}.xlsx'})
 
     def oth_6(self,data):
-        pass
+         async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 
     def oth_7(self,data):
-        pass
+         async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 
     def oth_8(self,data):
-        pass
+         async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 
     def oth_9(self,data):
         pass
@@ -2298,6 +2785,8 @@ class VaultOtd(AnnualReportABC):
                 sheet.cell(row=row, column=1).value = f'в 1-е сутки - {s1}'
                 sheet.cell(row=row, column=1).font = font
             wb.save(self.path() + f'otd_rep_b_{self.user.user.id}.xlsx')
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_b_{self.user.user.id}.xlsx'})
 
     def oth_v(self,data,otd):
         file = self.is_file('otd_rep_v.xlsx')
@@ -2349,10 +2838,9 @@ class VaultOtd(AnnualReportABC):
                 sheet.cell(row=row, column=5).value = f'4.{d["posl"][:40]}'
                 for c in range(1,6):
                     sheet.cell(row=row, column=c).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
-
-
-
             wb.save(self.path() + f'otd_rep_v_{self.user.user.id}.xlsx')
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_v_{self.user.user.id}.xlsx'})
     
     def oth_g(self,data,otd):
         file = self.is_file('otd_rep_g.xlsx')
@@ -2453,6 +2941,8 @@ class VaultOtd(AnnualReportABC):
                 sheet.cell(row=row, column=6).alignment = styles.Alignment(horizontal="center", vertical="center")
 
             wb.save(self.path() + f'otd_rep_g_{self.user.user.id}.xlsx')
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_g_{self.user.user.id}.xlsx'})
 
     def oth_d(self,data,otd):
         file = self.is_file('otd_rep_d.xlsx')
@@ -2567,6 +3057,8 @@ class VaultOtd(AnnualReportABC):
             for c in range(1, 13):
                 sheet.cell(row=row, column=c).border = styles.Border(bottom=styles.Side(border_style='thin', color='000000'))
             wb.save(self.path() + f'otd_rep_d_{self.user.user.id}.xlsx')
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
+            async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_d_{self.user.user.id}.xlsx'})
 
 
 # class VaultOtdTTT(AnnualReportABC):
@@ -2772,7 +3264,24 @@ class AOth19(AnnualReportABC):
     def __init__(self,user, request):
         super().__init__(user, request)
         self.user_group_name = 'hospital_reports_%s' % user
+        self.request = request
     def create(self):
+        #множ травма
+        mt_ds = ['S02.7','S12.7','S22.1','S27.7','S29.7','S31.7','S32.7','S36.7','S38.1',
+                'S39.6','S39.7','S37.7','S42.7','S49.7','T01.1','T01.9','T02.0',
+                'T02.1','T02.2','T02.3','T02.4','T02.5','T02.6','T02.7','T02.8','T02.9',
+                'T04.0','T04.1','T04.2','T04.3','T04.4','T04.7','T04.8','T04.9','T05.0',
+                'T05.1','T05.2','T05.3','T05.4','T05.5','T05.6','T05.8','T05.9','T06.0',
+                'T06.1','T06.2','T06.3','T06.4','T06.5','T06.8','T07']
+        #сочет если енсть другие дс
+        # soch_ds = ['T00.8','T01.8','T02.8','T02.80','T02.81','T03.8','T04.8','T05.1','T05.4','T06.0','T06.5']
+        filter = json.loads(self.request.get('filter'))
+        trv = filter['filter']['t_trv']['t_trv']
+        trav_ns = filter['filter']['trav_ns']['trav_ns']
+        print(trv)
+        print(trav_ns)
+
+
         async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'error_messages'})
 class AOth20(AnnualReportABC):
     def __init__(self,user, request):
