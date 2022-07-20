@@ -24,6 +24,9 @@ border = Border(left=Side(border_style='thin',color='000000'),
 nzI60=ds = list(Ds.objects.values('kod').filter(kod__range=('I60','I60.9')))
 nzI60 = [k['kod'] for k in nzI60]
 
+nzI61=ds = list(Ds.objects.values('kod').filter(kod__range=('I61','I61.9')))
+nzI61 = [k['kod'] for k in nzI61]
+
 nzI61_I62 = list(Ds.objects.values('kod').filter(kod__range=('I61','I62.9')))
 nzI61_I62 = [k['kod'] for k in nzI61_I62]
 
@@ -41,6 +44,10 @@ nzG92 = [k['kod'] for k in nzG92]
 
 nzC70C72_C32_C33 = Ds.objects.values('kod').filter(Q(kod__range=('C70','C72.9'))|Q(kod__range=('C32','C33.9')))
 nzC70C72_C32_C33 = [k['kod'] for k in nzC70C72_C32_C33]
+
+nzG45_46=ds = list(Ds.objects.values('kod').filter(kod__range=('G45','G46.9')))
+nzG45_46 = [k['kod'] for k in nzG45_46]
+
 
 
 
@@ -73,6 +80,21 @@ def get_list_otd(data):
                 temp[1].append(d)
         otds_sl.append(temp)
     return otds_sl
+
+def get_list_pers(data):
+    pers_list = []
+    for d in data:
+        if [d.patient.im,d.patient.fam,d.patient.ot] not in pers_list:
+            pers_list.append([d.patient.im,d.patient.fam,d.patient.ot])
+    sl_list = []
+    for o in pers_list:
+        temp = [[],[]]
+        temp[0].append(o)
+        for d in data:
+            if o == [d.patient.im,d.patient.fam,d.patient.ot]:
+                temp[1].append(d)
+        sl_list.append(temp)
+    return sl_list
 
 def get_list_lpu(data):
     lpu_list = []
@@ -257,29 +279,282 @@ def get_rez_rep_4(data,d=None):
         except ZeroDivisionError:
             data[10] = 0
         return data
-
+def get_rez_rep_5_help(data,rez,nz,t,s):
+    for d in data:
+        if d.sluchay.dskz:
+            ds = d.sluchay.dskz.kod
+            year = datetime.now().year - d.patient.datr.year
+            pol = d.patient.pol.id_pol if d.patient.pol and d.patient.pol.id_pol else None
+            if s == True:
+                if t == True:
+                    if ds in nz:
+                        # rez[0] += 1
+                        if 15 <= year <= 17:
+                            rez[1] += 1
+                        if 18 <= year <= 19:
+                            rez[2] += 1
+                        if 20 <= year <= 29:
+                            rez[3] += 1
+                        if 30 <= year <= 39:
+                            rez[4] += 1
+                        if 40 <= year <= 49:
+                            rez[5] += 1
+                        if 50 <= year <= 59:
+                            rez[6] += 1
+                        if 60 <= year <= 69:
+                            rez[7] += 1
+                        if 70 <= year <= 79:
+                            rez[8] += 1
+                        if year <= 80:
+                            rez[8] += 1
+                        if pol == 1:
+                            if 16 < year <= 65:
+                                rez[9] += 1
+                            elif year > 65:
+                                rez[10] += 1
+                        if pol == 2:
+                            if 16 < year <= 60:
+                                rez[9] += 1
+                            elif year > 60:
+                                rez[10] += 1
+                else:
+                    if ds not in nz:
+                        # rez[0] += 1
+                        if 15 <= year <= 17:
+                            rez[1] += 1
+                        if 18 <= year <= 19:
+                            rez[2] += 1
+                        if 20 <= year <= 29:
+                            rez[3] += 1
+                        if 30 <= year <= 39:
+                            rez[4] += 1
+                        if 40 <= year <= 49:
+                            rez[5] += 1
+                        if 50 <= year <= 59:
+                            rez[6] += 1
+                        if 60 <= year <= 69:
+                            rez[7] += 1
+                        if 70 <= year <= 79:
+                            rez[8] += 1
+                        if year <= 80:
+                            rez[8] += 1
+                        if pol == 1:
+                            if 16 < year <= 65:
+                                rez[9] += 1
+                            elif year > 65:
+                                rez[10] += 1
+                        if pol == 2:
+                            if 16 < year <= 60:
+                                rez[9] += 1
+                            elif year > 60:
+                                rez[10] += 1
+            else:
+                if d.sluchay.rslt and d.sluchay.rslt.id_tip in [105, 106]:
+                    if t == True:
+                        if ds in nz:
+                            # rez[0] += 1
+                            if 15 <= year <= 17:
+                                rez[1] += 1
+                            if 18 <= year <= 19:
+                                rez[2] += 1
+                            if 20 <= year <= 29:
+                                rez[3] += 1
+                            if 30 <= year <= 39:
+                                rez[4] += 1
+                            if 40 <= year <= 49:
+                                rez[5] += 1
+                            if 50 <= year <= 59:
+                                rez[6] += 1
+                            if 60 <= year <= 69:
+                                rez[7] += 1
+                            if 70 <= year <= 79:
+                                rez[8] += 1
+                            if year <= 80:
+                                rez[8] += 1
+                            if pol == 1:
+                                if 16 < year <= 65:
+                                    rez[9] += 1
+                                elif year > 65:
+                                    rez[10] += 1
+                            if pol == 2:
+                                if 16 < year <= 60:
+                                    rez[9] += 1
+                                elif year > 60:
+                                    rez[10] += 1
+                    else:
+                        if ds not in nz:
+                            # rez[0] += 1
+                            if 15 <= year <= 17:
+                                rez[1] += 1
+                            if 18 <= year <= 19:
+                                rez[2] += 1
+                            if 20 <= year <= 29:
+                                rez[3] += 1
+                            if 30 <= year <= 39:
+                                rez[4] += 1
+                            if 40 <= year <= 49:
+                                rez[5] += 1
+                            if 50 <= year <= 59:
+                                rez[6] += 1
+                            if 60 <= year <= 69:
+                                rez[7] += 1
+                            if 70 <= year <= 79:
+                                rez[8] += 1
+                            if year <= 80:
+                                rez[8] += 1
+                            if pol == 1:
+                                if 16 < year <= 65:
+                                    rez[9] += 1
+                                elif year > 65:
+                                    rez[10] += 1
+                            if pol == 2:
+                                if 16 < year <= 60:
+                                    rez[9] += 1
+                                elif year > 60:
+                                    rez[10] += 1
+    rez[0]=sum(rez)
+    return rez
 def get_rez_rep_5(data,t):
+    I60 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    I61_I62 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    I63 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    I67_I69 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    G00_G09 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    G92 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    C70C72_C32_C33 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    _ = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    not_nz = nzI60 + nzI61_I62 + nzI63 + nzI67_I69 + nzG00_G09 + nzC70C72_C32_C33
     if t == 1:
-        I60 = [0,0,0,0,0,0,0,0,0,0,0,0]
-        I61_I62 = [0,0,0,0,0,0,0,0,0,0,0,0]
-        I63 = [0,0,0,0,0,0,0,0,0,0,0,0]
-        I67_I69 = [0,0,0,0,0,0,0,0,0,0,0,0]
-        G00_G09 = [0,0,0,0,0,0,0,0,0,0,0,0]
-        C70C72_C32_C33 = [0,0,0,0,0,0,0,0,0,0,0,0]
-        for d in data:
-            if d.sluchay.dskz:
-                ds = d.sluchay.dskz.kod
-                year = datetime.now().year - d.patient.datr.year
-                if ds in nzI60:
-                    I60[0]+=1
-                    if 15 <= year <= 17:
-                        I60[1]+=1
-                    if 15 <= year <= 17:
-                        I60[1]+=1
-
-
+        I60 = get_rez_rep_5_help(data, I60, nzI60, True, True)
+        I61_I62 = get_rez_rep_5_help(data, I61_I62, nzI61_I62, True, True)
+        I63 = get_rez_rep_5_help(data, I63, nzI63, True, True)
+        I67_I69 = get_rez_rep_5_help(data, I67_I69, nzI67_I69, True, True)
+        G00_G09 = get_rez_rep_5_help(data, G00_G09, nzG00_G09, True, True)
+        G92 = get_rez_rep_5_help(data, G92, nzG92, True, True)
+        C70C72_C32_C33 = get_rez_rep_5_help(data, C70C72_C32_C33, nzC70C72_C32_C33, True, True)
+        not_nz = get_rez_rep_5_help(data, _, not_nz, False, True)
     else:
-        pass
+        I60 = get_rez_rep_5_help(data, I60, nzI60, True, False)
+        I61_I62 = get_rez_rep_5_help(data, I61_I62, nzI61_I62, True, False)
+        I63 = get_rez_rep_5_help(data, I63, nzI63, True, False)
+        I67_I69 = get_rez_rep_5_help(data, I67_I69, nzI67_I69, True, False)
+        G00_G09 = get_rez_rep_5_help(data, G00_G09, nzG00_G09, True, False)
+        G92 = get_rez_rep_5_help(data, G92, nzG92, True, False)
+        C70C72_C32_C33 = get_rez_rep_5_help(data, C70C72_C32_C33, nzC70C72_C32_C33, True, False)
+        not_nz = get_rez_rep_5_help(data, _, not_nz, False, False)
+
+    _ = [I60, I61_I62, I63, I67_I69, G00_G09, G92, C70C72_C32_C33, not_nz]
+    r = None
+    for o in range(len(_)):
+        if o == 0:
+            r = numpy.array(_[o])
+        else:
+            r += numpy.array(_[o])
+    _ = r.tolist()
+    return [
+        I60, I61_I62, I63, I67_I69, G00_G09, G92, C70C72_C32_C33, not_nz, _
+    ]
+
+    #
+    # if t == 1:
+    #     I60 = [0,0,0,0,0,0,0,0,0,0,0,0]
+    #     I61_I62 = [0,0,0,0,0,0,0,0,0,0,0,0]
+    #     I63 = [0,0,0,0,0,0,0,0,0,0,0,0]
+    #     I67_I69 = [0,0,0,0,0,0,0,0,0,0,0,0]
+    #     G00_G09 = [0,0,0,0,0,0,0,0,0,0,0,0]
+    #     G92 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    #     C70C72_C32_C33 = [0,0,0,0,0,0,0,0,0,0,0,0]
+    #     _ = [0,0,0,0,0,0,0,0,0,0,0,0]
+    #     not_nz = nzI60 + nzI61_I62 + nzI63 + nzI67_I69 + nzG00_G09 + nzC70C72_C32_C33
+    #
+    #     I60 = get_rez_rep_5_help(data,I60,nzI60,True,t)
+    #     I61_I62 = get_rez_rep_5_help(data,I61_I62,nzI61_I62,True,t)
+    #     I63 = get_rez_rep_5_help(data,I63,nzI63,True,t)
+    #     I67_I69 = get_rez_rep_5_help(data,I67_I69,nzI67_I69,True,t)
+    #     G00_G09 = get_rez_rep_5_help(data,G00_G09,nzG00_G09,True,t)
+    #     G92 = get_rez_rep_5_help(data,G92,nzG92,True,t)
+    #     C70C72_C32_C33 = get_rez_rep_5_help(data,C70C72_C32_C33,nzC70C72_C32_C33,True,t)
+    #     not_nz = get_rez_rep_5_help(data,_,not_nz,False,t)
+    #
+    #     _ = [I60,I61_I62,I63,I67_I69,G00_G09,G92,C70C72_C32_C33,not_nz]
+    #     r = None
+    #     for o in range(len(_)):
+    #         if o == 0:
+    #             r = numpy.array(_[o])
+    #         else:
+    #             r += numpy.array(_[o])
+    #     _ = r.tolist()
+    #     return [
+    #         I60,I61_I62,I63,I67_I69,G00_G09,G92,C70C72_C32_C33,not_nz,_
+    #     ]
+    #
+    # else:
+    #     pass
+def get_rez_rep_5_5(data,ds):
+    ds[0]=len(data)
+    for d in data:
+        if d.sluchay.goc and d.sluchay.goc.tip_name == 'Экстренная':
+            ds[1]+=1
+            ds[4]+=d.sluchay.le_vr.kd if d.sluchay.le_vr.kd != ''and d.sluchay.le_vr.kd != None else 0
+        elif d.sluchay.goc and d.sluchay.goc.tip_name == 'Плановая':
+            ds[2]+=1
+            ds[5] += d.sluchay.le_vr.kd if d.sluchay.le_vr.kd != '' and d.sluchay.le_vr.kd != None else 0
+        ds[3]+=d.sluchay.le_vr.kd if d.sluchay.le_vr.kd != ''and d.sluchay.le_vr.kd != None else 0
+        if d.sluchay.rslt and d.sluchay.rslt.id_tip in [105,106]:
+            ds[9]+=1
+            if d.sluchay.goc and d.sluchay.goc.tip_name == 'Экстренная':
+                ds[10]+=1
+            elif d.sluchay.goc and d.sluchay.goc.tip_name == 'Плановая':
+                ds[11] += 1
+    try:
+        ds[6] = float('{0:.2f}'.format(ds[3]/ds[0]))
+    except ZeroDivisionError:
+        ds[6] = 0
+
+    try:
+        ds[7] = float('{0:.2f}'.format(ds[4]/ds[1]))
+    except ZeroDivisionError:
+        ds[7] = 0
+    try:
+        ds[8] = float('{0:.2f}'.format(ds[5] / ds[2]))
+    except ZeroDivisionError:
+        ds[8] = 0
+    return ds
+def get_rez_rep_5_6(data,ds):
+    for d in data:
+        if d.sluchay.rslt and d.sluchay.rslt.id_tip in [105,106]:
+            ds[0]+=1
+            kd = d.sluchay.le_vr.kd if d.sluchay.le_vr.kd != '' and d.sluchay.le_vr.kd != None else 0
+            ds[1] += kd
+            if kd == 1:
+                ds[3]+=1
+            if 1<=kd<=3:
+                ds[4]+=1
+            if 4<=kd<=6:
+                ds[5]+=1
+            if 7<=kd<=9:
+                ds[6]+=1
+            if kd>=10:
+                ds[7]+=1
+    return ds
+def get_rez_rep_5_6_umer(data,ds):
+    for d in data:
+        if d.sluchay.rslt and d.sluchay.rslt.id_tip in [105, 106]:
+            ds[0] += 1
+            year = datetime.now().year - d.patient.datr.year
+            if 20<=year<=29:
+                ds[1]+=1
+            if 40<=year<=49:
+                ds[2]+=1
+            if 50<=year<=59:
+                ds[3]+=1
+            if 60<=year<=69:
+                ds[4]+=1
+            if 70<=year<=79:
+                ds[5]+=1
+            if year>=8:
+                ds[6]+=1
+    return ds
 
 class PatientsDataFiltrs(PatientsData):
     def __init__(self,date_1,date_2,user,request):
@@ -2089,7 +2364,7 @@ class VaultOtd(AnnualReportABC):
         elif n == '4':
             self.oth_4(data,otd)
         elif n == '5':
-            self.oth_5(data)
+            self.oth_5(data,otd)
         elif n == '6':
             self.oth_6(data)
         elif n == '7':
@@ -2304,7 +2579,7 @@ class VaultOtd(AnnualReportABC):
                     data_60_69.append(d)
                 if 70 <= year <= 79:
                     data_70_79.append(d)
-                if 80 >= year:
+                if 80 <= year:
                     data_80.append(d)
 
             rez_20 = self.rez_oth_1_2(data_20_29)
@@ -2655,14 +2930,7 @@ class VaultOtd(AnnualReportABC):
             async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
             async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_4_{self.user.user.id}.xlsx'})
 
-    def oth_5(self,data):
-        # print(nzI60)
-        # print(nzI61_I62)
-        # print(nzI63)
-        # print(nzI67_I69)
-        # print(nzG00_G09)
-        # print(nzG92)
-        # print(nzC70C72_C32_C33)
+    def oth_5(self,data,otd):
         file = self.is_file('otd_rep_5.xlsx')
         if file:
             wb = load_workbook(file)
@@ -2672,10 +2940,206 @@ class VaultOtd(AnnualReportABC):
             sheet2 = wb.get_sheet_by_name('Лист2')
             sheet3 = wb.get_sheet_by_name('Лист3')
             sheet4 = wb.get_sheet_by_name('Лист4')
+            sheet5 = wb.get_sheet_by_name('Лист5')
+            sheet6 = wb.get_sheet_by_name('Лист6')
 
             #Лист1
-            rez = get_rez_rep_5(data,t=1)
-            
+            sheet1.cell(row=3, column=1).value = f'отделение {otd}'
+            sheet1.cell(row=5,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            rez1 = get_rez_rep_5(data,t=1)
+            row=8
+            for r in rez1:
+                row+=1
+                for n,v in enumerate(r):
+                    sheet1.cell(row=row, column=3+n).value = v if v != 0 else None
+                    sheet1.cell(row=row, column=3+n).alignment = styles.Alignment(horizontal="center", vertical="center")
+            #Лист2
+            sheet2.cell(row=3, column=1).value = f'отделение {otd}'
+            sheet2.cell(row=5,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            rez2 = get_rez_rep_5(data, t=2)
+            row = 9
+            for r2 in range(len(rez2)):
+                row+=1
+                _1 = [i for i in range(1,25) if i % 2 == 1]
+                _0 = [i for i in range(1, 25) if i % 2 == 0]
+
+                for n2,v2 in enumerate(rez2[r2]):
+                    sheet2.cell(row=row, column=2+_1[n2]).value = v2 if v2 != 0 else None
+                    sheet2.cell(row=row, column=2+_1[n2]).alignment = styles.Alignment(horizontal="center",vertical="center")
+                    try:
+                        v = float('{0:.2f}'.format((v2 * 100) / rez1[r2][n2]))
+                    except ZeroDivisionError:
+                        v = 0
+                    sheet2.cell(row=row, column=2 + _0[n2]).value= v if v != 0 else None
+                    sheet2.cell(row=row, column=2 + _0[n2]).alignment = styles.Alignment(horizontal="center",vertical="center")
+
+
+            rez3_4 = get_list_pers(data)
+            _ = []
+            for r in rez3_4:
+                if len(r[1]) > 1:
+                    for n,v in enumerate(r[1]):
+                        if n != 0:
+                            _.append(v)
+
+            # Лист3
+            sheet3.cell(row=3, column=1).value = f'отделение {otd}'
+            sheet3.cell(row=5,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            rez3 = get_rez_rep_5(data=_, t=1)
+            row=8
+            for r in rez3:
+                row+=1
+                for n,v in enumerate(r):
+                    sheet3.cell(row=row, column=3+n).value = v if v != 0 else None
+                    sheet3.cell(row=row, column=3+n).alignment = styles.Alignment(horizontal="center", vertical="center")
+            #Лист4
+            sheet4.cell(row=3, column=1).value = f'отделение {otd}'
+            sheet4.cell(row=5,column=1).value = f'За период с {self.date_1.strftime("%d.%m.%Y")} по {self.date_2.strftime("%d.%m.%Y")} г.'
+            rez4 = get_rez_rep_5(data=_, t=2)
+            row = 9
+            for r2 in range(len(rez4)):
+                row += 1
+                _1 = [i for i in range(1, 25) if i % 2 == 1]
+                _0 = [i for i in range(1, 25) if i % 2 == 0]
+
+                for n2, v2 in enumerate(rez4[r2]):
+                    sheet4.cell(row=row, column=2 + _1[n2]).value = v2 if v2 != 0 else None
+                    sheet4.cell(row=row, column=2 + _1[n2]).alignment = styles.Alignment(horizontal="center",
+                                                                                         vertical="center")
+                    try:
+                        v = float('{0:.2f}'.format((v2 * 100) / rez3[r2][n2]))
+                    except ZeroDivisionError:
+                        v = 0
+                    sheet4.cell(row=row, column=2 + _0[n2]).value = v if v != 0 else None
+                    sheet4.cell(row=row, column=2 + _0[n2]).alignment = styles.Alignment(horizontal="center",
+                                                                                         vertical="center")
+            #Лист5
+            I60 = []
+            I61 = []
+            I63 = []
+            G45_46 = []
+            I67_I69 = []
+            _ = []
+
+            for d in data:
+                if d.sluchay.dskz and d.sluchay.dskz.kod in nzI60:
+                    I60.append(d)
+                elif d.sluchay.dskz and d.sluchay.dskz.kod in nzI61:
+                    I61.append(d)
+                elif d.sluchay.dskz and d.sluchay.dskz.kod in nzI63:
+                    I63.append(d)
+                elif d.sluchay.dskz and d.sluchay.dskz.kod in nzG45_46:
+                    G45_46.append(d)
+                elif d.sluchay.dskz and d.sluchay.dskz.kod in nzI67_I69:
+                    I67_I69.append(d)
+                else:
+                    _.append(d)
+            I60_data = [0,0,0,0,0,0,0,0,0,0,0,0]
+            I61_data = [0,0,0,0,0,0,0,0,0,0,0,0]
+            I63_data = [0,0,0,0,0,0,0,0,0,0,0,0]
+            G45_46_data = [0,0,0,0,0,0,0,0,0,0,0,0]
+            I67_I69_data = [0,0,0,0,0,0,0,0,0,0,0,0]
+            _data = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+            I60 = get_rez_rep_5_5(I60,I60_data)
+            I61 = get_rez_rep_5_5(I61,I61_data)
+            I63 = get_rez_rep_5_5(I63,I63_data)
+            G45_46 = get_rez_rep_5_5(G45_46,G45_46_data)
+            I67_I69 = get_rez_rep_5_5(I67_I69, I67_I69_data)
+            _ = get_rez_rep_5_5(_,_data)
+            all_ds = [I60,I61,I63,G45_46,I67_I69,_]
+            r = None
+            for o in range(len(all_ds)):
+                if o == 0:
+                    r = numpy.array(all_ds[o])
+                else:
+                    r += numpy.array(all_ds[o])
+            rez = r.tolist()
+
+            try:
+                rez[6] = float('{0:.2f}'.format(rez[3] / rez[0]))
+            except ZeroDivisionError:
+                rez[6] = 0
+            try:
+                rez[7] = float('{0:.2f}'.format(rez[4] / rez[1]))
+            except ZeroDivisionError:
+                rez[7] = 0
+            try:
+                rez[8] = float('{0:.2f}'.format(rez[5] / rez[2]))
+            except ZeroDivisionError:
+                rez[8] = 0
+
+            all_ds.append(rez)
+            row=4
+            for a in all_ds:
+                row+=1
+                for n,v in enumerate(a):
+                    sheet5.cell(row=row, column=2+n).value = v if v != 0 else None
+
+            #Лист6
+            I61 = []
+            I63 = []
+            _ = []
+
+
+            for d in data:
+                if d.sluchay.dskz and d.sluchay.dskz.kod in nzI61:
+                    I61.append(d)
+                elif d.sluchay.dskz and d.sluchay.dskz.kod in nzI63:
+                    I63.append(d)
+                else:
+                    _.append(d)
+            I61_data = [0,0,0,0,0,0,0,0]
+            I63_data = [0,0,0,0,0,0,0,0]
+            _data = [0,0,0,0,0,0,0,0]
+
+            I61r = get_rez_rep_5_6(I61,I61_data)
+            I63r = get_rez_rep_5_6(I63,I63_data)
+            _r = get_rez_rep_5_6(_,_data)
+            all_ds = [I61r, I63r,_r]
+            r = None
+            for o in range(len(all_ds)):
+                if o == 0:
+                    r = numpy.array(all_ds[o])
+                else:
+                    r += numpy.array(all_ds[o])
+            rez = r.tolist()
+            try:
+                rez[2] = float('{0:.2f}'.format(rez[1] / rez[0]))
+            except ZeroDivisionError:
+                rez[2] = 0
+            all_ds.append(rez)
+            row=4
+            for a in all_ds:
+                row+=1
+                try:
+                    a[2] = float('{0:.2f}'.format(a[1] / a[0]))
+                except ZeroDivisionError:
+                    a[2] = 0
+                for n,v in enumerate(a):
+                    sheet6.cell(row=row, column=2+n).value = v if v != 0 else None
+
+            I61_data = [0,0,0,0,0,0,0]
+            I63_data = [0,0,0,0,0,0,0]
+            _data = [0,0,0,0,0,0,0]
+            I61 = get_rez_rep_5_6_umer(I61,I61_data)
+            I63 = get_rez_rep_5_6_umer(I63, I63_data)
+            _ = get_rez_rep_5_6_umer(_,_data)
+            all_ds = [I61,I63,_]
+            r = None
+            for o in range(len(all_ds)):
+                if o == 0:
+                    r = numpy.array(all_ds[o])
+                else:
+                    r += numpy.array(all_ds[o])
+            rez = r.tolist()
+            all_ds.append(rez)
+            row=13
+            for a in all_ds:
+                row += 1
+                for n, v in enumerate(a):
+                    sheet6.cell(row=row, column=2 + n).value = v if v != 0 else None
+
             wb.save(self.path() + f'otd_rep_5_{self.user.user.id}.xlsx')
             async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'report_vault_otd', 'text': 'Отчет cфромирован'})
             async_to_sync(get_channel_layer().group_send)(self.user_group_name,{'type': 'download_vault_otd','text': self.path() + f'otd_rep_5_{self.user.user.id}.xlsx'})

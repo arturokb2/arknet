@@ -24,12 +24,12 @@ let create_reestr_d = new Vue({
       let date_1 = document.getElementById("date_r_1_create")
       let date_2 = document.getElementById("date_r_2_create")
       let type_res = document.getElementById("sl_res")
-      let filename = document.getElementById("filename")
+      let his = document.getElementById("his")
       formData.append('type', 'create_reestr')
       formData.append('date_1', date_1.value)
       formData.append('date_2', date_2.value)
       formData.append('type_res',type_res.value)
-      formData.append("filename", filename.value)
+      formData.append("his", his.value)
       $('#download_reestr').empty()
       
       if (date_1.value != '' && date_2.value != ''){

@@ -21,11 +21,11 @@ from services.hospital.prot_reestr import ProtReestrHosp
 from django import db
 
 class CreateReestr(ABC):
-    def __init__(self, user, date_1, date_2,type_reestr,filename):
+    def __init__(self, user, date_1, date_2,type_reestr,his):
         self.user = MyUser.objects.get(user_id=user)
         self.date_1 = date_1
         self.date_2 = date_2
-        self.filename = filename
+        self.his = his
         self.temp_dir = 'temp'
         self.dir = '/'.join([settings.MEDIA_ROOT,self.temp_dir,str(user),''])
         self.type_reestr = type_reestr
@@ -35,31 +35,32 @@ class CreateReestr(ABC):
         pass
 
 class Create(CreateReestr):
-    def __init__(self, user, date_1, date_2,type_reestr,filename):
-        super().__init__(user, date_1, date_2,type_reestr,filename)
+    def __init__(self, user, date_1, date_2,type_reestr,his):
+        super().__init__(user, date_1, date_2,type_reestr,his)
     @staticmethod
     def func_chunk_itertools(lst):
         i_ = iter(lst)
         return list(zip_longest(i_, i_, i_, i_,i_, i_, i_, i_,i_, i_))
     def create(self):
-        self.patients = PatientsData(self.date_1, self.date_2, self.user)
-        self.patients.sluchays()
-        #кардео
         temp = []
-        # temp = self.patients.patients
-        for t in self.patients.patients:
-            # temp.append(t)
-            # if t.sluchay.otd and t.sluchay.otd.naim in ['ТРАВМА N3','ЧЛХ И ПЛАСТИЧ.ХИР-ИИ','АРО N3 (ЛДО)']:
-            # if t.sluchay.otd and t.sluchay.otd.naim in ['КАРДИОЛОГИЧЕСКОЕ']:
-            #     temp.append(t)
-
-            if t.sluchay.nib in ['0201107777']:
-                temp.append(t)
-            # if t.sluchay.nib in ['0201095766','0201099375','0201090869','0201091508','0201090881',
-            # '0201090092','0201094355','0201094320','0201100162','0201090094','0201100929',
-            # '0201063043','0201067209','0201066942','0201100170','0201095814','0201106080',
-            # '0201091513','0201106076','0201106846','0201090728','0201106803']:
-            #     temp.append(t)
+        if (self.type_reestr == '' or self.type_reestr == 'kard') and self.his == '':
+            self.patients = PatientsData(self.date_1, self.date_2, self.user)
+            self.patients.sluchays()
+            for t in self.patients.patients:
+                if self.type_reestr == 'kard':
+                    if t.sluchay.otd and t.sluchay.otd.naim in ['КАРДИОЛОГИЧЕСКОЕ']:
+                        temp.append(t)
+                else:
+                    temp.append(t)
+        else:
+            his = [h.strip() for h in self.his.split(',') if h != '' and len(h.strip()) == 10]
+            his = [h['id'] for h in Sluchay.objects.values('id').filter(nib__in=his)]
+            print(his)
+            self.patients = PatientsData(self.date_1, self.date_2, self.user)
+            for h in his:
+                self.patients.get_data(h)
+            for patient in self.patients.patients:
+                temp.append(patient)
 
         if len(temp) > 0:
             self.reestr = []
@@ -327,9 +328,11 @@ class Create(CreateReestr):
             kd = int(str(pat.sluchay.datv - pat.sluchay.datp).split(' ')[0])
         else:
             kd = 1
-
-        if len(p.sluchay.err_text) > 0:
-            err['err_text'] = p
+        try:
+            if len(p.sluchay.err_text) > 0:
+                err['err_text'] = p
+        except TypeError:
+            pass
 
         comentu = self.comentu_sp(pat,kd)
         resdict_S['BLOCK_CD'] = 'S'
@@ -639,7 +642,7 @@ class Create(CreateReestr):
     def create_dbf(self):
         if not os.path.isdir(self.dir):
             os.mkdir(self.dir)
-        self.dir += self.filename if len(self.filename) > 0 else 'reestr_'+ str(self.user.user.id)
+        self.dir += 'reestr_'+ str(self.user.user.id)
         table = dbf.Table('{0}.dbf'.format(self.dir),
                           'BLOCK_CD C(1);'
                           'CODE_MO C(6);'

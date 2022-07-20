@@ -54,7 +54,7 @@ class Create_reestr(View):
                                 request.POST.get('date_1'),
                                 request.POST.get('date_2'),
                                 request.POST.get('type_res'),
-                                request.POST.get('filename'))
+                                request.POST.get('his'))
         return JsonResponse({'rez': ''})
 
 class reports(View):

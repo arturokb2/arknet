@@ -303,14 +303,17 @@
           <br>
           <div class="text-center">
             <select name="sl_res" id="sl_res" class="text-center">
+              <option value=""></option>
+              <option value="kard">Кардиолония</option>
               <option value="ОСН.dbf">Основной</option>
               <option value="БПО.dbf">баз.программа ОМС</option>
               <option value="ВСП.dbf">ВТМП сверхбаз.программа</option>
             </select>
           </div>
+          
           <br>
-          <div class="text-center"><input type="text" value="" id="filename" class="mb-3 text-center"
-              placeholder="Имя файла"></div>
+     
+          <div class="text-center"><textarea type="" value="" id="his" class="mb-3 text-center"></textarea></div>
           <br>
           <div class="text-center"><button type="button" class="btn btn-primary" v-on:click="create_reestr()">Создать
               реестр</button></div>

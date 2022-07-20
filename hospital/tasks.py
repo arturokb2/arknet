@@ -29,8 +29,8 @@ def save_oper_monitoring_res(user):
     return 'save_oper_monitoring_res'
 
 @app.task
-def create_reestr(user, date_1, date_2,type_reestr,filename):
-    create = Create(user,date_1,date_2,type_reestr,filename)
+def create_reestr(user, date_1, date_2,type_reestr,his):
+    create = Create(user,date_1,date_2,type_reestr,his)
     create.create()
     return 'Create Reestr OK !!!! '
 
